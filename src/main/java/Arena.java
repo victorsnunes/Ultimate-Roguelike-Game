@@ -16,6 +16,7 @@ public class Arena {
     private List<Wall> walls;
     private List<Coin> coins;
     private List<Monster> monsters;
+    private List<Room> rooms;
 
     public Arena(int width, int height) {
         this.width = width;
@@ -24,6 +25,7 @@ public class Arena {
         this.walls = createWalls();
         this.coins = createCoins();
         this.monsters = createMonsters();
+        this.rooms = createRooms();
     }
 
     public void draw(TextGraphics graphics) throws IOException {
@@ -36,12 +38,16 @@ public class Arena {
 
         hero.draw(graphics);
 
-        for (Monster monster : monsters) {
+        for (Monster monster : monsters)
             monster.draw(graphics);
-        }
 
         for (Wall wall : walls)
             wall.draw(graphics);
+
+        for (Room room : rooms) {
+            for (Wall wall : room.getWalls())
+                wall.draw(graphics);
+        }
     }
 
     public void processKey(KeyStroke key) {
@@ -169,5 +175,13 @@ public class Arena {
             monsters.add(new Monster(random.nextInt(width - 2) + 1, random.nextInt(height - 2) + 1));
         }
         return monsters;
+    }
+
+    private List<Room> createRooms() {
+        ArrayList<Room> rooms = new ArrayList<>();
+
+        rooms.add(new Room(30, 60, 20, 20));
+
+        return rooms;
     }
 }
