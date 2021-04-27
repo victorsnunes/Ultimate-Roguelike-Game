@@ -139,13 +139,13 @@ public class Arena {
         List<Wall> walls = new ArrayList<>();
 
         for (int c = 0; c < width; c++) {
-            walls.add(new Wall(c, 0));
-            walls.add(new Wall(c, height - 1));
+            walls.add(new HorizontalWall(c, 0));
+            walls.add(new HorizontalWall(c, height - 1));
         }
 
         for (int r = 1; r < height - 1; r++) {
-            walls.add(new Wall(0, r));
-            walls.add(new Wall(width - 1, r));
+            walls.add(new VerticalWall(0, r));
+            walls.add(new VerticalWall(width - 1, r));
         }
 
         return walls;
