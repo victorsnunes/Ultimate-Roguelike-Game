@@ -42,26 +42,36 @@ public class Game {
     }
 
     public void run() {
+        long FPS = 30;
+        long frameCounter = 0;
+        long loopTime = 1/FPS;
+        long start = System.currentTimeMillis();
+        long elapsedTime;
 
         try {
             arena.draw(screen.newTextGraphics());
-            KeyStroke key = screen.readInput();;
-            while ( !(key.getKeyType() == KeyType.Character && key.getCharacter() == 'q') && !(key.getKeyType() == KeyType.EOF)) {
+            KeyStroke key = screen.pollInput();
+            processKey(key);
+            while (key == null || ( !(key.getKeyType() == KeyType.Character && key.getCharacter() == 'q') && !(key.getKeyType() == KeyType.EOF))) {
                 processKey(key);
                 screen.clear();
                 arena.draw(screen.newTextGraphics());
                 screen.refresh();
+                if(frameCounter%30 == 0){
+                    arena.moveMonsters();
+                }
                 if (arena.verifyMonsterCollisions()) {
                     System.out.println("Oh no, a monster got you!");
                     break;
                 }
-                key = screen.readInput();
+                elapsedTime = System.currentTimeMillis() - start;
+                frameCounter = (frameCounter + 1)%FPS;
+                key = screen.pollInput();
             }
         }
         catch(IOException e) {
             e.printStackTrace();
         }
-
     }
 
     private void processKey(KeyStroke key) {

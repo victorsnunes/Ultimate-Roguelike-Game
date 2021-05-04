@@ -51,26 +51,25 @@ public class Arena {
     }
 
     public void processKey(KeyStroke key) {
+        if(key == null){
+            return;
+        }
 
         switch (key.getKeyType()) {
             case ArrowUp:
                 moveHero(hero.moveUp());
-                moveMonsters(hero.getPosition());
                 break;
 
             case ArrowDown:
                 moveHero(hero.moveDown());
-                moveMonsters(hero.getPosition());
                 break;
 
             case ArrowLeft:
                 moveHero(hero.moveLeft());
-                moveMonsters(hero.getPosition());
                 break;
 
             case ArrowRight:
                 moveHero(hero.moveRight());
-                moveMonsters(hero.getPosition());
                 break;
 
             default:
@@ -85,11 +84,9 @@ public class Arena {
         retrieveCoins(position);
     }
 
-    private void moveMonsters(Position pos) {
-        Random random = new Random();
-
+    public void moveMonsters() {
+        Position pos = hero.getPosition();
         for(Monster monster : monsters) {
-            int movement = random.nextInt(4);
             Position monsterPosition = new Position(monster.getX(), monster.getY());
 
             if (monsterPosition.getX() < pos.getX()){
