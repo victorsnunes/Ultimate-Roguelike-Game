@@ -1,0 +1,60 @@
+Classes:
+
+Element(abstrata)
+    Hero
+    Enemy
+    Wall
+    Coin
+Arena
+ArenaBuilder
+
+Position
+
+Game
+
+GUI
+LanternaGUI
+
+
+Settings(talvez, para static final variables usadas em varias classes)
+
+
+
+Interfaces:
+
+
+
+Design Patterns:
+
+Command Pattern - usar para posição de elementos como hero e enemy(i.e:dar track ao movimento em stacks
+ possibilitanto tambem futuros undos e redos )
+Factory Pattern - usar para criaçao de monstros
+Observer Pattern - tornar runtime mais suave (i.e: monstros so perseguem o heroi quando sao notificados
+ de que o mesmo esta proximo )
+
+
+
+Refactoring(necessario usar em todo o projeto (needs update)):
+
+Code Smells(analise semanal de codigo) 
+
+
+Misc:
+
+-Usar wildcard em funçoes tipo DRAW para Elements de forma a nao repetir o metodo
+-Usar arrays para objetos criados multiplas vezes.
+-Lists(https://www.w3schools.com/java/java_linkedlist.asp) nao usar ArrayList para tudo, ver qual a 
+melhor soluçao
+-HashTable para por exemplo ligar uma chave a uma porta no jogo de forma a que so essa chave pode abri-la.
+Outro exemplo certos itens que so o heroi pode usar caso tenha outro item que permita essa utilizaçao(especie 
+de puzzle)
+-Implementaçao de save file aberta a discussao dado que o heroi podera ou nao ter permadeath(no rogue original
+foi decidido apagar o save file no caso de reload(death))
+    Pode ser implementados saves para caso o jogo feche, mas quando a morte os saves são deletados
+-Mapas gerados aleatoriamente (implementar um mapa para ser usado como modelo
+mas depois implementar o gerador de mapas)
+-Combate ?
+-Menu incinal ?
+
+
+
