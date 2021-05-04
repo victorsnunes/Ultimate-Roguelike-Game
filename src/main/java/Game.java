@@ -44,8 +44,7 @@ public class Game {
     public void run() {
         long FPS = 30;
         long frameCounter = 0;
-        long loopTime = 1/FPS;
-        long start = System.currentTimeMillis();
+        long loopTime = 1000/FPS;
         long elapsedTime;
 
         try {
@@ -53,6 +52,7 @@ public class Game {
             KeyStroke key = screen.pollInput();
             processKey(key);
             while (key == null || ( !(key.getKeyType() == KeyType.Character && key.getCharacter() == 'q') && !(key.getKeyType() == KeyType.EOF))) {
+                long start = System.currentTimeMillis();
                 processKey(key);
                 screen.clear();
                 arena.draw(screen.newTextGraphics());
@@ -65,11 +65,15 @@ public class Game {
                     break;
                 }
                 elapsedTime = System.currentTimeMillis() - start;
+
+                if(elapsedTime < loopTime){
+                    Thread.sleep(loopTime - elapsedTime);
+                }
                 frameCounter = (frameCounter + 1)%FPS;
                 key = screen.pollInput();
             }
         }
-        catch(IOException e) {
+        catch(IOException | InterruptedException e) {
             e.printStackTrace();
         }
     }
