@@ -49,7 +49,12 @@ melhor soluçao
 Outro exemplo certos itens que so o heroi pode usar caso tenha outro item que permita essa utilizaçao(especie 
 de puzzle)
 -Implementaçao de save file aberta a discussao dado que o heroi podera ou nao ter permadeath(no rogue original
-foi decidido apagar o save file no caso de reload(death)) 
+foi decidido apagar o save file no caso de reload(death))
+    Pode ser implementados saves para caso o jogo feche, mas quando a morte os saves são deletados
+-Mapas gerados aleatoriamente (implementar um mapa para ser usado como modelo
+mas depois implementar o gerador de mapas)
+-Combate ?
+-Menu incinal ?
 
 
 
