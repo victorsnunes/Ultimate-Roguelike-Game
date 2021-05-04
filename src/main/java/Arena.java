@@ -55,22 +55,22 @@ public class Arena {
         switch (key.getKeyType()) {
             case ArrowUp:
                 moveHero(hero.moveUp());
-                moveMonsters();
+                moveMonsters(hero.getPosition());
                 break;
 
             case ArrowDown:
                 moveHero(hero.moveDown());
-                moveMonsters();
+                moveMonsters(hero.getPosition());
                 break;
 
             case ArrowLeft:
                 moveHero(hero.moveLeft());
-                moveMonsters();
+                moveMonsters(hero.getPosition());
                 break;
 
             case ArrowRight:
                 moveHero(hero.moveRight());
-                moveMonsters();
+                moveMonsters(hero.getPosition());
                 break;
 
             default:
@@ -85,29 +85,27 @@ public class Arena {
         retrieveCoins(position);
     }
 
-    private void moveMonsters() {
+    private void moveMonsters(Position pos) {
         Random random = new Random();
 
         for(Monster monster : monsters) {
             int movement = random.nextInt(4);
             Position monsterPosition = new Position(monster.getX(), monster.getY());
 
-            switch (movement) {
-                case 0:
-                    monsterPosition = new Position(monster.getX() + 1, monster.getY());
-                    break;
-                case 1:
-                    monsterPosition = new Position(monster.getX() - 1, monster.getY());
-                    break;
-                case 2:
-                    monsterPosition = new Position(monster.getX(), monster.getY() + 1);
-                    break;
-                case 3:
-                    monsterPosition = new Position(monster.getX(), monster.getY() - 1);
-                    break;
-                default:
-                    break;
+            if (monsterPosition.getX() < pos.getX()){
+                monsterPosition.setX(monster.getX() + 1);
             }
+            if (monsterPosition.getX() > pos.getX()){
+                monsterPosition.setX(monster.getX() - 1);
+            }
+            if (monsterPosition.getY() < pos.getY()){
+                monsterPosition.setY(monster.getY() + 1);
+            }
+            if (monsterPosition.getY() > pos.getY()){
+                monsterPosition.setY(monster.getY() - 1);
+
+            }
+
 
             if (canMove(monsterPosition))
                 monster.setPosition(monsterPosition);
