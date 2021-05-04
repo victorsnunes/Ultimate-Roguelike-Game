@@ -22,7 +22,6 @@ public class Arena {
         this.width = width;
         this.height = height;
         this.hero = new Hero(new Position(10, 10));
-        this.walls = createWalls();
         this.coins = createCoins();
         this.monsters = createMonsters();
         this.rooms = createRooms();
@@ -40,9 +39,6 @@ public class Arena {
 
         for (Monster monster : monsters)
             monster.draw(graphics);
-
-        for (Wall wall : walls)
-            wall.draw(graphics);
 
         for (Room room : rooms) {
             for (Wall wall : room.getWalls())
@@ -103,9 +99,7 @@ public class Arena {
             }
             if (monsterPosition.getY() > pos.getY()){
                 monsterPosition.setY(monster.getY() - 1);
-
             }
-
 
             if (canMove(monsterPosition))
                 monster.setPosition(monsterPosition);
@@ -131,28 +125,14 @@ public class Arena {
 
     private boolean canMove(Position position) {
 
-        for (Wall wall : walls) {
-            if (wall.getPosition().equals(position))
-                return false;
+        for (Room room : rooms){
+            for (Wall wall : room.getWalls()){
+                if (wall.getPosition().equals(position))
+                    return false;
+            }
         }
 
         return (position.getX() >= 0) && (position.getX() < width) && (position.getY() >= 0) && (position.getY() < height);
-    }
-
-    private List<Wall> createWalls() {
-        List<Wall> walls = new ArrayList<>();
-
-        for (int c = 0; c < width; c++) {
-            walls.add(new HorizontalWall(c, 0));
-            walls.add(new HorizontalWall(c, height - 1));
-        }
-
-        for (int r = 1; r < height - 1; r++) {
-            walls.add(new VerticalWall(0, r));
-            walls.add(new VerticalWall(width - 1, r));
-        }
-
-        return walls;
     }
 
     private List<Coin> createCoins() {
@@ -169,7 +149,7 @@ public class Arena {
         Random random = new Random();
         ArrayList<Monster> monsters = new ArrayList<>();
 
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 2; i++) {
             monsters.add(new Monster(random.nextInt(width - 2) + 1, random.nextInt(height - 2) + 1));
         }
         return monsters;
@@ -178,7 +158,7 @@ public class Arena {
     private List<Room> createRooms() {
         ArrayList<Room> rooms = new ArrayList<>();
 
-        rooms.add(new Room(5, 5, 3, 6));
+        rooms.add(new Room(5, 5, 9, 6));
 
         return rooms;
     }
