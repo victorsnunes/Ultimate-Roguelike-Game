@@ -7,12 +7,12 @@ public class Room {
 
     public Room(int x, int y, int width, int height) {
 
-        for (int i = x; i < x + width; i++) {
+        for (int i = x; i <= x + width; i++) {
             walls.add(new HorizontalWall(i, y));
             walls.add(new HorizontalWall(i, y + height));
         }
 
-        for (int j = y; j < y + height; j++) {
+        for (int j = y + 1; j < y + height; j++) {
             walls.add(new VerticalWall(x, j));
             walls.add(new VerticalWall(x + width, j));
         }

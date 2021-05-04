@@ -178,7 +178,7 @@ public class Arena {
     private List<Room> createRooms() {
         ArrayList<Room> rooms = new ArrayList<>();
 
-        rooms.add(new Room(30, 60, 20, 20));
+        rooms.add(new Room(5, 5, 3, 6));
 
         return rooms;
     }
