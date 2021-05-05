@@ -4,6 +4,7 @@ import com.googlecode.lanterna.input.KeyStroke;
 import com.googlecode.lanterna.screen.Screen;
 
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -17,6 +18,7 @@ public class Arena {
     private List<Coin> coins;
     private List<Monster> monsters;
     private List<Room> rooms;
+    private List<Path> paths;
 
     public Arena(int width, int height) {
         this.width = width;
@@ -25,6 +27,7 @@ public class Arena {
         this.coins = createCoins();
         this.monsters = createMonsters();
         this.rooms = createRooms();
+        this.paths = createPath();
     }
 
     public void draw(TextGraphics graphics) throws IOException {
@@ -43,6 +46,9 @@ public class Arena {
         for (Room room : rooms) {
             for (Wall wall : room.getWalls())
                 wall.draw(graphics);
+        }
+        for(Path path : paths){
+            path.draw(graphics);
         }
     }
 
@@ -156,7 +162,97 @@ public class Arena {
         ArrayList<Room> rooms = new ArrayList<>();
 
         rooms.add(new Room(5, 5, 9, 6));
-
+        rooms.add(new Room(50, 20, 10, 12));
         return rooms;
+    }
+
+    private List<Path> createPath(){
+        ArrayList<Path> paths = new ArrayList<>();
+        Random random = new Random();
+        Room room1 = rooms.get(0);
+        Room room2 = rooms.get(1);
+        boolean hDirection = false;
+        boolean vDirection = false;
+        Room mostLeftTop = room1;
+        Room mostRightBottom = room2;
+
+        if(room1.getX() + room1.getWidht() < room2.getX()){
+            hDirection = true;
+            mostLeftTop = room1;
+            mostRightBottom = room2;
+        }
+        if(room2.getX() + room2.getWidht() < room1.getX()){
+            hDirection = true;
+            mostLeftTop = room2;
+            mostRightBottom = room1;
+        }
+        if(room1.getY() + room1.getHeight() < room2.getY()){
+            vDirection = true;
+            mostLeftTop = room1;
+            mostRightBottom = room2;
+        }
+        if (room2.getY() + room2.getHeight() < room1.getY()){
+            vDirection = true;
+            mostLeftTop = room2;
+            mostRightBottom = room1;
+        }
+        if(hDirection && vDirection){
+            hDirection = false;
+        }
+
+
+        int division;
+        if(hDirection) {
+            division = random.nextInt(mostRightBottom.getX() - (mostLeftTop.getX() + mostLeftTop.getWidht())) + mostLeftTop.getX() + mostLeftTop.getWidht();
+            int leftPointX = mostLeftTop.getX() + mostLeftTop.getWidht();
+            int leftPointY = random.nextInt(mostLeftTop.getHeight()) + mostLeftTop.getY();
+
+            int rightPointX = mostRightBottom.getX();
+            int rightPointY = random.nextInt(mostRightBottom.getHeight()) + mostRightBottom.getY();
+
+
+            int x = leftPointX;
+            int y = leftPointY;
+            while(x < division){
+                paths.add(new Path(x, y));
+                x++;
+            }
+            while(y != rightPointY){
+                paths.add(new Path(x, y));
+                if(y > rightPointY) y--;
+                else y++;
+            }
+            while(x != rightPointX){
+                paths.add(new Path(x, y));
+                x++;
+            }
+
+        } else {
+            division = random.nextInt(mostRightBottom.getY() - (mostLeftTop.getY() + mostLeftTop.getHeight())) + mostLeftTop.getY() + mostLeftTop.getHeight();
+            int topPointX = random.nextInt(mostLeftTop.getWidht()) + mostLeftTop.getX();
+            int topPointY = mostLeftTop.getY() + mostLeftTop.getHeight();
+
+            int bottomPointx = random.nextInt(mostRightBottom.getWidht()) + mostRightBottom.getX();
+            int bottomPointY = mostRightBottom.getY();
+
+
+            int x = topPointX;
+            int y = topPointY;
+            while(y < division){
+                paths.add(new Path(x, y));
+                y++;
+            }
+            while(x != bottomPointx){
+                paths.add(new Path(x, y));
+                if(x > bottomPointx) x--;
+                else x++;
+            }
+            while(y != bottomPointY){
+                paths.add(new Path(x, y));
+                y++;
+            }
+        }
+
+        return paths;
     }
 }

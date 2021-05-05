@@ -17,8 +17,8 @@ public class Game {
     private Terminal terminal;
     private Screen screen;
 
-    private int width = 40;
-    private int height = 20;
+    private int width = 80;
+    private int height = 40;
 
     private Arena arena = new Arena(width, height);
 
