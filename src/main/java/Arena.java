@@ -42,15 +42,16 @@ public class Arena {
             room.draw(graphics);
         }
 
+        for(Path path : paths){
+            for (Chunk chunk : path.getChunks())
+                chunk.draw(graphics);
+        }
+
         hero.draw(graphics);
 
         for (Monster monster : monsters)
             monster.draw(graphics);
 
-        for(Path path : paths){
-            for (Chunk chunk : path.getChunks())
-                chunk.draw(graphics);
-        }
     }
 
     public void processKey(KeyStroke key) {
@@ -132,14 +133,16 @@ public class Arena {
 
     private boolean canMove(Position position) {
 
-        for (Room room : rooms){
-            for (Wall wall : room.getWalls()){
-                if (wall.getPosition().equals(position))
-                    return false;
-            }
-        }
+        for (Path path : paths)
+            for (Chunk chunk : path.getChunks())
+                if (position.equals(chunk.position))
+                    return true;
 
-        return (position.getX() >= 0) && (position.getX() < width) && (position.getY() >= 0) && (position.getY() < height);
+        for (Room room : rooms)
+            if (room.inRoom(position))
+                return true;
+
+        return false;
     }
 
     private List<Coin> createCoins() {

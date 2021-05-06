@@ -57,11 +57,15 @@ public class Room {
         }
     }
 
-    public void checkIsActive(Position position) {
-        boolean boolX = (position.getX() > x) && (position.getX() < (x + widht));
-        boolean boolY = (position.getY() > y) && (position.getY() < (y + height));
+    public boolean inRoom(Position position) {
+        boolean InX = (position.getX() > x) && (position.getX() < (x + widht));
+        boolean InY = (position.getY() > y) && (position.getY() < (y + height));
 
-        if (boolX && boolY) isActive = true;
+        return InX && InY;
+    }
+
+    public void checkIsActive(Position heroPosition) {
+        if (inRoom(heroPosition)) isActive = true;
         else isActive = false;
     }
 }
