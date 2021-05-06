@@ -47,8 +47,10 @@ public class Arena {
             for (Wall wall : room.getWalls())
                 wall.draw(graphics);
         }
+
         for(Path path : paths){
-            path.draw(graphics);
+            for (Chunk chunk : path.getChunks())
+                chunk.draw(graphics);
         }
     }
 
@@ -176,6 +178,8 @@ public class Arena {
         Room mostLeftTop = room1;
         Room mostRightBottom = room2;
 
+        Path path = new Path();
+
         if(room1.getX() + room1.getWidht() < room2.getX()){
             hDirection = true;
             mostLeftTop = room1;
@@ -214,16 +218,16 @@ public class Arena {
             int x = leftPointX;
             int y = leftPointY;
             while(x < division){
-                paths.add(new Path(x, y));
+                path.add(new Chunk(x, y));
                 x++;
             }
             while(y != rightPointY){
-                paths.add(new Path(x, y));
+                path.add(new Chunk(x, y));
                 if(y > rightPointY) y--;
                 else y++;
             }
             while(x != rightPointX){
-                paths.add(new Path(x, y));
+                path.add(new Chunk(x, y));
                 x++;
             }
 
@@ -239,19 +243,21 @@ public class Arena {
             int x = topPointX;
             int y = topPointY;
             while(y < division){
-                paths.add(new Path(x, y));
+                path.add(new Chunk(x, y));
                 y++;
             }
             while(x != bottomPointx){
-                paths.add(new Path(x, y));
+                path.add(new Chunk(x, y));
                 if(x > bottomPointx) x--;
                 else x++;
             }
             while(y != bottomPointY){
-                paths.add(new Path(x, y));
+                path.add(new Chunk(x, y));
                 y++;
             }
         }
+
+        paths.add(path);
 
         return paths;
     }

@@ -2,18 +2,13 @@ import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 
-public class Path extends Element{
+import java.util.ArrayList;
+import java.util.List;
 
-    public Path(Position pos){
-        super(pos);
-    }
-    public Path(int x, int y){
-        super(x, y);
-    }
+public class Path {
 
-    @Override
-    public void draw(TextGraphics graphics) {
-        graphics.setForegroundColor(TextColor.Factory.fromString("#EF8433"));
-        graphics.putString(new TerminalPosition(getX(), getY()), "#");
-    }
+    private List<Chunk> chunks = new ArrayList<>();
+
+    public List<Chunk> getChunks() { return chunks; }
+    public void add (Chunk chunk) { chunks.add(chunk); }
 }
