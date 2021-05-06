@@ -1,11 +1,17 @@
+import com.googlecode.lanterna.TerminalPosition;
+import com.googlecode.lanterna.TextColor;
+import com.googlecode.lanterna.graphics.TextGraphics;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Room {
+
     private int x;
     private int y;
     private int widht;
     private int height;
+    private boolean isActive = false;
 
     private List<Wall> walls = new ArrayList<>();
 
@@ -26,23 +32,36 @@ public class Room {
         }
     }
 
-    public List<Wall> getWalls() {
-        return walls;
+    public List<Wall> getWalls() { return walls; }
+
+    public int getX() { return x; }
+    public int getY() { return y; }
+
+    public int getWidht() { return widht; }
+    public int getHeight() { return height; }
+
+    public void setActive(boolean active) { isActive = active; }
+
+    public void draw(TextGraphics graphics) {
+
+        for (Wall wall : walls)
+            wall.draw(graphics);
+
+        if (isActive) {
+            for (int i = x + 1; i < x + widht; i++) {
+                for (int j = y + 1; j < y + height; j++){
+                    graphics.setForegroundColor(TextColor.Factory.fromString("#EF8433"));
+                    graphics.putString(new TerminalPosition(i, j), ".");
+                }
+            }
+        }
     }
 
-    public int getX() {
-        return x;
-    }
+    public void checkIsActive(Position position) {
+        boolean boolX = (position.getX() > x) && (position.getX() < (x + widht));
+        boolean boolY = (position.getY() > y) && (position.getY() < (y + height));
 
-    public int getY() {
-        return y;
-    }
-
-    public int getWidht() {
-        return widht;
-    }
-
-    public int getHeight() {
-        return height;
+        if (boolX && boolY) isActive = true;
+        else isActive = false;
     }
 }

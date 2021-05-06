@@ -26,7 +26,7 @@ public class Arena {
         this.hero = new Hero(new Position(10, 10));
         this.coins = createCoins();
         this.monsters = createMonsters();
-        this.rooms = createRooms();
+        this.rooms = createRooms(hero.getPosition());
         this.paths = createPath();
     }
 
@@ -38,15 +38,14 @@ public class Arena {
             coin.draw(graphics);
         }
 
+        for (Room room : rooms) {
+            room.draw(graphics);
+        }
+
         hero.draw(graphics);
 
         for (Monster monster : monsters)
             monster.draw(graphics);
-
-        for (Room room : rooms) {
-            for (Wall wall : room.getWalls())
-                wall.draw(graphics);
-        }
 
         for(Path path : paths){
             for (Chunk chunk : path.getChunks())
@@ -79,6 +78,9 @@ public class Arena {
             default:
                 break;
         }
+
+        for (Room room : rooms)
+            room.checkIsActive(hero.position);
     }
 
     private void moveHero(Position position) {
@@ -160,11 +162,15 @@ public class Arena {
         return monsters;
     }
 
-    private List<Room> createRooms() {
+    private List<Room> createRooms(Position heroPosition) {
         ArrayList<Room> rooms = new ArrayList<>();
 
         rooms.add(new Room(5, 5, 9, 6));
         rooms.add(new Room(50, 20, 10, 12));
+
+        for (Room room : rooms)
+            room.checkIsActive(heroPosition);
+
         return rooms;
     }
 
