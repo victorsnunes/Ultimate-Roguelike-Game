@@ -230,12 +230,12 @@ public class Arena {
                 path.add(new Chunk(x, y));
                 x++;
             }
-            while(y != rightPointY){
+            while(y != rightPointY + 1){
                 path.add(new Chunk(x, y));
                 if(y > rightPointY) y--;
                 else y++;
             }
-            while(x != rightPointX){
+            while(x != rightPointX + 1){
                 path.add(new Chunk(x, y));
                 x++;
             }
@@ -255,12 +255,12 @@ public class Arena {
                 path.add(new Chunk(x, y));
                 y++;
             }
-            while(x != bottomPointx){
+            while(x != bottomPointx + 1){
                 path.add(new Chunk(x, y));
                 if(x > bottomPointx) x--;
                 else x++;
             }
-            while(y != bottomPointY){
+            while(y != bottomPointY + 1){
                 path.add(new Chunk(x, y));
                 y++;
             }
