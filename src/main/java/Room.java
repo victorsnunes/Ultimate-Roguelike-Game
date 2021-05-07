@@ -11,6 +11,8 @@ public class Room {
     private int y;
     private int widht;
     private int height;
+
+    private boolean isVisible = false;
     private boolean isActive = false;
 
     private List<Wall> walls = new ArrayList<>();
@@ -44,28 +46,34 @@ public class Room {
 
     public void draw(TextGraphics graphics) {
 
-        for (Wall wall : walls)
-            wall.draw(graphics);
+        if (isVisible) {
+            for (Wall wall : walls)
+                wall.draw(graphics);
 
-        if (isActive) {
-            for (int i = x + 1; i < x + widht; i++) {
-                for (int j = y + 1; j < y + height; j++){
-                    graphics.setForegroundColor(TextColor.Factory.fromString("#EF8433"));
-                    graphics.putString(new TerminalPosition(i, j), ".");
+            if (isActive) {
+                for (int i = x + 1; i < x + widht; i++) {
+                    for (int j = y + 1; j < y + height; j++){
+                        graphics.setForegroundColor(TextColor.Factory.fromString("#EF8433"));
+                        graphics.putString(new TerminalPosition(i, j), ".");
+                    }
                 }
             }
         }
     }
 
     public boolean inRoom(Position position) {
-        boolean InX = (position.getX() > x) && (position.getX() < (x + widht));
-        boolean InY = (position.getY() > y) && (position.getY() < (y + height));
+        boolean InX = (position.getX() >= x) && (position.getX() <= (x + widht));
+        boolean InY = (position.getY() >= y) && (position.getY() <= (y + height));
 
         return InX && InY;
     }
 
     public void checkIsActive(Position heroPosition) {
-        if (inRoom(heroPosition)) isActive = true;
-        else isActive = false;
+        if (inRoom(heroPosition)) {
+            isVisible = true;
+            isActive = true;
+        }
+        else
+            isActive = false;
     }
 }

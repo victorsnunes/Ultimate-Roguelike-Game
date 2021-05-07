@@ -82,6 +82,9 @@ public class Arena {
 
         for (Room room : rooms)
             room.checkIsActive(hero.position);
+
+        for (Path path : paths)
+            path.checkIsVisible(hero.position);
     }
 
     private void moveHero(Position position) {
@@ -265,6 +268,9 @@ public class Arena {
                 y++;
             }
         }
+
+        //Sets begining of the path always visible
+        (path.getChunks().get(0)).setIsVisible(true);
 
         paths.add(path);
 
