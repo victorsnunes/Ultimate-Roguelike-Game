@@ -76,4 +76,5 @@ public class Room {
         else
             isActive = false;
     }
+
 }
