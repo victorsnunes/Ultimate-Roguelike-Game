@@ -170,9 +170,9 @@ public class Arena {
         ArrayList<Room> rooms = new ArrayList<>();
 
         rooms.add(new Room(5, 5, 9, 6));
-        rooms.add(new Room(50, 20, 10, 12));
         rooms.add(new Room(40, 5, 9, 6));
-        rooms.add(new Room(10, 20, 10, 12));
+        rooms.add(new Room(60, 20, 10, 12));
+        rooms.add(new Room(10, 20, 5, 5));
 
         for (Room room : rooms)
             room.checkIsActive(heroPosition);
@@ -183,8 +183,6 @@ public class Arena {
     private List<Path> createPath(){
         ArrayList<Path> paths = new ArrayList<>();
         Random random = new Random();
-        boolean hDirection = false;
-        boolean vDirection = false;
 
         //TODO: what is the best queue to use in the situation?
         Queue<Room> queue = new LinkedList<>();
@@ -194,6 +192,9 @@ public class Arena {
         }
 
         while(!queue.isEmpty() && queue.size() > 1) {
+            boolean hDirection = false;
+            boolean vDirection = false;
+
             Room room1 = queue.poll();
             Room room2 = queue.peek();
             Room mostLeft = room1;
@@ -207,7 +208,7 @@ public class Arena {
                 mostLeft = room1;
                 mostRight = room2;
             }
-            if (room2.getX() + room2.getWidht() < room1.getX()) {
+            else if (room2.getX() + room2.getWidht() < room1.getX()) {
                 hDirection = true;
                 mostLeft = room2;
                 mostRight = room1;
@@ -259,6 +260,8 @@ public class Arena {
                 }
 
             } else {
+                System.out.println("Bottom (x, y): (" + mostBottom.getX() + ", " + mostBottom.getY() + ")");
+                System.out.println("Top height (x, y): (" + mostTop.getX() + ", " + (mostTop.getY() + mostTop.getHeight()) + ")");
                 division = random.nextInt(mostBottom.getY() - (mostTop.getY() + mostTop.getHeight())) + mostTop.getY() + mostTop.getHeight();
                 int topPointX = random.nextInt(mostTop.getWidht()) + mostTop.getX();
                 int topPointY = mostTop.getY() + mostTop.getHeight();
