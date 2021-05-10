@@ -259,6 +259,8 @@ public class Arena {
                 }
 
             } else {
+                System.out.println("Bottom (x, y): (" + mostBottom.getX() + ", " + mostBottom.getY() + ")");
+                System.out.println("Top height (x, y): (" + mostTop.getX() + ", " + (mostTop.getY() + mostTop.getHeight()) + ")");
                 division = random.nextInt(mostBottom.getY() - (mostTop.getY() + mostTop.getHeight())) + mostTop.getY() + mostTop.getHeight();
                 int topPointX = random.nextInt(mostTop.getWidht()) + mostTop.getX();
                 int topPointY = mostTop.getY() + mostTop.getHeight();
