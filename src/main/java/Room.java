@@ -17,6 +17,9 @@ public class Room {
 
     private List<Wall> walls = new ArrayList<>();
 
+    private List<Path> paths = new ArrayList<>();
+    private List<Chunk> initialChunks = new ArrayList<>();
+
     public Room(int x, int y, int width, int height) {
         this.x = x;
         this.y = y;
@@ -62,19 +65,49 @@ public class Room {
     }
 
     public boolean inRoom(Position position) {
-        boolean InX = (position.getX() >= x) && (position.getX() <= (x + widht));
-        boolean InY = (position.getY() >= y) && (position.getY() <= (y + height));
+        boolean InX = (position.getX() > x) && (position.getX() < (x + widht));
+        boolean InY = (position.getY() > y) && (position.getY() < (y + height));
 
-        return InX && InY;
+        boolean InInitialChunks = false;
+        for (Chunk chunk : initialChunks) {
+            if (chunk.getPosition().equals(position))
+                InInitialChunks = true;
+        }
+
+        return (InX && InY) || InInitialChunks;
     }
 
     public void checkIsActive(Position heroPosition) {
         if (inRoom(heroPosition)) {
             isVisible = true;
             isActive = true;
+
+            for (Chunk chunk : initialChunks)
+                chunk.setIsVisible(true);
         }
         else
             isActive = false;
+    }
+
+    public void addPath(Path path) {
+        paths.add(path);
+
+        Chunk startingChunk = path.getChunks().get(0);
+        Chunk endingChunk = path.getChunks().get(path.getChunks().size() - 1);
+
+        for (Wall wall : walls) {
+
+            if (startingChunk.getPosition().equals(wall.position)) {
+                initialChunks.add(startingChunk);
+                break;
+            }
+
+            if (endingChunk.getPosition().equals(wall.position)) {
+                initialChunks.add(endingChunk);
+                break;
+            }
+        }
+
     }
 
 }

@@ -24,8 +24,8 @@ public class Arena {
         this.hero = new Hero(new Position(10, 10));
         this.coins = createCoins();
         this.monsters = createMonsters();
-        this.rooms = createRooms(hero.getPosition());
-        this.paths = createPath();
+        this.rooms = createRooms();
+        this.paths = createPath(hero.getPosition());
     }
 
     public void draw(TextGraphics graphics) throws IOException {
@@ -40,7 +40,7 @@ public class Arena {
             room.draw(graphics);
         }
 
-        for(Path path : paths){
+        for(Path path : paths) {
             for (Chunk chunk : path.getChunks())
                 chunk.draw(graphics);
         }
@@ -166,7 +166,7 @@ public class Arena {
         return monsters;
     }
 
-    private List<Room> createRooms(Position heroPosition) {
+    private List<Room> createRooms() {
         ArrayList<Room> rooms = new ArrayList<>();
 
         rooms.add(new Room(5, 5, 9, 6));
@@ -174,24 +174,23 @@ public class Arena {
         rooms.add(new Room(60, 20, 10, 12));
         rooms.add(new Room(10, 20, 5, 5));
 
-        for (Room room : rooms)
-            room.checkIsActive(heroPosition);
-
         return rooms;
     }
 
-    private List<Path> createPath(){
+    private List<Path> createPath(Position heroPosition){
         ArrayList<Path> paths = new ArrayList<>();
         Random random = new Random();
 
         //TODO: what is the best queue to use in the situation?
         Queue<Room> queue = new LinkedList<>();
-        Path path = new Path();
         for(Room room: rooms) {
             queue.add(room);
         }
 
-        while(!queue.isEmpty() && queue.size() > 1) {
+        while(queue.size() > 1) {
+
+            Path path = new Path();
+
             boolean hDirection = false;
             boolean vDirection = false;
 
@@ -208,7 +207,7 @@ public class Arena {
                 mostLeft = room1;
                 mostRight = room2;
             }
-            else if (room2.getX() + room2.getWidht() < room1.getX()) {
+            if (room2.getX() + room2.getWidht() < room1.getX()) {
                 hDirection = true;
                 mostLeft = room2;
                 mostRight = room1;
@@ -237,10 +236,10 @@ public class Arena {
                 System.out.println("left x+widht: " + (mostLeft.getX() + mostLeft.getWidht()) + " right x: " + mostRight.getX());
                 division = random.nextInt(mostRight.getX() - (mostLeft.getX() + mostLeft.getWidht())) + mostLeft.getX() + mostLeft.getWidht();
                 int leftPointX = mostLeft.getX() + mostLeft.getWidht();
-                int leftPointY = random.nextInt(mostLeft.getHeight()) + mostLeft.getY();
+                int leftPointY = random.nextInt(mostLeft.getHeight() - 2) + mostLeft.getY() + 1;
 
                 int rightPointX = mostRight.getX();
-                int rightPointY = random.nextInt(mostRight.getHeight()) + mostRight.getY();
+                int rightPointY = random.nextInt(mostRight.getHeight() - 2) + mostRight.getY() + 1;
 
 
                 int x = leftPointX;
@@ -263,10 +262,10 @@ public class Arena {
                 System.out.println("Bottom (x, y): (" + mostBottom.getX() + ", " + mostBottom.getY() + ")");
                 System.out.println("Top height (x, y): (" + mostTop.getX() + ", " + (mostTop.getY() + mostTop.getHeight()) + ")");
                 division = random.nextInt(mostBottom.getY() - (mostTop.getY() + mostTop.getHeight())) + mostTop.getY() + mostTop.getHeight();
-                int topPointX = random.nextInt(mostTop.getWidht()) + mostTop.getX();
+                int topPointX = random.nextInt(mostTop.getWidht() - 2) + mostTop.getX() + 1;
                 int topPointY = mostTop.getY() + mostTop.getHeight();
 
-                int bottomPointx = random.nextInt(mostBottom.getWidht()) + mostBottom.getX();
+                int bottomPointx = random.nextInt(mostBottom.getWidht() - 2) + mostBottom.getX() + 1;
                 int bottomPointY = mostBottom.getY();
 
 
@@ -286,11 +285,14 @@ public class Arena {
                     y++;
                 }
             }
-        }
-        //Sets begining of the path always visible
-        (path.getChunks().get(0)).setIsVisible(true);
 
-        paths.add(path);
+            paths.add(path);
+            room1.addPath(path);
+            room2.addPath(path);
+        }
+
+        for (Room room : rooms)
+            room.checkIsActive(heroPosition);
 
         return paths;
     }

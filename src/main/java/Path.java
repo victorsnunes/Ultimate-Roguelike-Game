@@ -14,16 +14,14 @@ public class Path {
 
     public void checkIsVisible(Position heroPosition) {
 
-        boolean turnNextChunkVisible = false;
+        for (int i = 0; i < chunks.size(); i++) {
 
-        for (Chunk chunk : chunks) {
-            if (turnNextChunkVisible) {
-                chunk.setIsVisible(true);
-                break;
+            if (heroPosition.equals(chunks.get(i).getPosition())) {
+                if (i != 0)
+                    chunks.get(i - 1).setIsVisible(true);
+                if (i != chunks.size() - 1)
+                    chunks.get(i + 1).setIsVisible(true);
             }
-
-            if (heroPosition.equals(chunk.getPosition()))
-                turnNextChunkVisible = true;
         }
     }
 }
