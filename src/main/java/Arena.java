@@ -234,7 +234,6 @@ public class Arena {
 
             int division;
             if (hDirection) {
-                System.out.println("left x+widht: " + (mostLeft.getX() + mostLeft.getWidht()) + " right x: " + mostRight.getX());
                 division = random.nextInt(mostRight.getX() - (mostLeft.getX() + mostLeft.getWidht())) + mostLeft.getX() + mostLeft.getWidht();
                 int leftPointX = mostLeft.getX() + mostLeft.getWidht();
                 int leftPointY = random.nextInt(mostLeft.getHeight()) + mostLeft.getY();
@@ -260,8 +259,6 @@ public class Arena {
                 }
 
             } else {
-                System.out.println("Bottom (x, y): (" + mostBottom.getX() + ", " + mostBottom.getY() + ")");
-                System.out.println("Top height (x, y): (" + mostTop.getX() + ", " + (mostTop.getY() + mostTop.getHeight()) + ")");
                 division = random.nextInt(mostBottom.getY() - (mostTop.getY() + mostTop.getHeight())) + mostTop.getY() + mostTop.getHeight();
                 int topPointX = random.nextInt(mostTop.getWidht()) + mostTop.getX();
                 int topPointY = mostTop.getY() + mostTop.getHeight();
