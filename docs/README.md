@@ -25,9 +25,13 @@ you need to slain monster and obtain better gear as the game goes on, until you 
 
 Simple synchronization problem with the monsters movementatino and game updates getting stuck waiting for the players input 
 
-### Pattern 
+#### Pattern 
 
 It was used the game loop pattern to synchronize the monster movementation. The players input is now get by polling to avoid the halt of the game
+
+#### Implementation
+
+[Here is the current implementation](https://github.com/FEUP-LPOO-2021/lpoo-2021-g65/blob/780842bade1c547aadfa3133323daada60157523/src/main/java/Game.java#L51-L74)
 
 ## Known Code Smells and Refactoring Suggestions
 
