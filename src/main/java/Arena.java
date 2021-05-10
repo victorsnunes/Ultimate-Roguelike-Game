@@ -233,7 +233,6 @@ public class Arena {
 
             int division;
             if (hDirection) {
-                System.out.println("left x+widht: " + (mostLeft.getX() + mostLeft.getWidht()) + " right x: " + mostRight.getX());
                 division = random.nextInt(mostRight.getX() - (mostLeft.getX() + mostLeft.getWidht())) + mostLeft.getX() + mostLeft.getWidht();
                 int leftPointX = mostLeft.getX() + mostLeft.getWidht();
                 int leftPointY = random.nextInt(mostLeft.getHeight() - 2) + mostLeft.getY() + 1;
