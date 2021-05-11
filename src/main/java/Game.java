@@ -57,7 +57,7 @@ public class Game {
                 screen.clear();
                 arena.draw(screen.newTextGraphics());
                 screen.refresh();
-                if(frameCounter%30 == 0){
+                if(frameCounter % 30 == 0){
                     arena.moveMonsters();
                 }
                 if (arena.getHero().getHealth() <= 0) {

@@ -124,4 +124,8 @@ public class Room {
 
     public void addMonster(Monster monster) { monsters.add(monster); }
     public void addCoin(Coin coin) { coins.add(coin); }
+
+    public void checkDeadMonsters() {
+        monsters.removeIf(monster -> monster.getHealth() <= 0);
+    }
 }

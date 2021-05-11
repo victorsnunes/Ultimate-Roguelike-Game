@@ -5,7 +5,10 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 
 import java.util.Random;
 
-public class Monster extends Element{
+public class Monster extends Element {
+
+    private int health = 6;
+    private int strength = 1;
 
     public Monster(Position position) { super(position); }
     public Monster(int x, int y){ super(x, y); }
@@ -17,4 +20,8 @@ public class Monster extends Element{
         graphics.putString(new TerminalPosition(getX(), getY()), "M");
     }
 
+    public void decreaseHealth(int hit) { health -= hit; }
+
+    public int getHealth() { return health; }
+    public int getStrength() { return strength; }
 }

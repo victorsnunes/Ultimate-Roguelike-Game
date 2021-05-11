@@ -70,6 +70,11 @@ public class Arena {
                 moveHero(hero.moveRight());
                 break;
 
+            case Character:
+                if (key.getCharacter() == 'x' || key.getCharacter() == 'X')
+                    verifyHeroAttack();
+                break;
+
             default:
                 break;
         }
@@ -84,8 +89,7 @@ public class Arena {
     private void moveHero(Position position) {
         if (canMove(position)) {
             hero.setPosition(position);
-            if (verifyMonsterCollisions())
-                hero.decreaseHealth();
+            verifyMonstersAttack();
         }
 
         retrieveCoins();
@@ -112,8 +116,7 @@ public class Arena {
 
                 if (canMoveMonster(monsterPosition)) {
                     monster.setPosition(monsterPosition);
-                    if (verifyMonsterCollisions())
-                        hero.decreaseHealth();
+                    verifyMonstersAttack();
                 }
             }
         }
@@ -123,7 +126,7 @@ public class Arena {
         for (Room room : rooms) {
             for (Coin coin : room.getCoins()) {
                 if (coin.getPosition().equals(hero.position)) {
-                    hero.increaseHealth();
+                    hero.increaseHealth(1);
                     room.getCoins().remove(coin);
                     break;
                 }
@@ -131,14 +134,34 @@ public class Arena {
         }
     }
 
-    public boolean verifyMonsterCollisions() {
+    public void verifyMonstersAttack() {
         for (Room room : rooms) {
             for (Monster monster : room.getMonsters()) {
                 if (hero.getPosition().equals(monster.getPosition()))
-                    return true;
+                    hero.decreaseHealth(monster.getStrength());
             }
         }
-        return false;
+    }
+
+    public void verifyHeroAttack() {
+
+        Position attackPos1 = new Position(hero.getX() + 1, hero.getY());
+        Position attackPos2 = new Position(hero.getX() - 1, hero.getY());
+        Position attackPos3 = new Position(hero.getX(), hero.getY() + 1);
+        Position attackPos4 = new Position(hero.getX(), hero.getY() - 1);
+
+        for (Room room : rooms) {
+            for (Monster monster : room.getMonsters()) {
+                if (monster.getPosition().equals(attackPos1) ||
+                    monster.getPosition().equals(attackPos2) ||
+                    monster.getPosition().equals(attackPos3) ||
+                    monster.getPosition().equals(attackPos4))
+                    {
+                        monster.decreaseHealth(hero.getStrength());
+                    }
+            }
+            room.checkDeadMonsters();
+        }
     }
 
     private boolean canMove(Position position) {

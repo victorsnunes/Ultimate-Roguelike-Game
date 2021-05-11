@@ -10,13 +10,20 @@ import java.io.IOException;
 public class Hero extends Element {
 
     private int health = 5;
+    private int strength = 3;
 
     public Hero(Position position) { super(position); }
     public Hero(int x, int y) { super(x, y); }
 
     public int getHealth() { return health; }
-    public void decreaseHealth() { health--; }
-    public void increaseHealth() { health++; }
+    public int getStrength() { return strength; }
+
+    public void decreaseHealth(int hit) { health -= hit; }
+    public void increaseHealth(int bonus) { health += bonus; }
+
+    public void attack(Monster monster) {
+        monster.decreaseHealth(strength);
+    }
 
     @Override
     public void draw(TextGraphics graphics) {
