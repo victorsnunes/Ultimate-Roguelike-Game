@@ -9,10 +9,13 @@ import java.io.IOException;
 
 public class Hero extends Element {
 
-    public Hero(Position position) {
-        super(position);
-    }
+    private int health = 5;
+
+    public Hero(Position position) { super(position); }
     public Hero(int x, int y) { super(x, y); }
+
+    public int getHealth() { return health; }
+    public void decreaseHealth() { health--; }
 
     @Override
     public void draw(TextGraphics graphics) {

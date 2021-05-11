@@ -28,9 +28,14 @@ public class Arena {
         this.paths = createPath(hero.getPosition());
     }
 
+    public Hero getHero() { return hero; }
+
     public void draw(TextGraphics graphics) throws IOException {
         graphics.setBackgroundColor(TextColor.Factory.fromString("#336699"));
         graphics.fillRectangle(new TerminalPosition(0, 0), new TerminalSize(width, height), ' ');
+
+        graphics.setForegroundColor(TextColor.Factory.fromString("#EF8433"));
+        graphics.putString(new TerminalPosition(0, 0), "Hero Health: " + hero.getHealth());
 
         for (Coin coin : coins) {
             coin.draw(graphics);
@@ -83,8 +88,11 @@ public class Arena {
     }
 
     private void moveHero(Position position) {
-        if (canMove(position))
+        if (canMove(position)) {
             hero.setPosition(position);
+            if (verifyMonsterCollisions())
+                hero.decreaseHealth();
+        }
 
         retrieveCoins(position);
     }
@@ -107,8 +115,11 @@ public class Arena {
                 monsterPosition.setY(monster.getY() - 1);
             }
 
-            if (canMoveMonster(monsterPosition))
+            if (canMoveMonster(monsterPosition)) {
                 monster.setPosition(monsterPosition);
+                if (verifyMonsterCollisions())
+                    hero.decreaseHealth();
+            }
         }
     }
 

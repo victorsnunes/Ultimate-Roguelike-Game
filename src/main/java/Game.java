@@ -60,8 +60,8 @@ public class Game {
                 if(frameCounter%30 == 0){
                     arena.moveMonsters();
                 }
-                if (arena.verifyMonsterCollisions()) {
-                    System.out.println("Oh no, a monster got you!");
+                if (arena.getHero().getHealth() <= 0) {
+                    System.out.println("Oh no, a monster killed you!");
                     break;
                 }
                 elapsedTime = System.currentTimeMillis() - start;
