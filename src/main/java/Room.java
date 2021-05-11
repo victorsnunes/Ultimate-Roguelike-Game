@@ -18,6 +18,7 @@ public class Room {
     private List<Wall> walls = new ArrayList<>();
 
     private List<Path> paths = new ArrayList<>();
+    private List<Monster> monsters = new ArrayList<>();
     private List<Chunk> initialChunks = new ArrayList<>();
 
     public Room(int x, int y, int width, int height) {
@@ -46,6 +47,7 @@ public class Room {
     public int getHeight() { return height; }
 
     public void setActive(boolean active) { isActive = active; }
+    public boolean getActive() { return isActive; }
 
     public void draw(TextGraphics graphics) {
 
@@ -60,6 +62,9 @@ public class Room {
                         graphics.putString(new TerminalPosition(i, j), ".");
                     }
                 }
+
+                for (Monster monster : monsters)
+                    monster.draw(graphics);
             }
         }
     }
@@ -107,7 +112,10 @@ public class Room {
                 break;
             }
         }
+    }
 
+    public void addMonster(Monster monster) {
+        monsters.add(monster);
     }
 
 }

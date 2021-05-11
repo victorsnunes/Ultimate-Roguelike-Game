@@ -23,8 +23,8 @@ public class Arena {
         this.height = height;
         this.hero = new Hero(new Position(10, 10));
         this.coins = createCoins();
-        this.monsters = createMonsters();
         this.rooms = createRooms();
+        this.monsters = createMonsters();
         this.paths = createPath(hero.getPosition());
     }
 
@@ -46,9 +46,6 @@ public class Arena {
         }
 
         hero.draw(graphics);
-
-        for (Monster monster : monsters)
-            monster.draw(graphics);
 
     }
 
@@ -110,7 +107,7 @@ public class Arena {
                 monsterPosition.setY(monster.getY() - 1);
             }
 
-            if (canMove(monsterPosition))
+            if (canMoveMonster(monsterPosition))
                 monster.setPosition(monsterPosition);
         }
     }
@@ -146,6 +143,19 @@ public class Arena {
         return false;
     }
 
+    private boolean canMoveMonster(Position position) {
+        for (Room room : rooms) {
+            if (room.getActive()) {
+                boolean InX = (position.getX() > room.getX()) && (position.getX() < (room.getX() + room.getWidht()));
+                boolean InY = (position.getY() > room.getY()) && (position.getY() < (room.getY() + room.getHeight()));
+
+                if (InX && InY)
+                    return true;
+            }
+        }
+        return false;
+    }
+
     private List<Coin> createCoins() {
         Random random = new Random();
         ArrayList<Coin> coins = new ArrayList<>();
@@ -160,9 +170,17 @@ public class Arena {
         Random random = new Random();
         ArrayList<Monster> monsters = new ArrayList<>();
 
-        for (int i = 0; i < 2; i++) {
-            monsters.add(new Monster(random.nextInt(width - 2) + 1, random.nextInt(height - 2) + 1));
+        for (Room room : rooms) {
+            if (random.nextInt(2) == 0) {
+                int posX = random.nextInt(room.getWidht() - 2) + room.getX() + 1;
+                int posY = random.nextInt(room.getHeight() - 2) + room.getY() + 1;
+
+                Monster monster = new Monster(new Position(posX, posY));
+                monsters.add(monster);
+                room.addMonster(monster);
+            }
         }
+
         return monsters;
     }
 
