@@ -16,6 +16,7 @@ public class Hero extends Element {
 
     public int getHealth() { return health; }
     public void decreaseHealth() { health--; }
+    public void increaseHealth() { health++; }
 
     @Override
     public void draw(TextGraphics graphics) {
@@ -36,4 +37,5 @@ public class Hero extends Element {
     public Position moveRight() {
         return new Position(position.getX() + 1, position.getY());
     }
+
 }

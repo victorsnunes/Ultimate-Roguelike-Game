@@ -19,6 +19,7 @@ public class Room {
 
     private List<Path> paths = new ArrayList<>();
     private List<Monster> monsters = new ArrayList<>();
+    private List<Coin> coins = new ArrayList<>();
     private List<Chunk> initialChunks = new ArrayList<>();
 
     public Room(int x, int y, int width, int height) {
@@ -49,6 +50,9 @@ public class Room {
     public void setActive(boolean active) { isActive = active; }
     public boolean getActive() { return isActive; }
 
+    public List<Monster> getMonsters() { return monsters; }
+    public List<Coin> getCoins() { return coins; }
+
     public void draw(TextGraphics graphics) {
 
         if (isVisible) {
@@ -63,8 +67,12 @@ public class Room {
                     }
                 }
 
+                for (Coin coin : coins)
+                    coin.draw(graphics);
+
                 for (Monster monster : monsters)
                     monster.draw(graphics);
+
             }
         }
     }
@@ -114,8 +122,6 @@ public class Room {
         }
     }
 
-    public void addMonster(Monster monster) {
-        monsters.add(monster);
-    }
-
+    public void addMonster(Monster monster) { monsters.add(monster); }
+    public void addCoin(Coin coin) { coins.add(coin); }
 }
