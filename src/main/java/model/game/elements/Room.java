@@ -56,6 +56,31 @@ public class Room {
     public List<Monster> getMonsters() { return monsters; }
     public List<Coin> getCoins() { return coins; }
 
+    public boolean inRoom(Position position) {
+        boolean InX = (position.getX() > x) && (position.getX() < (x + widht));
+        boolean InY = (position.getY() > y) && (position.getY() < (y + height));
+
+        boolean InInitialChunks = false;
+        for (Chunk chunk : initialChunks) {
+            if (chunk.getPosition().equals(position))
+                InInitialChunks = true;
+        }
+
+        return (InX && InY) || InInitialChunks;
+    }
+
+    public void checkIsActive(Position heroPosition) {
+        if (inRoom(heroPosition)) {
+            isVisible = true;
+            isActive = true;
+
+            for (Chunk chunk : initialChunks)
+                chunk.setIsVisible(true);
+        }
+        else
+            isActive = false;
+    }
+
     public void addPath(Path path) {
         paths.add(path);
 
