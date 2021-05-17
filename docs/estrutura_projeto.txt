@@ -10,7 +10,7 @@ ArenaBuilder
 
 model.Position
 
-Game
+OldGame
 
 GUI
 LanternaGUI

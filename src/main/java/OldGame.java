@@ -12,7 +12,7 @@ import com.googlecode.lanterna.terminal.Terminal;
 
 import java.io.IOException;
 
-public class Game {
+public class OldGame {
 
     private Terminal terminal;
     private Screen screen;
@@ -22,7 +22,7 @@ public class Game {
 
     private Arena arena = new Arena(width, height);
 
-    public Game() {
+    public OldGame() {
         try {
 
             TerminalSize terminalSize = new TerminalSize(width, height);

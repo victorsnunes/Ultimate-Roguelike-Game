@@ -1,17 +1,23 @@
 package states;
 
+import controller.Controller;
+import controller.menu.MenuController;
+import model.menu.Menu;
+import viewer.Viewer;
+import viewer.menu.MenuViewer;
+
 public class MenuState extends State<Menu> {
     public MenuState(Menu model) {
         super(model);
     }
 
     @Override
-    protected com.aor.hero.viewer.Viewer<Menu> getViewer() {
-        return new com.aor.hero.viewer.menu.MenuViewer(getModel());
+    protected Viewer<Menu> getViewer() {
+        return new MenuViewer(getModel());
     }
 
     @Override
-    protected com.aor.hero.controller.Controller<Menu> getController() {
-        return new com.aor.hero.controller.menu.MenuController(getModel());
+    protected Controller<Menu> getController() {
+        return new MenuController(getModel());
     }
 }
