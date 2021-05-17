@@ -1,3 +1,7 @@
+package model;
+
+import java.util.Objects;
+
 public class Position {
 
     private int x;
@@ -23,5 +27,10 @@ public class Position {
 
         Position p = (Position) obj;
         return x == p.getX() && y == p.getY();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(x, y);
     }
 }

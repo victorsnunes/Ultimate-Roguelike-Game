@@ -1,10 +1,9 @@
 import com.googlecode.lanterna.*;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.input.KeyStroke;
-import com.googlecode.lanterna.screen.Screen;
+import model.Position;
 
 import java.io.IOException;
-import java.nio.file.Paths;
 import java.util.*;
 
 public class Arena {

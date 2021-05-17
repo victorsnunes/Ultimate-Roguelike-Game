@@ -1,7 +1,9 @@
+package model.game.elements;
+
 import com.googlecode.lanterna.graphics.TextGraphics;
 import model.Position;
 
-public abstract class Element {
+public class Element {
 
     protected Position position;
 
@@ -17,5 +19,4 @@ public abstract class Element {
     public Position getPosition() { return position; }
     public void setPosition(Position position) { this.position = position; }
 
-    public abstract void draw(TextGraphics graphics);
 }
