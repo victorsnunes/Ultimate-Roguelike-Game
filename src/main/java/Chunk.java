@@ -16,7 +16,6 @@ public class Chunk extends Element {
 
     @Override
     public void draw(TextGraphics graphics) {
-
         if (isVisible) {
             graphics.setForegroundColor(TextColor.Factory.fromString("#EF8433"));
             graphics.putString(new TerminalPosition(getX(), getY()), "#");

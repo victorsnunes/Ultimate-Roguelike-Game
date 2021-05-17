@@ -1,6 +1,11 @@
 package viewer.menu;
 
-public class MenuViewer extends com.aor.hero.viewer.Viewer<Menu> {
+import gui.GUI;
+import model.Position;
+import model.menu.Menu;
+import viewer.Viewer;
+
+public class MenuViewer extends Viewer<Menu> {
     public MenuViewer(Menu menu) {
         super(menu);
     }

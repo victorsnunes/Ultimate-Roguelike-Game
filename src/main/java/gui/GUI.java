@@ -11,6 +11,9 @@ public interface GUI {
     void drawMonster(Position position);
     void drawVerticalWall(Position position);
     void drawHorizontalWall(Position position);
+    void drawChunk(Position position);
+    void drawCoin(Position position);
+    void drawDot(Position position);
 
     void drawText(Position position, String text, String color);
 

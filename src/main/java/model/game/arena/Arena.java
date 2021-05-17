@@ -79,7 +79,6 @@ public class Arena {
     private int width;
     private int height;
     private Hero hero;
-    private List<Wall> walls;
     private List<Room> rooms;
     private List<Path> paths;
 
@@ -94,6 +93,8 @@ public class Arena {
     }
 
     public Hero getHero() { return hero; }
+    public List<Room> getRooms() { return rooms; }
+    public List<Path> getPaths() { return paths; }
 
     private void createCoins() {
         Random random = new Random();

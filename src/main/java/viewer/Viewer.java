@@ -1,5 +1,7 @@
 package viewer;
 
+import gui.GUI;
+
 import java.io.IOException;
 
 public abstract class Viewer<T> {

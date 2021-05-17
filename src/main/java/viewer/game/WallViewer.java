@@ -13,6 +13,6 @@ public class WallViewer implements ElementViewer<Wall> {
         if (wall instanceof VerticalWall)
             gui.drawVerticalWall(wall.getPosition());
         else if (wall instanceof HorizontalWall)
-            gui.drawVerticalWall(wall.getPosition());
+            gui.drawHorizontalWall(wall.getPosition());
     }
 }

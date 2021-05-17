@@ -1,27 +1,42 @@
 package viewer.game;
 
+import gui.GUI;
+import model.Position;
+import model.game.arena.Arena;
+import model.game.elements.Hero;
+import model.game.elements.Path;
+import model.game.elements.Room;
+import viewer.Viewer;
+
 import java.util.List;
 
-public class GameViewer extends com.aor.hero.viewer.Viewer<Arena> {
+public class GameViewer extends Viewer<Arena> {
+
     public GameViewer(Arena arena) {
         super(arena);
     }
 
     @Override
     public void drawElements(GUI gui) {
-        drawElements(gui, getModel().getWalls(), new WallViewer());
-        drawElements(gui, getModel().getMonsters(), new MonsterViewer());
-        drawElement(gui, getModel().getHero(), new HeroViewer());
 
-        gui.drawText(new Position(0, 0), "Energy: " + getModel().getHero().getEnergy(), "#FFD700");
+        drawRooms(gui, getModel().getRooms());
+        drawPaths(gui, getModel().getPaths());
+        drawHero(gui, getModel().getHero(), new HeroViewer());
+
+        gui.drawText(new Position(0, 0), "Health: " + getModel().getHero().getHealth(), "#FFD700");
     }
 
-    private <T extends Element> void drawElements(GUI gui, List<T> elements, ElementViewer<T> viewer) {
-        for (T element : elements)
-            drawElement(gui, element, viewer);
+    private void drawRooms(GUI gui, List<Room> rooms) {
+        for (Room room : rooms)
+            new RoomViewer(room).drawElements(gui);
     }
 
-    private <T extends Element> void drawElement(GUI gui, T element, ElementViewer<T> viewer) {
-        viewer.draw(element, gui);
+    private void drawPaths(GUI gui, List<Path> paths) {
+        for (Path path : paths)
+            new PathViewer(path).drawElements(gui);
+    }
+
+    private void drawHero(GUI gui, Hero hero, ElementViewer<Hero> viewer) {
+        viewer.draw(hero, gui);
     }
 }

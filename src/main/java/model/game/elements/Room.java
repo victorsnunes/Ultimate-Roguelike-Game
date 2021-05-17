@@ -24,6 +24,7 @@ public class Room {
     private List<Monster> monsters = new ArrayList<>();
     private List<Coin> coins = new ArrayList<>();
     private List<Chunk> initialChunks = new ArrayList<>();
+    private List<Dot> dots = new ArrayList<>();
 
     public Room(int x, int y, int width, int height) {
         this.x = x;
@@ -40,6 +41,12 @@ public class Room {
             walls.add(new VerticalWall(x, j));
             walls.add(new VerticalWall(x + width, j));
         }
+
+        for (int i = x + 1; i < x + widht; i++) {
+            for (int j = y + 1; j < y + height; j++){
+                dots.add(new Dot(i, j));
+            }
+        }
     }
 
     public List<Wall> getWalls() { return walls; }
@@ -50,11 +57,14 @@ public class Room {
     public int getWidht() { return widht; }
     public int getHeight() { return height; }
 
-    public void setActive(boolean active) { isActive = active; }
-    public boolean getActive() { return isActive; }
+    public void setIsActive(boolean active) { isActive = active; }
+    public boolean getIsActive() { return isActive; }
+    public void setIsVisible(boolean visible) { isVisible = visible; }
+    public boolean getIsVisible() { return isVisible; }
 
     public List<Monster> getMonsters() { return monsters; }
     public List<Coin> getCoins() { return coins; }
+    public List<Dot> getDots() { return dots; }
 
     public boolean inRoom(Position position) {
         boolean InX = (position.getX() > x) && (position.getX() < (x + widht));
