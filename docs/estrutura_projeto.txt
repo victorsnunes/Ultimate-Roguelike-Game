@@ -1,16 +1,16 @@
 Classes:
 
-Element(abstrata)
-    Hero
+roguelike.Element(abstrata)
+    roguelike.Hero
     Enemy
-    Wall
-    Coin
-Arena
+    roguelike.Wall
+    roguelike.Coin
+roguelike.Arena
 ArenaBuilder
 
-model.Position
+roguelike.model.Position
 
-OldGame
+roguelike.OldGame
 
 GUI
 LanternaGUI

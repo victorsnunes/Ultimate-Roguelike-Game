@@ -5,7 +5,7 @@ you need to slain monster and obtain better gear as the game goes on, until you 
 
 ## Implemented Features
 
-- Path Generation between rooms - A random generator of paths using as a guide the original rogue idea
+- roguelike.Path Generation between rooms - A random generator of paths using as a guide the original rogue idea
 
 - Visibilty - The paths and rooms are only revealed when the player approach it
 
@@ -19,7 +19,7 @@ you need to slain monster and obtain better gear as the game goes on, until you 
 
 ## Design
 
-### OldGame loop
+### roguelike.OldGame loop
 
 #### Problem
 
@@ -31,7 +31,7 @@ It was used the game loop pattern to synchronize the monster movementation. The 
 
 #### Implementation
 
-[Here is the current implementation](https://github.com/FEUP-LPOO-2021/lpoo-2021-g65/blob/780842bade1c547aadfa3133323daada60157523/src/main/java/OldGame.java#L51-L74)
+[Here is the current implementation](https://github.com/FEUP-LPOO-2021/lpoo-2021-g65/blob/780842bade1c547aadfa3133323daada60157523/src/main/java/roguelike.OldGame.java#L51-L74)
 
 ## Known Code Smells and Refactoring Suggestions
 
