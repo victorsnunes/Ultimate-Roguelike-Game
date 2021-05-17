@@ -1,5 +1,7 @@
 package gui;
 
+import com.googlecode.lanterna.SGR;
+import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
@@ -83,17 +85,22 @@ public class LanternaGUI implements GUI {
 
     @Override
     public void drawHero(Position position) {
-        drawCharacter(position.getX(), position.getY(), 'H', "#FFD700");
-    }
-
-    @Override
-    public void drawWall(Position position) {
-        drawCharacter(position.getX(), position.getY(), '#', "#3333FF");
+        drawCharacter(position.getX(), position.getY(), '@', "#FFFF33");
     }
 
     @Override
     public void drawMonster(Position position) {
-        drawCharacter(position.getX(), position.getY(), '@', "#CC0000");
+        drawCharacter(position.getX(), position.getY(), 'M', "#FFEE66");
+    }
+
+    @Override
+    public void drawVerticalWall(Position position) {
+        drawCharacter(position.getX(), position.getY(), '|', "#EF8433");
+    }
+
+    @Override
+    public void drawHorizontalWall(Position position) {
+        drawCharacter(position.getX(), position.getY(), '-', "#EF8433");
     }
 
     @Override
