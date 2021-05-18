@@ -55,10 +55,18 @@ public class HeroController extends GameController {
 
         int heroStrength = getModel().getHero().getStrength();
 
-        m1.decreaseHealth(heroStrength);
-        m2.decreaseHealth(heroStrength);
-        m3.decreaseHealth(heroStrength);
-        m4.decreaseHealth(heroStrength);
+        if (m1.getStrength() != 0) {
+            getModel().attackMonster(m1.getPosition(), heroStrength);
+        }
+        if (m2.getStrength() != 0) {
+            getModel().attackMonster(m2.getPosition(), heroStrength);
+        }
+        if (m3.getStrength() != 0) {
+            getModel().attackMonster(m3.getPosition(), heroStrength);
+        }
+        if (m4.getStrength() != 0) {
+            getModel().attackMonster(m4.getPosition(), heroStrength);
+        }
     }
 
     @Override

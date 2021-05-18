@@ -64,4 +64,12 @@ public class Arena {
         }
         return new Coin(new Position(0, 0), 0);
     }
+
+    public void attackMonster(Position monsterPosition, int heroStrength) {
+        for (Room room : rooms) {
+            if (room.inRoom(monsterPosition)) {
+                room.attackMonster(monsterPosition, heroStrength);
+            }
+        }
+    }
 }

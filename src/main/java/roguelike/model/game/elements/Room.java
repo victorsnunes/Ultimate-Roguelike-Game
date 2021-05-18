@@ -106,6 +106,17 @@ public class Room {
         return new Coin(new Position(0, 0), 0);
     }
 
+    public void attackMonster(Position monsterPosition, int heroStrength) {
+        for (Monster monster : monsters) {
+            if (monster.getPosition().equals(monsterPosition)) {
+                monster.decreaseHealth(heroStrength);
+                if (monster.getHealth() <= 0)
+                    monsters.remove(monster);
+                break;
+            }
+        }
+    }
+
     public void addPath(Path path) {
         paths.add(path);
 
@@ -128,5 +139,4 @@ public class Room {
 
     public void addMonster(Monster monster) { monsters.add(monster); }
     public void addCoin(Coin coin) { coins.add(coin); }
-
 }
