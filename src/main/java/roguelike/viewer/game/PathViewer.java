@@ -7,7 +7,7 @@ import roguelike.viewer.Viewer;
 
 public class PathViewer extends Viewer<Path> {
 
-    private ChunkViewer chunkViewer;
+    private ChunkViewer chunkViewer = new ChunkViewer();
 
     public PathViewer(Path path) { super(path); }
 

@@ -28,6 +28,7 @@ public class Position {
 
     public Position follow(Position position) {
         List<Position> possiblePositions = new ArrayList<>();
+        possiblePositions.add(this);
 
         int deltaX = position.getX() - x;
         int deltaY = position.getY() - y;

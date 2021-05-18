@@ -37,10 +37,13 @@ public class RandomArenaBuilder extends ArenaBuilder {
         //TODO: Make createRooms an actual random room generator
         ArrayList<Room> rooms = new ArrayList<>();
 
-        arena.addRoom(new Room(5, 5, 9, 6));
+        /*arena.addRoom(new Room(5, 5, 9, 6));
         arena.addRoom(new Room(40, 5, 9, 6));
         arena.addRoom(new Room(60, 20, 10, 12));
-        arena.addRoom(new Room(10, 20, 5, 5));
+        arena.addRoom(new Room(10, 20, 5, 5));*/
+
+        arena.addRoom(new Room(2, 2, 8, 6));
+        arena.addRoom(new Room(12, 10, 5, 5));
     }
 
     @Override

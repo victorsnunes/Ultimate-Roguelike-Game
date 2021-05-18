@@ -75,6 +75,7 @@ public class LanternaGUI implements GUI {
         if (keyStroke.getKeyType() == KeyType.ArrowRight) return ACTION.RIGHT;
         if (keyStroke.getKeyType() == KeyType.ArrowDown) return ACTION.DOWN;
         if (keyStroke.getKeyType() == KeyType.ArrowLeft) return ACTION.LEFT;
+        if (keyStroke.getKeyType() == KeyType.Character && keyStroke.getCharacter() == 'x') return ACTION.ATTACK;
 
         if (keyStroke.getKeyType() == KeyType.Enter) return ACTION.SELECT;
 
@@ -103,7 +104,7 @@ public class LanternaGUI implements GUI {
     public void drawHorizontalWall(Position position) { drawCharacter(position.getX(), position.getY(), '-', "#EF8433"); }
 
     @Override
-    public void drawChunk(Position position) { drawCharacter(position.getX(), position.getY(), '-', "#EF8433"); }
+    public void drawChunk(Position position) { drawCharacter(position.getX(), position.getY(), '#', "#EF8433"); }
 
     @Override
     public void drawDot(Position position) { drawCharacter(position.getX(), position.getY(), '.', "#EF8433"); }

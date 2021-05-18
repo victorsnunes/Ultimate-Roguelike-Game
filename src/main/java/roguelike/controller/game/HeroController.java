@@ -28,11 +28,15 @@ public class HeroController extends GameController {
 
             //Checks for possible attacks from monsters (monster.getStrength() = 0 if there's no monster in that position)
             Monster monster = getModel().getMonster(position);
-            getModel().getHero().decreaseHealth(monster.getStrength());
+            if (monster.getStrength() != 0) {
+                getModel().getHero().decreaseHealth(monster.getStrength());
+            }
 
-            //Checks for possible attacks from monsters (coin.getBonus() = 0 if there's no monster in that position)
-            Coin coin = getModel().getCoin(position);
-            getModel().getHero().increaseHealth(coin.getBonus());
+            //Checks for possible coins to retrieve (coin.getBonus() = 0 if there's no coin in that position)
+            Coin coin = getModel().retrieveCoin(position);
+            if (coin.getBonus() != 0) {
+                getModel().getHero().increaseHealth(coin.getBonus());
+            }
         }
     }
 

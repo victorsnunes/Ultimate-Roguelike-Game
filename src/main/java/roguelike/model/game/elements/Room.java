@@ -96,10 +96,12 @@ public class Room {
         return new Monster(new Position(0, 0), 0, 0);
     }
 
-    public Coin getCoin(Position position) {
+    public Coin retrieveCoin(Position position) {
         for (Coin coin : coins) {
-            if (coin.getPosition().equals(position))
+            if (coin.getPosition().equals(position)) {
+                coins.remove(coin);
                 return coin;
+            }
         }
         return new Coin(new Position(0, 0), 0);
     }

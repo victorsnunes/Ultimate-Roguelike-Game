@@ -16,9 +16,9 @@ public class RoomViewer extends Viewer<Room> {
         if (getModel().getIsVisible()) {
             drawElements(gui, getModel().getWalls(), new WallViewer());
             if (getModel().getIsActive()) {
+                drawElements(gui, getModel().getDots(), new DotViewer());
                 drawElements(gui, getModel().getCoins(), new CoinViewer());
                 drawElements(gui, getModel().getMonsters(), new MonsterViewer());
-                drawElements(gui, getModel().getDots(), new DotViewer());
             }
         }
     }

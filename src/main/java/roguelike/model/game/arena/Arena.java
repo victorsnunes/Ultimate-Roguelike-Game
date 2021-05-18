@@ -11,8 +11,8 @@ public class Arena {
     private int width;
     private int height;
     private Hero hero;
-    private List<Room> rooms;
-    private List<Path> paths;
+    private List<Room> rooms = new ArrayList<>();
+    private List<Path> paths = new ArrayList<>();
 
     public Arena(int width, int height) {
         this.width = width;
@@ -56,10 +56,10 @@ public class Arena {
         return new Monster(new Position(0, 0), 0, 0);
     }
 
-    public Coin getCoin(Position position) {
+    public Coin retrieveCoin(Position position) {
         for (Room room : rooms) {
             if (room.inRoom(position)) {
-                return room.getCoin(position);
+                return room.retrieveCoin(position);
             }
         }
         return new Coin(new Position(0, 0), 0);

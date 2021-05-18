@@ -4,6 +4,7 @@ import roguelike.Game;
 import roguelike.controller.Controller;
 import roguelike.gui.GUI;
 import roguelike.model.game.arena.LoaderArenaBuilder;
+import roguelike.model.game.arena.RandomArenaBuilder;
 import roguelike.model.menu.Menu;
 import roguelike.states.GameState;
 
@@ -25,7 +26,8 @@ public class MenuController extends Controller<Menu> {
                 break;
             case SELECT:
                 if (getModel().isSelectedExit()) game.setState(null);
-                if (getModel().isSelectedStart()) game.setState(new GameState(new LoaderArenaBuilder(1).createArena()));
+                //if (getModel().isSelectedStart()) game.setState(new GameState(new LoaderArenaBuilder(1).createArena()));
+                if (getModel().isSelectedStart()) game.setState(new GameState(new RandomArenaBuilder(18, 18, 3, 2).createArena()));
         }
     }
 }
