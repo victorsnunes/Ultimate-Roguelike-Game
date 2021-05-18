@@ -105,7 +105,7 @@ public class RandomArenaBuilder extends ArenaBuilder {
 
             int division;
             if (hDirection) {
-                division = random.nextInt(mostRight.getX() - (mostLeft.getX() + mostLeft.getWidht())) + mostLeft.getX() + mostLeft.getWidht();
+                division = random.nextInt(mostRight.getX() - (mostLeft.getX() + mostLeft.getWidht()) - 1) + mostLeft.getX() + mostLeft.getWidht() + 1;
                 int leftPointX = mostLeft.getX() + mostLeft.getWidht();
                 int leftPointY = random.nextInt(mostLeft.getHeight() - 2) + mostLeft.getY() + 1;
 
@@ -130,9 +130,7 @@ public class RandomArenaBuilder extends ArenaBuilder {
                 }
 
             } else {
-                System.out.println("Bottom (x, y): (" + mostBottom.getX() + ", " + mostBottom.getY() + ")");
-                System.out.println("Top height (x, y): (" + mostTop.getX() + ", " + (mostTop.getY() + mostTop.getHeight()) + ")");
-                division = random.nextInt(mostBottom.getY() - (mostTop.getY() + mostTop.getHeight())) + mostTop.getY() + mostTop.getHeight();
+                division = random.nextInt(mostBottom.getY() - (mostTop.getY() + mostTop.getHeight()) - 1) + mostTop.getY() + mostTop.getHeight() + 1;
                 int topPointX = random.nextInt(mostTop.getWidht() - 2) + mostTop.getX() + 1;
                 int topPointY = mostTop.getY() + mostTop.getHeight();
 
@@ -198,7 +196,7 @@ public class RandomArenaBuilder extends ArenaBuilder {
         Random random = new Random();
 
         Position position = new Position(0, 0);
-        while (!arena.inRoom(position)) {
+        while (!arena.inInnerRoom(position)) {
             int randomX = random.nextInt(width);
             int randomY = random.nextInt(height);
 
