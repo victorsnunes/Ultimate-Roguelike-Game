@@ -4,6 +4,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import roguelike.model.game.elements.*;
+import roguelike.model.game.structures.Path;
+import roguelike.model.game.structures.Room;
 
 import java.util.List;
 
