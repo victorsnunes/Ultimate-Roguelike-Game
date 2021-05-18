@@ -55,4 +55,13 @@ public class Arena {
         }
         return new Monster(new Position(0, 0), 0, 0);
     }
+
+    public Coin getCoin(Position position) {
+        for (Room room : rooms) {
+            if (room.inRoom(position)) {
+                return room.getCoin(position);
+            }
+        }
+        return new Coin(new Position(0, 0), 0);
+    }
 }

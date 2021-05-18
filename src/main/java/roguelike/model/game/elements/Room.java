@@ -96,6 +96,14 @@ public class Room {
         return new Monster(new Position(0, 0), 0, 0);
     }
 
+    public Coin getCoin(Position position) {
+        for (Coin coin : coins) {
+            if (coin.getPosition().equals(position))
+                return coin;
+        }
+        return new Coin(new Position(0, 0), 0);
+    }
+
     public void addPath(Path path) {
         paths.add(path);
 

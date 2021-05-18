@@ -7,7 +7,7 @@ group 'com.lpoo.roguelikeproject'
 version '1.0-SNAPSHOT'
 
 application {
-    mainClass.set("Application")
+    mainClass.set("Game")
 }
 
 repositories {

@@ -43,6 +43,6 @@ public class Game {
     }
 
     public static void main(String[] args) throws IOException, FontFormatException, URISyntaxException {
-        new roguelike.Game().start();
+        new Game().start();
     }
 }

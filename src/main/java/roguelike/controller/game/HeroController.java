@@ -1,10 +1,10 @@
 package roguelike.controller.game;
 
 import roguelike.Game;
-import roguelike.Room;
 import roguelike.gui.GUI;
 import roguelike.model.Position;
 import roguelike.model.game.arena.Arena;
+import roguelike.model.game.elements.Coin;
 import roguelike.model.game.elements.Monster;
 
 public class HeroController extends GameController {
@@ -29,10 +29,14 @@ public class HeroController extends GameController {
             //Checks for possible attacks from monsters (monster.getStrength() = 0 if there's no monster in that position)
             Monster monster = getModel().getMonster(position);
             getModel().getHero().decreaseHealth(monster.getStrength());
+
+            //Checks for possible attacks from monsters (coin.getBonus() = 0 if there's no monster in that position)
+            Coin coin = getModel().getCoin(position);
+            getModel().getHero().increaseHealth(coin.getBonus());
         }
     }
 
-    public void attack() {
+    private void attack() {
 
         Position attackPos1 = new Position(getModel().getHero().getX() + 1, getModel().getHero().getY());
         Position attackPos2 = new Position(getModel().getHero().getX() - 1, getModel().getHero().getY());
