@@ -1,13 +1,15 @@
 package roguelike.states;
 
 import roguelike.controller.Controller;
-import roguelike.controller.menu.MenuController;
+import roguelike.controller.menu.PauseMenuController;
+import roguelike.model.game.arena.Arena;
 import roguelike.model.menu.Menu;
 import roguelike.viewer.Viewer;
 import roguelike.viewer.menu.MenuViewer;
 
-public class MenuState extends State<Menu> {
-    public MenuState(Menu model) {
+public class PauseMenuState extends State<Menu> {
+
+    public PauseMenuState(Menu model) {
         super(model);
     }
 
@@ -18,6 +20,6 @@ public class MenuState extends State<Menu> {
 
     @Override
     protected Controller<Menu> getController() {
-        return new MenuController(getModel());
+        return new PauseMenuController(getModel());
     }
 }
