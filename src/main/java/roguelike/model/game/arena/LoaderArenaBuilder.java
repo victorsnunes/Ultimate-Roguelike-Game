@@ -1,5 +1,9 @@
 package roguelike.model.game.arena;
 
+import roguelike.model.game.elements.Hero;
+import roguelike.model.game.elements.Monster;
+import roguelike.model.game.elements.Wall;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -14,7 +18,7 @@ public class LoaderArenaBuilder extends ArenaBuilder {
     public LoaderArenaBuilder(int level) throws IOException {
         this.level = level;
 
-        URL resource = com.aor.hero.model.game.arena.LoaderArenaBuilder.class.getResource("/levels/level" + level + ".lvl");
+        URL resource = LoaderArenaBuilder.class.getResource("/levels/level" + level + ".lvl");
         BufferedReader br = new BufferedReader(new FileReader(resource.getFile()));
 
         lines = readLines(br);
@@ -40,39 +44,48 @@ public class LoaderArenaBuilder extends ArenaBuilder {
         return lines.size();
     }
 
+    //TODO: Implement these functions
+    protected void createRooms(Arena arena) {}
+    protected void createPaths(Arena arena) {}
+    protected void createCoins(Arena arena) {}
+    protected void createMonsters(Arena arena) {}
+    protected void createHero(Arena arena) {}
+
+    /*
     @Override
-    protected List<com.aor.hero.model.game.elements.Wall> createWalls() {
-        List<com.aor.hero.model.game.elements.Wall> walls = new ArrayList<>();
+    protected List<Wall> createWalls() {
+        List<Wall> walls = new ArrayList<>();
 
         for (int y = 0; y < lines.size(); y++) {
             String line = lines.get(y);
             for (int x = 0; x < line.length(); x++)
-                if (line.charAt(x) == '#') walls.add(new com.aor.hero.model.game.elements.Wall(x, y));
+                if (line.charAt(x) == '#') walls.add(new Wall(x, y));
         }
 
         return walls;
     }
 
     @Override
-    protected List<com.aor.hero.model.game.elements.Monster> createMonsters() {
-        List<com.aor.hero.model.game.elements.Monster> monsters = new ArrayList<>();
+    protected List<Monster> createMonsters() {
+        List<Monster> monsters = new ArrayList<>();
 
         for (int y = 0; y < lines.size(); y++) {
             String line = lines.get(y);
             for (int x = 0; x < line.length(); x++)
-                if (line.charAt(x) == 'M') monsters.add(new com.aor.hero.model.game.elements.Monster(x, y));
+                if (line.charAt(x) == 'M') monsters.add(new Monster(x, y));
         }
 
         return monsters;
     }
 
     @Override
-    protected com.aor.hero.model.game.elements.Hero createHero() {
+    protected Hero createHero() {
         for (int y = 0; y < lines.size(); y++) {
             String line = lines.get(y);
             for (int x = 0; x < line.length(); x++)
-                if (line.charAt(x) == 'H') return new com.aor.hero.model.game.elements.Hero(x, y);
+                if (line.charAt(x) == 'H') return new Hero(x, y);
         }
         return null;
     }
+    */
 }

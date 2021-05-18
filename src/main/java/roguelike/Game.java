@@ -3,6 +3,7 @@ package roguelike;
 import roguelike.gui.LanternaGUI;
 import roguelike.states.MenuState;
 import roguelike.states.State;
+import roguelike.model.menu.Menu;
 
 import java.awt.*;
 import java.io.IOException;
