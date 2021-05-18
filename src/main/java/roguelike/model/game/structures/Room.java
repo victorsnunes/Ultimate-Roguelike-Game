@@ -1,6 +1,7 @@
-package roguelike.model.game.elements;
+package roguelike.model.game.structures;
 
 import roguelike.model.Position;
+import roguelike.model.game.elements.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,10 +18,8 @@ public class Room {
 
     private List<Wall> walls = new ArrayList<>();
 
-    private List<Path> paths = new ArrayList<>();
     private List<Monster> monsters = new ArrayList<>();
     private List<Coin> coins = new ArrayList<>();
-    private List<Chunk> initialChunks = new ArrayList<>();
     private List<Dot> dots = new ArrayList<>();
 
     public Room(int x, int y, int width, int height) {
@@ -64,25 +63,23 @@ public class Room {
     public List<Dot> getDots() { return dots; }
 
     public boolean inRoom(Position position) {
+        boolean InX = (position.getX() >= x) && (position.getX() <= (x + widht));
+        boolean InY = (position.getY() >= y) && (position.getY() <= (y + height));
+
+        return InX && InY;
+    }
+
+    public boolean inInnerRoom(Position position) {
         boolean InX = (position.getX() > x) && (position.getX() < (x + widht));
         boolean InY = (position.getY() > y) && (position.getY() < (y + height));
 
-        boolean InInitialChunks = false;
-        for (Chunk chunk : initialChunks) {
-            if (chunk.getPosition().equals(position))
-                InInitialChunks = true;
-        }
-
-        return (InX && InY) || InInitialChunks;
+        return InX && InY;
     }
 
-    public void checkIsActive(Position heroPosition) {
+    public void updateVisibility(Position heroPosition) {
         if (inRoom(heroPosition)) {
             isVisible = true;
             isActive = true;
-
-            for (Chunk chunk : initialChunks)
-                chunk.setIsVisible(true);
         }
         else
             isActive = false;
@@ -106,21 +103,12 @@ public class Room {
         return new Coin(new Position(0, 0), 0);
     }
 
-    public void addPath(Path path) {
-        paths.add(path);
-
-        Chunk startingChunk = path.getChunks().get(0);
-        Chunk endingChunk = path.getChunks().get(path.getChunks().size() - 1);
-
-        for (Wall wall : walls) {
-
-            if (startingChunk.getPosition().equals(wall.position)) {
-                initialChunks.add(startingChunk);
-                break;
-            }
-
-            if (endingChunk.getPosition().equals(wall.position)) {
-                initialChunks.add(endingChunk);
+    public void attackMonster(Position monsterPosition, int heroStrength) {
+        for (Monster monster : monsters) {
+            if (monster.getPosition().equals(monsterPosition)) {
+                monster.decreaseHealth(heroStrength);
+                if (monster.getHealth() <= 0)
+                    monsters.remove(monster);
                 break;
             }
         }
@@ -128,5 +116,4 @@ public class Room {
 
     public void addMonster(Monster monster) { monsters.add(monster); }
     public void addCoin(Coin coin) { coins.add(coin); }
-
 }

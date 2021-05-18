@@ -2,6 +2,8 @@ package roguelike.model.game.arena;
 
 import roguelike.model.Position;
 import roguelike.model.game.elements.*;
+import roguelike.model.game.structures.Path;
+import roguelike.model.game.structures.Room;
 
 import java.util.*;
 
@@ -37,6 +39,14 @@ public class Arena {
         return false;
     }
 
+    public boolean inInnerRoom(Position position) {
+        for (Room room : rooms) {
+            if (room.inInnerRoom(position))
+                return true;
+        }
+        return false;
+    }
+
     public boolean inPath(Position position) {
         for (Path path : paths) {
             for (Chunk chunk : path.getChunks()) {
@@ -63,5 +73,13 @@ public class Arena {
             }
         }
         return new Coin(new Position(0, 0), 0);
+    }
+
+    public void attackMonster(Position monsterPosition, int heroStrength) {
+        for (Room room : rooms) {
+            if (room.inRoom(monsterPosition)) {
+                room.attackMonster(monsterPosition, heroStrength);
+            }
+        }
     }
 }

@@ -2,6 +2,8 @@ package roguelike.model.game.arena;
 
 import roguelike.model.Position;
 import roguelike.model.game.elements.*;
+import roguelike.model.game.structures.Path;
+import roguelike.model.game.structures.Room;
 
 import java.util.*;
 
@@ -154,10 +156,7 @@ public class RandomArenaBuilder extends ArenaBuilder {
                     y++;
                 }
             }
-
             paths.add(path);
-            room1.addPath(path);
-            room2.addPath(path);
         }
 
         arena.setPaths(paths);

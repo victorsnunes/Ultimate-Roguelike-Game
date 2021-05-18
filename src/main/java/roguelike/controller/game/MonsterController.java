@@ -5,7 +5,7 @@ import roguelike.gui.GUI;
 import roguelike.model.Position;
 import roguelike.model.game.arena.Arena;
 import roguelike.model.game.elements.Monster;
-import roguelike.model.game.elements.Room;
+import roguelike.model.game.structures.Room;
 
 import java.io.IOException;
 
@@ -30,7 +30,7 @@ public class MonsterController extends GameController {
     }
 
     private void moveMonster(Monster monster, Position position) {
-        if (getModel().inRoom(position)) {
+        if (getModel().inInnerRoom(position)) {
             monster.setPosition(position);
             if (getModel().getHero().getPosition().equals(position))
                 getModel().getHero().decreaseHealth(getModel().getHero().getStrength());

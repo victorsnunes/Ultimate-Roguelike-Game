@@ -1,8 +1,10 @@
-package roguelike.viewer.game;
+package roguelike.viewer.game.structures;
 
 import roguelike.gui.GUI;
 import roguelike.model.game.elements.*;
+import roguelike.model.game.structures.Room;
 import roguelike.viewer.Viewer;
+import roguelike.viewer.game.elements.*;
 
 import java.util.List;
 
