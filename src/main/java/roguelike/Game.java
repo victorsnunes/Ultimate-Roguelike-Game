@@ -1,26 +1,30 @@
 package roguelike;
 
 import roguelike.gui.LanternaGUI;
-import roguelike.states.MenuState;
+import roguelike.states.StartMenuState;
 import roguelike.states.State;
 import roguelike.model.menu.Menu;
 
 import java.awt.*;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.Arrays;
 
 public class Game {
     private final LanternaGUI gui;
     private State state;
+    private State savedState;
 
     public Game() throws FontFormatException, IOException, URISyntaxException {
-        this.gui = new LanternaGUI(20, 20);
-        this.state = new MenuState(new Menu());
+        this.gui = new LanternaGUI(60, 30);
+        this.state = new StartMenuState(new Menu("Ultimate Rogue Game", Arrays.asList("Start", "Instructions", "Exit")));
     }
 
     public void setState(State state) {
         this.state = state;
     }
+    public void saveState() { this.savedState = state; }
+    public void restoreSavedState() { this.state = savedState; }
 
     private void start() throws IOException {
         int FPS = 20;

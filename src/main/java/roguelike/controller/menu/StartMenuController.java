@@ -3,15 +3,14 @@ package roguelike.controller.menu;
 import roguelike.Game;
 import roguelike.controller.Controller;
 import roguelike.gui.GUI;
-import roguelike.model.game.arena.LoaderArenaBuilder;
 import roguelike.model.game.arena.RandomArenaBuilder;
 import roguelike.model.menu.Menu;
 import roguelike.states.GameState;
 
 import java.io.IOException;
 
-public class MenuController extends Controller<Menu> {
-    public MenuController(Menu menu) {
+public class StartMenuController extends Controller<Menu> {
+    public StartMenuController(Menu menu) {
         super(menu);
     }
 
@@ -19,15 +18,20 @@ public class MenuController extends Controller<Menu> {
     public void step(Game game, GUI.ACTION action, long time) throws IOException {
         switch (action) {
             case UP:
-                getModel().previousEntry();
+                getModel().previousOption();
                 break;
             case DOWN:
-                getModel().nextEntry();
+                getModel().nextOption();
                 break;
             case SELECT:
-                if (getModel().isSelectedExit()) game.setState(null);
                 //if (getModel().isSelectedStart()) game.setState(new GameState(new LoaderArenaBuilder(1).createArena()));
-                if (getModel().isSelectedStart()) game.setState(new GameState(new RandomArenaBuilder(18, 18, 3, 2).createArena()));
+                //Start Game
+                if (getModel().isSelected(0)) game.setState(new GameState(new RandomArenaBuilder(18, 18, 3, 2).createArena()));
+                //Instructions
+                if (getModel().isSelected(1)) game.setState(null);
+                //Exit
+                if (getModel().isSelected(2)) game.setState(null);
+                break;
         }
     }
 }

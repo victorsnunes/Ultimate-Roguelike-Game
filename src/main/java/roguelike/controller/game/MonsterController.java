@@ -22,8 +22,10 @@ public class MonsterController extends GameController {
     public void step(Game game, GUI.ACTION action, long time) throws IOException {
         if (time - lastMovement > 500) {
             for (Room room : getModel().getRooms()) {
-                for (Monster monster : room.getMonsters())
-                    moveMonster(monster, monster.getPosition().follow(getModel().getHero().getPosition()));
+                if (room.getIsActive()) {
+                    for (Monster monster : room.getMonsters())
+                        moveMonster(monster, monster.getPosition().follow(getModel().getHero().getPosition()));
+                }
             }
             this.lastMovement = time;
         }
