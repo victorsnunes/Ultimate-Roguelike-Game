@@ -2,6 +2,8 @@ package roguelike.model.game.arena;
 
 import roguelike.model.Position;
 import roguelike.model.game.elements.*;
+import roguelike.model.game.structures.Path;
+import roguelike.model.game.structures.Room;
 
 import java.util.*;
 
@@ -32,6 +34,14 @@ public class Arena {
     public boolean inRoom(Position position) {
         for (Room room : rooms) {
             if (room.inRoom(position))
+                return true;
+        }
+        return false;
+    }
+
+    public boolean inInnerRoom(Position position) {
+        for (Room room : rooms) {
+            if (room.inInnerRoom(position))
                 return true;
         }
         return false;

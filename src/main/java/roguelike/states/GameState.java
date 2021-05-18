@@ -4,7 +4,7 @@ import roguelike.controller.Controller;
 import roguelike.controller.game.ArenaController;
 import roguelike.model.game.arena.Arena;
 import roguelike.viewer.Viewer;
-import roguelike.viewer.game.GameViewer;
+import roguelike.viewer.game.arena.GameViewer;
 
 public class GameState extends State<Arena> {
     public GameState(Arena arena) {

@@ -1,4 +1,4 @@
-package roguelike.viewer.game;
+package roguelike.viewer.game.elements;
 
 import roguelike.gui.GUI;
 import roguelike.model.game.elements.Element;

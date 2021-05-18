@@ -1,13 +1,16 @@
-package roguelike.viewer.game;
+package roguelike.viewer.game.arena;
 
 import roguelike.gui.GUI;
 import roguelike.model.Position;
 import roguelike.model.game.arena.Arena;
-import roguelike.model.game.elements.Chunk;
 import roguelike.model.game.elements.Hero;
-import roguelike.model.game.elements.Path;
-import roguelike.model.game.elements.Room;
+import roguelike.model.game.structures.Path;
+import roguelike.model.game.structures.Room;
 import roguelike.viewer.Viewer;
+import roguelike.viewer.game.elements.ElementViewer;
+import roguelike.viewer.game.elements.HeroViewer;
+import roguelike.viewer.game.structures.PathViewer;
+import roguelike.viewer.game.structures.RoomViewer;
 
 import java.util.List;
 
@@ -29,26 +32,26 @@ public class GameViewer extends Viewer<Arena> {
 
     private void drawRooms(GUI gui, List<Room> rooms) {
         for (Room room : rooms) {
-            if (room.inRoom(getModel().getHero().getPosition())) {
-                room.setIsVisible(true);
-                room.setIsActive(true);
-            } else {
-                room.setIsActive(false);
-            }
+            room.updateVisibility(getModel().getHero().getPosition());
             new RoomViewer(room).drawElements(gui);
         }
     }
 
     private void drawPaths(GUI gui, List<Path> paths) {
         for (Path path : paths) {
-            for (int i = 0; i < path.getChunks().size(); i++) {
-                if (path.getChunks().get(i).getPosition()
-                        .equals(getModel().getHero().getPosition())) {
 
-                    if (i != 0) path.getChunks().get(i - 1).setIsVisible(true);
-                    if (i != path.getChunks().size() - 1) path.getChunks().get(i + 1).setIsVisible(true);
+            //Updates the initial chunk visibility of the room, if the room is visible
+            for (Room room : getModel().getRooms()) {
+                if (room.getIsVisible()){
+                    if (room.inRoom(path.getFirstChunk().getPosition()))
+                        path.getFirstChunk().setIsVisible(true);
+                    if (room.inRoom(path.getLastChunk().getPosition()))
+                        path.getLastChunk().setIsVisible(true);
                 }
             }
+            //Updates the visibility of the rest of the path
+            path.updateVisibility(getModel().getHero().getPosition());
+
             new PathViewer(path).drawElements(gui);
         }
     }

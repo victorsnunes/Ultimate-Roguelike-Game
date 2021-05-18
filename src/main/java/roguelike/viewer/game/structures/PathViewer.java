@@ -1,9 +1,10 @@
-package roguelike.viewer.game;
+package roguelike.viewer.game.structures;
 
 import roguelike.gui.GUI;
 import roguelike.model.game.elements.Chunk;
-import roguelike.model.game.elements.Path;
+import roguelike.model.game.structures.Path;
 import roguelike.viewer.Viewer;
+import roguelike.viewer.game.elements.ChunkViewer;
 
 public class PathViewer extends Viewer<Path> {
 

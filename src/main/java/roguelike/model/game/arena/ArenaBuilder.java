@@ -1,11 +1,5 @@
 package roguelike.model.game.arena;
 
-import roguelike.model.game.elements.Hero;
-import roguelike.model.game.elements.Path;
-import roguelike.model.game.elements.Room;
-
-import java.util.List;
-
 public abstract class ArenaBuilder {
     public Arena createArena() {
         Arena arena = new Arena(getWidth(), getHeight());

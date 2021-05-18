@@ -23,7 +23,7 @@ public class HeroController extends GameController {
 
     private void moveHero(Position position) {
 
-        if (getModel().inRoom(position) || getModel().inPath(position)) {
+        if (getModel().inInnerRoom(position) || getModel().inPath(position)) {
             getModel().getHero().setPosition(position);
 
             //Checks for possible attacks from monsters (monster.getStrength() = 0 if there's no monster in that position)
