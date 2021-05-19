@@ -13,6 +13,7 @@ public interface GUI {
     void drawHorizontalWall(Position position);
     void drawChunk(Position position);
     void drawCoin(Position position);
+    void drawGoal(Position position);
     void drawDot(Position position);
 
     int getWidth();

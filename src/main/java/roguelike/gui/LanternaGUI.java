@@ -117,6 +117,9 @@ public class LanternaGUI implements GUI {
     public void drawChunk(Position position) { drawCharacter(position.getX(), position.getY(), '#', "#EF8433"); }
 
     @Override
+    public void drawGoal(Position position) { drawCharacter(position.getX(), position.getY(), 'G', "#FFFF33"); }
+
+    @Override
     public void drawDot(Position position) { drawCharacter(position.getX(), position.getY(), '.', "#EF8433"); }
 
     @Override

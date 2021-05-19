@@ -2,6 +2,7 @@ package roguelike.model.game.arena;
 
 import roguelike.model.Position;
 import roguelike.model.game.elements.Coin;
+import roguelike.model.game.elements.Goal;
 import roguelike.model.game.elements.Hero;
 import roguelike.model.game.elements.Monster;
 import roguelike.model.game.structures.Room;
@@ -23,6 +24,8 @@ public class ArenaBuilderLevel extends ArenaBuilder {
 
         room2.addCoin(new Coin(new Position(27, 17)));
         room3.addCoin(new Coin(new Position(45, 9)));
+
+        room3.setGoal(new Goal(new Position(56, 3)));
 
         arena.addRoom(room1);
         arena.addRoom(room2);

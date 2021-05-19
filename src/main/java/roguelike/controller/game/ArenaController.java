@@ -28,11 +28,17 @@ public class ArenaController extends GameController {
             game.saveState(); //Saving previous state, in case of resuming the game after the pause
             game.setState(new PauseMenuState(new Menu("Game Paused", Arrays.asList("Resume", "Quit"))));
         }
-        else if (getModel().getHero().getHealth() <= 0)
+        else if (getModel().getHero().getHealth() <= 0) {
             game.setState(new WindowState(new Window("You Died", Arrays.asList(
                     "Oh no! Looks like a monster killed you",
                     "Better luck next time, young hero..."
             ))));
+        } else if (getModel().isGoal(getModel().getHero().getPosition())) {
+            game.setState(new WindowState( new Window("You Won", Arrays.asList(
+                    "Congratulations young hero!",
+                    "You completed the level"
+            ))));
+        }
         else {
             heroController.step(game, action, time);
             monsterController.step(game, action, time);

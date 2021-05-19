@@ -15,12 +15,14 @@ public class Room {
 
     private boolean isVisible = false;
     private boolean isActive = false;
+    private boolean hasGoal = false;
 
     private List<Wall> walls = new ArrayList<>();
 
     private List<Monster> monsters = new ArrayList<>();
     private List<Coin> coins = new ArrayList<>();
     private List<Dot> dots = new ArrayList<>();
+    private Goal goal;
 
     public Room(int x, int y, int width, int height) {
         this.x = x;
@@ -57,10 +59,17 @@ public class Room {
     public boolean getIsActive() { return isActive; }
     public void setIsVisible(boolean visible) { isVisible = visible; }
     public boolean getIsVisible() { return isVisible; }
+    public boolean getHasGoal() { return hasGoal; }
 
     public List<Monster> getMonsters() { return monsters; }
     public List<Coin> getCoins() { return coins; }
     public List<Dot> getDots() { return dots; }
+    public Goal getGoal() { return goal; }
+
+    public void setGoal(Goal goal) {
+        this.goal = goal;
+        this.hasGoal = true;
+    }
 
     public boolean inRoom(Position position) {
         boolean InX = (position.getX() >= x) && (position.getX() <= (x + widht));
@@ -101,6 +110,14 @@ public class Room {
             }
         }
         return new Coin(new Position(0, 0), 0);
+    }
+
+    public boolean isGoal(Position position) {
+        if (hasGoal) {
+            if (goal.getPosition().equals(position))
+                return true;
+        }
+        return false;
     }
 
     public void attackMonster(Position monsterPosition, int heroStrength) {
