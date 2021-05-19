@@ -19,7 +19,6 @@ public class Arena {
     public Arena(int width, int height) {
         this.width = width;
         this.height = height;
-        this.hero = new Hero(new Position(10, 10));
     }
 
     public Hero getHero() { return hero; }
@@ -73,6 +72,15 @@ public class Arena {
             }
         }
         return new Coin(new Position(0, 0), 0);
+    }
+
+    public boolean isGoal(Position position) {
+        for (Room room : rooms) {
+            if (room.inRoom(position)) {
+                return room.isGoal(position);
+            }
+        }
+        return false;
     }
 
     public void attackMonster(Position monsterPosition, int heroStrength) {

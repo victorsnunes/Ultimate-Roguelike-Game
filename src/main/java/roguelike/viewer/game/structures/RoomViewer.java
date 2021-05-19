@@ -20,6 +20,7 @@ public class RoomViewer extends Viewer<Room> {
             if (getModel().getIsActive()) {
                 drawElements(gui, getModel().getDots(), new DotViewer());
                 drawElements(gui, getModel().getCoins(), new CoinViewer());
+                if (getModel().getHasGoal()) drawElement(gui, getModel().getGoal(), new GoalViewer());
                 drawElements(gui, getModel().getMonsters(), new MonsterViewer());
             }
         }
@@ -28,5 +29,9 @@ public class RoomViewer extends Viewer<Room> {
     private <T extends Element> void drawElements(GUI gui, List<T> elements, ElementViewer<T> viewer) {
         for (T element : elements)
             viewer.draw(element, gui);
+    }
+
+    private <T extends Element> void drawElement(GUI gui, T element, ElementViewer<T> viewer) {
+        viewer.draw(element, gui);
     }
 }

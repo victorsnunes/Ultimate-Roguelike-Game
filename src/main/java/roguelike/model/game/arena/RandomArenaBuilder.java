@@ -8,202 +8,113 @@ import roguelike.model.game.structures.Room;
 import java.util.*;
 
 public class RandomArenaBuilder extends ArenaBuilder {
-    private final Random rng;
+    private final Random random;
 
-    private final int width;
-    private final int height;
+    private final int width = 60;
+    private final int height = 30;
     private final int numberOfMonsters;
     private final int numberOfCoins;
 
-    public RandomArenaBuilder(int width, int height, int numberOfMonsters, int numberOfCoins) {
-        this.rng = new Random();
+    public RandomArenaBuilder(int numberOfMonsters, int numberOfCoins) {
+        this.random = new Random();
 
-        this.width = width;
-        this.height = height;
         this.numberOfMonsters = numberOfMonsters;
         this.numberOfCoins = numberOfCoins;
     }
 
-    @Override
-    protected int getWidth() {
+    public Arena createArena() {
+        Arena arena = new Arena(getWidth(), getHeight());
+
+        createRooms(arena);
+        createPaths(arena);
+        createMonsters(arena);
+        createCoins(arena);
+        createHero(arena);
+        createGoal(arena);
+
+        return arena;
+    }
+
+
+    public int getWidth() {
         return width;
     }
-
-    @Override
-    protected int getHeight() {
+    public int getHeight() {
         return height;
     }
+    
+    private void createRooms(Arena arena) {
 
-    @Override
-    protected void createRooms(Arena arena) {
-        //TODO: Make createRooms an actual random room generator
-        ArrayList<Room> rooms = new ArrayList<>();
+        //There will be 3 rooms, with width and height varying between 5 and 15
+        int numberOfRooms = 3;
+        int offset = 0;
+        int randomX;
+        int randomY;
+        int randomWidth;
+        int randomHeight;
 
-        /*arena.addRoom(new Room(5, 5, 9, 6));
-        arena.addRoom(new Room(40, 5, 9, 6));
-        arena.addRoom(new Room(60, 20, 10, 12));
-        arena.addRoom(new Room(10, 20, 5, 5));*/
+        for (int i = 0; i < 3; i++) {
+            do {
+                randomX = random.nextInt(15) + offset;
+                randomY = random.nextInt(25);
 
-        arena.addRoom(new Room(2, 2, 8, 6));
-        arena.addRoom(new Room(12, 10, 5, 5));
-    }
+                randomWidth = random.nextInt(10) + 5;
+                randomHeight = random.nextInt(15) + 5;
+            } while ((randomX + randomWidth > 20 + offset) || (randomY + randomHeight > 30));
 
-    @Override
-    protected void createPaths(Arena arena){
-        ArrayList<Path> paths = new ArrayList<>();
-        Random random = new Random();
-
-        //TODO: what is the best queue to use in the situation?
-        Queue<Room> queue = new LinkedList<>();
-        for(Room room: arena.getRooms()) {
-            queue.add(room);
+            offset += 20;
+            arena.addRoom(new Room(randomX, randomY, randomWidth, randomHeight));
         }
-
-        while(queue.size() > 1) {
-
-            Path path = new Path();
-
-            boolean hDirection = false;
-            boolean vDirection = false;
-
-            Room room1 = queue.poll();
-            Room room2 = queue.peek();
-            Room mostLeft = room1;
-            Room mostTop = room1;
-            Room mostRight = room2;
-            Room mostBottom = room2;
-
-
-            if (room1.getX() + room1.getWidht() < room2.getX()) {
-                hDirection = true;
-                mostLeft = room1;
-                mostRight = room2;
-            }
-            if (room2.getX() + room2.getWidht() < room1.getX()) {
-                hDirection = true;
-                mostLeft = room2;
-                mostRight = room1;
-            }
-            if (room1.getY() + room1.getHeight() < room2.getY()) {
-                vDirection = true;
-                mostTop = room1;
-                mostBottom = room2;
-            }
-            if (room2.getY() + room2.getHeight() < room1.getY()) {
-                vDirection = true;
-                mostTop = room2;
-                mostBottom = room1;
-            }
-            if (hDirection && vDirection) {
-                hDirection = random.nextBoolean();
-            }
-            if (!(hDirection || vDirection)){
-                //two room are overlapping
-                continue;
-            }
-
-
-            int division;
-            if (hDirection) {
-                division = random.nextInt(mostRight.getX() - (mostLeft.getX() + mostLeft.getWidht()) - 1) + mostLeft.getX() + mostLeft.getWidht() + 1;
-                int leftPointX = mostLeft.getX() + mostLeft.getWidht();
-                int leftPointY = random.nextInt(mostLeft.getHeight() - 2) + mostLeft.getY() + 1;
-
-                int rightPointX = mostRight.getX();
-                int rightPointY = random.nextInt(mostRight.getHeight() - 2) + mostRight.getY() + 1;
-
-
-                int x = leftPointX;
-                int y = leftPointY;
-                while (x < division) {
-                    path.add(new Chunk(x, y));
-                    x++;
-                }
-                while (y != rightPointY + 1) {
-                    path.add(new Chunk(x, y));
-                    if (y > rightPointY) y--;
-                    else y++;
-                }
-                while (x != rightPointX + 1) {
-                    path.add(new Chunk(x, y));
-                    x++;
-                }
-
-            } else {
-                division = random.nextInt(mostBottom.getY() - (mostTop.getY() + mostTop.getHeight()) - 1) + mostTop.getY() + mostTop.getHeight() + 1;
-                int topPointX = random.nextInt(mostTop.getWidht() - 2) + mostTop.getX() + 1;
-                int topPointY = mostTop.getY() + mostTop.getHeight();
-
-                int bottomPointx = random.nextInt(mostBottom.getWidht() - 2) + mostBottom.getX() + 1;
-                int bottomPointY = mostBottom.getY();
-
-
-                int x = topPointX;
-                int y = topPointY;
-                while (y < division) {
-                    path.add(new Chunk(x, y));
-                    y++;
-                }
-                while (x != bottomPointx + 1) {
-                    path.add(new Chunk(x, y));
-                    if (x > bottomPointx) x--;
-                    else x++;
-                }
-                while (y != bottomPointY + 1) {
-                    path.add(new Chunk(x, y));
-                    y++;
-                }
-            }
-            paths.add(path);
-        }
-
-        arena.setPaths(paths);
     }
-
-    @Override
-    protected void createCoins(Arena arena) {
-        Random random = new Random();
+    
+    private void createCoins(Arena arena) {
 
         for (int i = 0; i < numberOfCoins; i++) {
             int randomRoomIndex = random.nextInt(arena.getRooms().size());
             Room room = arena.getRooms().get(randomRoomIndex);
 
-            int posX = random.nextInt(room.getWidht() - 2) + room.getX() + 1;
-            int posY = random.nextInt(room.getHeight() - 2) + room.getY() + 1;
+            int posX = random.nextInt(room.getWidht() - 1) + room.getX() + 1;
+            int posY = random.nextInt(room.getHeight() - 1) + room.getY() + 1;
 
             room.addCoin(new Coin(new Position(posX, posY)));
         }
     }
 
-    @Override
-    protected void createMonsters(Arena arena) {
-        Random random = new Random();
+    private void createMonsters(Arena arena) {
 
         for (int i = 0; i < numberOfMonsters; i++) {
             int randomRoomIndex = random.nextInt(arena.getRooms().size());
             Room room = arena.getRooms().get(randomRoomIndex);
 
-            int posX = random.nextInt(room.getWidht() - 2) + room.getX() + 1;
-            int posY = random.nextInt(room.getHeight() - 2) + room.getY() + 1;
+            int posX = random.nextInt(room.getWidht() - 1) + room.getX() + 1;
+            int posY = random.nextInt(room.getHeight() - 1) + room.getY() + 1;
 
             room.addMonster(new Monster(new Position(posX, posY)));
         }
     }
 
-    @Override
-    protected void createHero(Arena arena) {
-
-        Random random = new Random();
+    private void createHero(Arena arena) {
 
         Position position = new Position(0, 0);
-        while (!arena.inInnerRoom(position)) {
-            int randomX = random.nextInt(width);
-            int randomY = random.nextInt(height);
+        Room room = arena.getRooms().get(0); //Initial room
+        do {
+            int randomX = random.nextInt(room.getWidht() - 1) + room.getX() + 1;
+            int randomY = random.nextInt(room.getHeight() - 1) + room.getY() + 1;
 
             position.setX(randomX);
             position.setY(randomY);
-        }
+        } while (arena.getMonster(position).getStrength() != 0); //Checking if hero doesn't spawn in the same position of a monster
 
         arena.setHero(new Hero(position));
+    }
+
+    private void createGoal(Arena arena) {
+
+        Room room = arena.getRooms().get(arena.getRooms().size() - 1); //Last room
+
+        int randomX = random.nextInt(room.getWidht() - 1) + room.getX() + 1;
+        int randomY = random.nextInt(room.getHeight() - 1) + room.getY() + 1;
+
+        room.setGoal(new Goal(new Position(randomX, randomY)));
     }
 }
