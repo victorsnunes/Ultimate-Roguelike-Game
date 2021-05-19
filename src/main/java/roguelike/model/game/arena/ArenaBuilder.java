@@ -15,7 +15,6 @@ public abstract class ArenaBuilder {
         ArrayList<Path> paths = new ArrayList<>();
         Random random = new Random();
 
-        //TODO: what is the best queue to use in the situation?
         Queue<Room> queue = new LinkedList<>();
         for(Room room: arena.getRooms()) {
             queue.add(room);

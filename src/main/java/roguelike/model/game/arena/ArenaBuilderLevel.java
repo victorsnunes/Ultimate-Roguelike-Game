@@ -72,4 +72,55 @@ public class ArenaBuilderLevel extends ArenaBuilder {
 
         return arena;
     }
+
+    public Arena getLevel3() {
+        Arena arena = new Arena(60, 20);
+
+        Room room1 = new Room(3, 21, 13, 6);
+        Room room2 = new Room(3, 2, 13, 13);
+        Room room3 = new Room(24, 4, 10, 7);
+        Room room4 = new Room(26, 16, 19, 9);
+        Room room5 = new Room(49, 19, 7, 4);
+        Room room6 = new Room(48, 1, 9, 12);
+
+        room1.addMonster(new Monster(new Position(5, 22)));
+        room1.addMonster(new Monster(new Position(14, 23)));
+        room2.addMonster(new Monster(new Position(14, 11)));
+        room2.addMonster(new Monster(new Position(5, 10)));
+        room2.addMonster(new Monster(new Position(5, 4)));
+        room3.addMonster(new Monster(new Position(33, 6)));
+        room3.addMonster(new Monster(new Position(28, 9)));
+        room4.addMonster(new Monster(new Position(30, 19)));
+        room4.addMonster(new Monster(new Position(42, 20)));
+        room4.addMonster(new Monster(new Position(35, 24)));
+        room6.addMonster(new Monster(new Position(55, 11)));
+        room6.addMonster(new Monster(new Position(49, 10)));
+        room6.addMonster(new Monster(new Position(55, 7)));
+        room6.addMonster(new Monster(new Position(49, 4)));
+        room6.addMonster(new Monster(new Position(53, 4)));
+
+        room1.addCoin(new Coin(new Position(13, 26)));
+        room2.addCoin(new Coin(new Position(12, 3)));
+        room2.addCoin(new Coin(new Position(14, 6)));
+        room4.addCoin(new Coin(new Position(40, 17)));
+        room4.addCoin(new Coin(new Position(28, 24)));
+        room5.addCoin(new Coin(new Position(51, 22)));
+        room5.addCoin(new Coin(new Position(53, 22)));
+        room5.addCoin(new Coin(new Position(55, 22)));
+
+        room6.setGoal(new Goal(new Position(52, 2)));
+
+        arena.addRoom(room1);
+        arena.addRoom(room2);
+        arena.addRoom(room3);
+        arena.addRoom(room4);
+        arena.addRoom(room5);
+        arena.addRoom(room6);
+
+        createPaths(arena);
+
+        arena.setHero(new Hero(new Position(5, 26)));
+
+        return arena;
+    }
 }
