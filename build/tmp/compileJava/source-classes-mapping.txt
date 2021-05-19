@@ -94,14 +94,14 @@ roguelike/model/game/structures/Room.java
  roguelike.model.game.structures.Room
 roguelike/controller/game/HeroController.java
  roguelike.controller.game.HeroController
-roguelike/states/LevelMenuState.java
- roguelike.states.LevelMenuState
-roguelike/model/game/arena/ArenaBuilder.java
- roguelike.model.game.arena.ArenaBuilder
-roguelike/model/game/arena/RandomArenaBuilder.java
- roguelike.model.game.arena.RandomArenaBuilder
 roguelike/model/game/arena/ArenaBuilderLevel.java
  roguelike.model.game.arena.ArenaBuilderLevel
+roguelike/model/game/arena/ArenaBuilder.java
+ roguelike.model.game.arena.ArenaBuilder
+roguelike/states/LevelMenuState.java
+ roguelike.states.LevelMenuState
 roguelike/controller/menu/LevelMenuController.java
  roguelike.controller.menu.LevelMenuController
  roguelike.controller.menu.LevelMenuController$1
+roguelike/model/game/arena/RandomArenaBuilder.java
+ roguelike.model.game.arena.RandomArenaBuilder

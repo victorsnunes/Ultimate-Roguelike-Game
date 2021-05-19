@@ -32,7 +32,7 @@ public class LevelMenuController extends Controller<Menu> {
                 //Level 3
                 if (getModel().isSelected(2)) game.setState(new GameState(new ArenaBuilderLevel().getLevel3()));
                 //Random Map
-                if (getModel().isSelected(3)) game.setState(new GameState(new RandomArenaBuilder(30, 60, 3, 2).createArena()));
+                if (getModel().isSelected(3)) game.setState(new GameState(new RandomArenaBuilder(3, 2).createArena()));
                 break;
         }
     }

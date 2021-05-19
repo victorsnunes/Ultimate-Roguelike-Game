@@ -10,16 +10,14 @@ import java.util.*;
 public class RandomArenaBuilder extends ArenaBuilder {
     private final Random random;
 
-    private final int width;
-    private final int height;
+    private final int width = 60;
+    private final int height = 30;
     private final int numberOfMonsters;
     private final int numberOfCoins;
 
-    public RandomArenaBuilder(int width, int height, int numberOfMonsters, int numberOfCoins) {
+    public RandomArenaBuilder(int numberOfMonsters, int numberOfCoins) {
         this.random = new Random();
 
-        this.width = width;
-        this.height = height;
         this.numberOfMonsters = numberOfMonsters;
         this.numberOfCoins = numberOfCoins;
     }
@@ -32,11 +30,12 @@ public class RandomArenaBuilder extends ArenaBuilder {
         createMonsters(arena);
         createCoins(arena);
         createHero(arena);
+        createGoal(arena);
 
         return arena;
     }
 
-    
+
     public int getWidth() {
         return width;
     }
@@ -45,36 +44,50 @@ public class RandomArenaBuilder extends ArenaBuilder {
     }
     
     private void createRooms(Arena arena) {
-        //TODO: Make createRooms an actual random room generator
-        ArrayList<Room> rooms = new ArrayList<>();
 
-        arena.addRoom(new Room(2, 2, 8, 6));
-        arena.addRoom(new Room(12, 10, 5, 5));
+        //There will be 3 rooms, with width and height varying between 5 and 15
+        int numberOfRooms = 3;
+        int offset = 0;
+        int randomX;
+        int randomY;
+        int randomWidth;
+        int randomHeight;
+
+        for (int i = 0; i < 3; i++) {
+            do {
+                randomX = random.nextInt(15) + offset;
+                randomY = random.nextInt(25);
+
+                randomWidth = random.nextInt(10) + 5;
+                randomHeight = random.nextInt(15) + 5;
+            } while ((randomX + randomWidth > 20 + offset) || (randomY + randomHeight > 30));
+
+            offset += 20;
+            arena.addRoom(new Room(randomX, randomY, randomWidth, randomHeight));
+        }
     }
     
     private void createCoins(Arena arena) {
-        Random random = new Random();
 
         for (int i = 0; i < numberOfCoins; i++) {
             int randomRoomIndex = random.nextInt(arena.getRooms().size());
             Room room = arena.getRooms().get(randomRoomIndex);
 
-            int posX = random.nextInt(room.getWidht() - 2) + room.getX() + 1;
-            int posY = random.nextInt(room.getHeight() - 2) + room.getY() + 1;
+            int posX = random.nextInt(room.getWidht() - 1) + room.getX() + 1;
+            int posY = random.nextInt(room.getHeight() - 1) + room.getY() + 1;
 
             room.addCoin(new Coin(new Position(posX, posY)));
         }
     }
 
     private void createMonsters(Arena arena) {
-        Random random = new Random();
 
         for (int i = 0; i < numberOfMonsters; i++) {
             int randomRoomIndex = random.nextInt(arena.getRooms().size());
             Room room = arena.getRooms().get(randomRoomIndex);
 
-            int posX = random.nextInt(room.getWidht() - 2) + room.getX() + 1;
-            int posY = random.nextInt(room.getHeight() - 2) + room.getY() + 1;
+            int posX = random.nextInt(room.getWidht() - 1) + room.getX() + 1;
+            int posY = random.nextInt(room.getHeight() - 1) + room.getY() + 1;
 
             room.addMonster(new Monster(new Position(posX, posY)));
         }
@@ -82,17 +95,26 @@ public class RandomArenaBuilder extends ArenaBuilder {
 
     private void createHero(Arena arena) {
 
-        Random random = new Random();
-
         Position position = new Position(0, 0);
-        while (!arena.inInnerRoom(position)) {
-            int randomX = random.nextInt(width);
-            int randomY = random.nextInt(height);
+        Room room = arena.getRooms().get(0); //Initial room
+        do {
+            int randomX = random.nextInt(room.getWidht() - 1) + room.getX() + 1;
+            int randomY = random.nextInt(room.getHeight() - 1) + room.getY() + 1;
 
             position.setX(randomX);
             position.setY(randomY);
-        }
+        } while (arena.getMonster(position).getStrength() != 0); //Checking if hero doesn't spawn in the same position of a monster
 
         arena.setHero(new Hero(position));
+    }
+
+    private void createGoal(Arena arena) {
+
+        Room room = arena.getRooms().get(arena.getRooms().size() - 1); //Last room
+
+        int randomX = random.nextInt(room.getWidht() - 1) + room.getX() + 1;
+        int randomY = random.nextInt(room.getHeight() - 1) + room.getY() + 1;
+
+        room.setGoal(new Goal(new Position(randomX, randomY)));
     }
 }
