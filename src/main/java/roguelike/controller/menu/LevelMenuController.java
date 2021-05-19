@@ -28,7 +28,7 @@ public class LevelMenuController extends Controller<Menu> {
                 //Level 1
                 if (getModel().isSelected(0)) game.setState(new GameState(new ArenaBuilderLevel().getLevel1()));
                 //Level 2
-                if (getModel().isSelected(1)) game.setState(null);
+                if (getModel().isSelected(1)) game.setState(new GameState(new ArenaBuilderLevel().getLevel2()));
                 //Level 3
                 if (getModel().isSelected(2)) game.setState(null);
                 //Random Map

@@ -59,9 +59,8 @@ roguelike/controller/menu/WindowController.java
  roguelike.controller.menu.WindowController$1
 roguelike/viewer/game/elements/ChunkViewer.java
  roguelike.viewer.game.elements.ChunkViewer
-roguelike/controller/menu/LevelMenuController.java
- roguelike.controller.menu.LevelMenuController
- roguelike.controller.menu.LevelMenuController$1
+roguelike/controller/game/MonsterController.java
+ roguelike.controller.game.MonsterController
 roguelike/model/game/elements/Goal.java
  roguelike.model.game.elements.Goal
 roguelike/controller/menu/PauseMenuController.java
@@ -69,8 +68,8 @@ roguelike/controller/menu/PauseMenuController.java
  roguelike.controller.menu.PauseMenuController$1
 roguelike/viewer/menu/WindowViewer.java
  roguelike.viewer.menu.WindowViewer
-roguelike/states/LevelMenuState.java
- roguelike.states.LevelMenuState
+roguelike/viewer/game/elements/GoalViewer.java
+ roguelike.viewer.game.elements.GoalViewer
 roguelike/viewer/game/elements/DotViewer.java
  roguelike.viewer.game.elements.DotViewer
 roguelike/states/StartMenuState.java
@@ -79,8 +78,8 @@ roguelike/states/State.java
  roguelike.states.State
 roguelike/states/WindowState.java
  roguelike.states.WindowState
-roguelike/model/game/arena/ArenaBuilderLevel.java
- roguelike.model.game.arena.ArenaBuilderLevel
+roguelike/model/game/arena/Arena.java
+ roguelike.model.game.arena.Arena
 roguelike/viewer/game/arena/GameViewer.java
  roguelike.viewer.game.arena.GameViewer
 roguelike/model/game/arena/RandomArenaBuilder.java
@@ -99,9 +98,10 @@ roguelike/model/game/arena/ArenaBuilder.java
  roguelike.model.game.arena.ArenaBuilder
 roguelike/controller/game/GameController.java
  roguelike.controller.game.GameController
-roguelike/viewer/game/elements/GoalViewer.java
- roguelike.viewer.game.elements.GoalViewer
-roguelike/controller/game/MonsterController.java
- roguelike.controller.game.MonsterController
-roguelike/model/game/arena/Arena.java
- roguelike.model.game.arena.Arena
+roguelike/states/LevelMenuState.java
+ roguelike.states.LevelMenuState
+roguelike/model/game/arena/ArenaBuilderLevel.java
+ roguelike.model.game.arena.ArenaBuilderLevel
+roguelike/controller/menu/LevelMenuController.java
+ roguelike.controller.menu.LevelMenuController
+ roguelike.controller.menu.LevelMenuController$1

@@ -37,4 +37,39 @@ public class ArenaBuilderLevel extends ArenaBuilder {
 
         return arena;
     }
+
+    public Arena getLevel2() {
+        Arena arena = new Arena(60, 20);
+
+        Room room1 = new Room(3, 2, 15, 6);
+        Room room2 = new Room(8, 12, 12, 5);
+        Room room3 = new Room(32, 16, 12, 7);
+        Room room4 = new Room(43, 3, 11, 10);
+
+        room1.addMonster(new Monster(new Position(5, 7)));
+        room1.addMonster(new Monster(new Position(15, 5)));
+        room2.addMonster(new Monster(new Position(10, 16)));
+        room2.addMonster(new Monster(new Position(14, 14)));
+        room3.addMonster(new Monster(new Position(40, 22)));
+        room4.addMonster(new Monster(new Position(50,10)));
+        room4.addMonster(new Monster(new Position(51,7)));
+        room4.addMonster(new Monster(new Position(44,5)));
+
+        room2.addCoin(new Coin(new Position(16, 16)));
+        room3.addCoin(new Coin(new Position(35, 19)));
+        room3.addCoin(new Coin(new Position(42, 19)));
+
+        room4.setGoal(new Goal(new Position(53, 4)));
+
+        arena.addRoom(room1);
+        arena.addRoom(room2);
+        arena.addRoom(room3);
+        arena.addRoom(room4);
+
+        createPaths(arena);
+
+        arena.setHero(new Hero(new Position(5, 3)));
+
+        return arena;
+    }
 }
