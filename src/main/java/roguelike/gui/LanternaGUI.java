@@ -94,12 +94,12 @@ public class LanternaGUI implements GUI {
 
     @Override
     public void drawHero(Position position) {
-        drawCharacter(position.getX(), position.getY(), '@', "#FFFF33");
+        drawCharacter(position.getX(), position.getY(), '@', "#4163EC");
     }
 
     @Override
     public void drawMonster(Position position) {
-        drawCharacter(position.getX(), position.getY(), 'M', "#FFEE66");
+        drawCharacter(position.getX(), position.getY(), 'M', "#189D09");
     }
 
     @Override
@@ -108,7 +108,8 @@ public class LanternaGUI implements GUI {
     }
 
     @Override
-    public void drawCoin(Position position) { drawCharacter(position.getX(), position.getY(), 'O', "#E94B6A"); }
+    public void drawCoin(Position position) { drawCharacter(position.getX(), position.getY(), 'O', "#FFFF33"); }
+    //#E94B6A
 
     @Override
     public void drawHorizontalWall(Position position) { drawCharacter(position.getX(), position.getY(), '-', "#EF8433"); }
@@ -117,7 +118,7 @@ public class LanternaGUI implements GUI {
     public void drawChunk(Position position) { drawCharacter(position.getX(), position.getY(), '#', "#EF8433"); }
 
     @Override
-    public void drawGoal(Position position) { drawCharacter(position.getX(), position.getY(), 'G', "#FFFF33"); }
+    public void drawGoal(Position position) { drawCharacter(position.getX(), position.getY(), 'G', "#FFFFFF"); }
 
     @Override
     public void drawDot(Position position) { drawCharacter(position.getX(), position.getY(), '.', "#EF8433"); }

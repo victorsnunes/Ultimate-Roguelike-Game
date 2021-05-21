@@ -13,6 +13,7 @@ public class Arena {
     private int width;
     private int height;
     private Hero hero;
+    private int time = 120;
     private List<Room> rooms = new ArrayList<>();
     private List<Path> paths = new ArrayList<>();
 
@@ -22,13 +23,19 @@ public class Arena {
     }
 
     public Hero getHero() { return hero; }
+    public int getTime() { return time; }
     public List<Room> getRooms() { return rooms; }
     public List<Path> getPaths() { return paths; }
 
     public void setHero(Hero hero) { this.hero = hero; }
+    public void setTime(int time) { this.time = time; }
     public void setRooms(List<Room> rooms) { this.rooms = rooms; }
     public void addRoom(Room room) { rooms.add(room); }
     public void setPaths(List<Path> paths) { this.paths = paths; }
+
+    public String writeTime() {
+        return String.format("%d:%02d", time / 60, time % 60);
+    }
 
     public boolean inRoom(Position position) {
         for (Room room : rooms) {
