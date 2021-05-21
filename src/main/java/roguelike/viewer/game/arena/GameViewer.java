@@ -28,6 +28,7 @@ public class GameViewer extends Viewer<Arena> {
         drawHero(gui, getModel().getHero(), new HeroViewer());
 
         gui.drawText(new Position(0, 0), "Health: " + getModel().getHero().getHealth(), "#FFD700");
+        gui.drawText(new Position(13, 0), "Strength: " + getModel().getHero().getStrength(), "#FFD700");
     }
 
     private void drawRooms(GUI gui, List<Room> rooms) {

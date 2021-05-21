@@ -7,8 +7,10 @@ import roguelike.model.game.arena.ArenaBuilderLevel;
 import roguelike.model.game.arena.RandomArenaBuilder;
 import roguelike.model.menu.Menu;
 import roguelike.states.GameState;
+import roguelike.states.StartMenuState;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 public class LevelMenuController extends Controller<Menu> {
     public LevelMenuController(Menu menu) {
@@ -23,6 +25,9 @@ public class LevelMenuController extends Controller<Menu> {
                 break;
             case DOWN:
                 getModel().nextOption();
+                break;
+            case QUIT:
+                game.setState(new StartMenuState(new Menu("Ultimate Rogue Game", Arrays.asList("Start", "Instructions", "Exit"))));
                 break;
             case SELECT:
                 //Level 1
