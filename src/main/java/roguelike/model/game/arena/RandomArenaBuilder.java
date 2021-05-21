@@ -60,7 +60,7 @@ public class RandomArenaBuilder extends ArenaBuilder {
 
                 randomWidth = random.nextInt(10) + 5;
                 randomHeight = random.nextInt(15) + 5;
-            } while ((randomX + randomWidth > 20 + offset) || (randomY + randomHeight > 30));
+            } while ((randomX + randomWidth > 20 + offset) || (randomY + randomHeight > 29));
 
             offset += 20;
             arena.addRoom(new Room(randomX, randomY, randomWidth, randomHeight));

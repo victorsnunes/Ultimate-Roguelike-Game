@@ -35,7 +35,7 @@ public class MonsterController extends GameController {
         if (getModel().inInnerRoom(position)) {
             monster.setPosition(position);
             if (getModel().getHero().getPosition().equals(position))
-                getModel().getHero().decreaseHealth(getModel().getHero().getStrength());
+                getModel().getHero().decreaseHealth(monster.getStrength());
         }
     }
 }

@@ -13,7 +13,7 @@ public class Arena {
     private int width;
     private int height;
     private Hero hero;
-    private int time = 120;
+    private int time = 90;
     private List<Room> rooms = new ArrayList<>();
     private List<Path> paths = new ArrayList<>();
 
@@ -33,9 +33,8 @@ public class Arena {
     public void addRoom(Room room) { rooms.add(room); }
     public void setPaths(List<Path> paths) { this.paths = paths; }
 
-    public String writeTime() {
-        return String.format("%d:%02d", time / 60, time % 60);
-    }
+    public String writeTime() { return String.format("%d:%02d", time / 60, time % 60); }
+    public void decreaseTime() { time--; }
 
     public boolean inRoom(Position position) {
         for (Room room : rooms) {

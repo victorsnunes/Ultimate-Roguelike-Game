@@ -13,7 +13,12 @@ public class Hero extends Element {
     public int getHealth() { return health; }
     public int getStrength() { return strength; }
 
-    public void decreaseHealth(int hit) { health -= hit; }
+    public void decreaseHealth(int hit) {
+        if (health - hit >= 0)
+            health -= hit;
+        else
+            health = 0;
+    }
     public void increaseHealth(int bonus) { health += bonus; }
 
 }

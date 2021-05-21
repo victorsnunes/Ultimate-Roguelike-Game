@@ -4,7 +4,7 @@ import roguelike.model.Position;
 
 public class Monster extends Element {
     private int health = 6;
-    private int strength = 1;
+    private int strength = 2;
 
     public Monster(Position position) { super(position); }
     public Monster(int x, int y){ super(x, y); }

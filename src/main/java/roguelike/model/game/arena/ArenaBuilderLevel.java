@@ -34,6 +34,7 @@ public class ArenaBuilderLevel extends ArenaBuilder {
         createPaths(arena);
 
         arena.setHero(new Hero(new Position(5, 3)));
+        arena.setTime(90);
 
         return arena;
     }
@@ -69,6 +70,7 @@ public class ArenaBuilderLevel extends ArenaBuilder {
         createPaths(arena);
 
         arena.setHero(new Hero(new Position(5, 3)));
+        arena.setTime(90);
 
         return arena;
     }
@@ -120,6 +122,7 @@ public class ArenaBuilderLevel extends ArenaBuilder {
         createPaths(arena);
 
         arena.setHero(new Hero(new Position(5, 26)));
+        arena.setTime(120);
 
         return arena;
     }
