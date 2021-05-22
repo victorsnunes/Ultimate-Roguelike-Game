@@ -30,6 +30,7 @@ public class ArenaController extends GameController {
     public void step(Game game, GUI.ACTION action, long time) throws IOException {
         if (time - lastTimeUpdate > 1000) {
             getModel().decreaseTime();
+            getModel().getHero().decreaseStrengthBonusTime();
             this.lastTimeUpdate = time;
         }
 

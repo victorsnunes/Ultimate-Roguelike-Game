@@ -20,6 +20,7 @@ public class RoomViewer extends Viewer<Room> {
             if (getModel().getIsActive()) {
                 drawElements(gui, getModel().getDots(), new DotViewer());
                 drawElements(gui, getModel().getCoins(), new CoinViewer());
+                drawElements(gui, getModel().getStrengthPotions(), new StrengthPotionViewer());
                 if (getModel().getHasGoal()) drawElement(gui, getModel().getGoal(), new GoalViewer());
                 drawElements(gui, getModel().getMonsters(), new MonsterViewer());
             }

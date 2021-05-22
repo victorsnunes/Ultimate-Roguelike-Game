@@ -6,6 +6,7 @@ import roguelike.model.Position;
 import roguelike.model.game.arena.Arena;
 import roguelike.model.game.elements.Coin;
 import roguelike.model.game.elements.Monster;
+import roguelike.model.game.elements.StrengthPotion;
 
 public class HeroController extends GameController {
     public HeroController(Arena arena) {
@@ -36,6 +37,13 @@ public class HeroController extends GameController {
             Coin coin = getModel().retrieveCoin(position);
             if (coin.getBonus() != 0) {
                 getModel().getHero().increaseHealth(coin.getBonus());
+            }
+
+            //Checks for possible strength potions to retrieve (sp.getStrengthBonus() = 0 if there's no strength potion in that position)
+            StrengthPotion sp = getModel().retrieveStrengthPotion(position);
+            if (sp.getStrengthBonus() != 0) {
+                getModel().getHero().increaseStrength(sp.getStrengthBonus());
+                getModel().getHero().increaseStrengthBonusTime(sp.getTimeBonus());
             }
         }
     }

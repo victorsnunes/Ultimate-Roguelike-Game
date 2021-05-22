@@ -28,9 +28,16 @@ public class GameViewer extends Viewer<Arena> {
         drawHero(gui, getModel().getHero(), new HeroViewer());
 
         gui.drawText(new Position(0, 0), "Health: " + getModel().getHero().getHealth(), "#FF4A4A");
-        gui.drawText(new Position(13, 0), "Strength: " + getModel().getHero().getStrength(), "#4163EC");
-
         gui.drawText(new Position(48, 0), "Time: " + getModel().writeTime(), "#FFFFFF");
+
+        if (getModel().getHero().getStrengthBonusTime() > 0) {
+            gui.drawText(new Position(38, 29), "Strength Bonus: " + getModel().getHero().writeStrengthTime(), "#E94B6A");
+            gui.drawText(new Position(13, 0), "Strength: " + getModel().getHero().getStrength(), "#E94B6A");
+        } else {
+            getModel().getHero().setStrength(3);
+            gui.drawText(new Position(13, 0), "Strength: " + getModel().getHero().getStrength(), "#4163EC");
+        }
+
     }
 
     private void drawRooms(GUI gui, List<Room> rooms) {

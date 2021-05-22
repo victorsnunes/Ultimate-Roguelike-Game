@@ -7,7 +7,7 @@ import java.io.IOException;
 public interface GUI {
     ACTION getNextAction() throws IOException;
 
-    void drawHero(Position position);
+    void drawHero(Position position, String color);
     void drawMonster(Position position);
     void drawVerticalWall(Position position);
     void drawHorizontalWall(Position position);
@@ -15,6 +15,7 @@ public interface GUI {
     void drawCoin(Position position);
     void drawGoal(Position position);
     void drawDot(Position position);
+    void drawStrengthPotion(Position position);
 
     int getWidth();
     int getHeight();

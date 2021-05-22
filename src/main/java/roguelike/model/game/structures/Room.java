@@ -21,6 +21,7 @@ public class Room {
 
     private List<Monster> monsters = new ArrayList<>();
     private List<Coin> coins = new ArrayList<>();
+    private List<StrengthPotion> strengthPotions = new ArrayList<>();
     private List<Dot> dots = new ArrayList<>();
     private Goal goal;
 
@@ -64,6 +65,7 @@ public class Room {
     public List<Monster> getMonsters() { return monsters; }
     public List<Coin> getCoins() { return coins; }
     public List<Dot> getDots() { return dots; }
+    public List<StrengthPotion> getStrengthPotions() { return strengthPotions; }
     public Goal getGoal() { return goal; }
 
     public void setGoal(Goal goal) {
@@ -112,6 +114,16 @@ public class Room {
         return new Coin(new Position(0, 0), 0);
     }
 
+    public StrengthPotion retrieveStrengthPotion(Position position) {
+        for (StrengthPotion sp : strengthPotions) {
+            if (sp.getPosition().equals(position)) {
+                strengthPotions.remove(sp);
+                return sp;
+            }
+        }
+        return new StrengthPotion(new Position(0, 0), 0, 0);
+    }
+
     public boolean isGoal(Position position) {
         if (hasGoal) {
             if (goal.getPosition().equals(position))
@@ -133,4 +145,5 @@ public class Room {
 
     public void addMonster(Monster monster) { monsters.add(monster); }
     public void addCoin(Coin coin) { coins.add(coin); }
+    public void addStrengthPotion (StrengthPotion sp) { strengthPotions.add(sp); }
 }

@@ -80,6 +80,15 @@ public class Arena {
         return new Coin(new Position(0, 0), 0);
     }
 
+    public StrengthPotion retrieveStrengthPotion(Position position) {
+        for (Room room : rooms) {
+            if (room.inRoom(position)) {
+                return room.retrieveStrengthPotion(position);
+            }
+        }
+        return new StrengthPotion(new Position(0, 0), 0, 0);
+    }
+
     public boolean isGoal(Position position) {
         for (Room room : rooms) {
             if (room.inRoom(position)) {

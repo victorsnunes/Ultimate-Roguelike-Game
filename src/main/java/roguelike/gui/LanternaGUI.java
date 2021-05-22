@@ -93,9 +93,7 @@ public class LanternaGUI implements GUI {
     public int getHeight() { return height; }
 
     @Override
-    public void drawHero(Position position) {
-        drawCharacter(position.getX(), position.getY(), '@', "#4163EC");
-    }
+    public void drawHero(Position position, String color) { drawCharacter(position.getX(), position.getY(), '@', color); }
 
     @Override
     public void drawMonster(Position position) {
@@ -109,7 +107,6 @@ public class LanternaGUI implements GUI {
 
     @Override
     public void drawCoin(Position position) { drawCharacter(position.getX(), position.getY(), 'O', "#FFFF33"); }
-    //#E94B6A
 
     @Override
     public void drawHorizontalWall(Position position) { drawCharacter(position.getX(), position.getY(), '-', "#EF8433"); }
@@ -122,6 +119,9 @@ public class LanternaGUI implements GUI {
 
     @Override
     public void drawDot(Position position) { drawCharacter(position.getX(), position.getY(), '.', "#EF8433"); }
+
+    @Override
+    public void drawStrengthPotion(Position position) { drawCharacter(position.getX(), position.getY(), 'S', "#E94B6A"); }
 
     @Override
     public void drawText(Position position, String text, String color) {

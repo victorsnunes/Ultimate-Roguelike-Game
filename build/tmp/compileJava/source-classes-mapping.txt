@@ -1,10 +1,11 @@
-roguelike/states/LevelMenuState.java
- roguelike.states.LevelMenuState
+roguelike/Game.java
+ roguelike.Game
 roguelike/controller/Controller.java
  roguelike.controller.Controller
-roguelike/controller/menu/LevelMenuController.java
- roguelike.controller.menu.LevelMenuController
- roguelike.controller.menu.LevelMenuController$1
+roguelike/model/game/elements/StrengthPotion.java
+ roguelike.model.game.elements.StrengthPotion
+roguelike/model/game/elements/Element.java
+ roguelike.model.game.elements.Element
 roguelike/viewer/game/elements/ElementViewer.java
  roguelike.viewer.game.elements.ElementViewer
 roguelike/model/game/elements/Dot.java
@@ -18,33 +19,32 @@ roguelike/viewer/game/elements/ChunkViewer.java
  roguelike.viewer.game.elements.ChunkViewer
 roguelike/viewer/game/elements/GoalViewer.java
  roguelike.viewer.game.elements.GoalViewer
-roguelike/states/State.java
- roguelike.states.State
+roguelike/states/LevelMenuState.java
+ roguelike.states.LevelMenuState
 roguelike/model/game/elements/Coin.java
  roguelike.model.game.elements.Coin
 roguelike/model/game/elements/HorizontalWall.java
  roguelike.model.game.elements.HorizontalWall
 roguelike/states/StartMenuState.java
  roguelike.states.StartMenuState
-roguelike/model/game/elements/Element.java
- roguelike.model.game.elements.Element
+roguelike/model/game/elements/Goal.java
+ roguelike.model.game.elements.Goal
 roguelike/viewer/game/structures/PathViewer.java
  roguelike.viewer.game.structures.PathViewer
 roguelike/model/Position.java
  roguelike.model.Position
-roguelike/controller/menu/PauseMenuController.java
- roguelike.controller.menu.PauseMenuController
- roguelike.controller.menu.PauseMenuController$1
-roguelike/model/game/elements/Goal.java
- roguelike.model.game.elements.Goal
-roguelike/viewer/Viewer.java
- roguelike.viewer.Viewer
-roguelike/states/WindowState.java
- roguelike.states.WindowState
+roguelike/viewer/game/elements/MonsterViewer.java
+ roguelike.viewer.game.elements.MonsterViewer
+roguelike/viewer/game/elements/DotViewer.java
+ roguelike.viewer.game.elements.DotViewer
 roguelike/gui/LanternaGUI.java
  roguelike.gui.LanternaGUI
 roguelike/viewer/menu/WindowViewer.java
  roguelike.viewer.menu.WindowViewer
+roguelike/model/game/elements/Monster.java
+ roguelike.model.game.elements.Monster
+roguelike/states/WindowState.java
+ roguelike.states.WindowState
 roguelike/viewer/menu/MenuViewer.java
  roguelike.viewer.menu.MenuViewer
 roguelike/model/game/structures/Path.java
@@ -58,8 +58,8 @@ roguelike/viewer/game/elements/CoinViewer.java
 roguelike/controller/menu/StartMenuController.java
  roguelike.controller.menu.StartMenuController
  roguelike.controller.menu.StartMenuController$1
-roguelike/viewer/game/elements/DotViewer.java
- roguelike.viewer.game.elements.DotViewer
+roguelike/viewer/game/elements/StrengthPotionViewer.java
+ roguelike.viewer.game.elements.StrengthPotionViewer
 roguelike/model/game/elements/Chunk.java
  roguelike.model.game.elements.Chunk
 roguelike/gui/GUI.java
@@ -69,39 +69,43 @@ roguelike/model/menu/Window.java
  roguelike.model.menu.Window
 roguelike/model/game/elements/VerticalWall.java
  roguelike.model.game.elements.VerticalWall
-roguelike/Game.java
- roguelike.Game
+roguelike/viewer/Viewer.java
+ roguelike.viewer.Viewer
 roguelike/model/menu/Menu.java
  roguelike.model.menu.Menu
-roguelike/model/game/arena/ArenaBuilderLevel.java
- roguelike.model.game.arena.ArenaBuilderLevel
+roguelike/controller/menu/LevelMenuController.java
+ roguelike.controller.menu.LevelMenuController
+ roguelike.controller.menu.LevelMenuController$1
+roguelike/states/State.java
+ roguelike.states.State
+roguelike/controller/menu/PauseMenuController.java
+ roguelike.controller.menu.PauseMenuController
+ roguelike.controller.menu.PauseMenuController$1
+roguelike/model/game/arena/Arena.java
+ roguelike.model.game.arena.Arena
 roguelike/model/game/elements/Hero.java
  roguelike.model.game.elements.Hero
-roguelike/viewer/game/arena/GameViewer.java
- roguelike.viewer.game.arena.GameViewer
-roguelike/viewer/game/elements/HeroViewer.java
- roguelike.viewer.game.elements.HeroViewer
-roguelike/model/game/arena/RandomArenaBuilder.java
- roguelike.model.game.arena.RandomArenaBuilder
-roguelike/controller/game/ArenaController.java
- roguelike.controller.game.ArenaController
-roguelike/states/GameState.java
- roguelike.states.GameState
-roguelike/viewer/game/structures/RoomViewer.java
- roguelike.viewer.game.structures.RoomViewer
-roguelike/model/game/structures/Room.java
- roguelike.model.game.structures.Room
+roguelike/model/game/arena/ArenaBuilderLevel.java
+ roguelike.model.game.arena.ArenaBuilderLevel
 roguelike/controller/game/HeroController.java
  roguelike.controller.game.HeroController
-roguelike/model/game/elements/Monster.java
- roguelike.model.game.elements.Monster
+roguelike/model/game/structures/Room.java
+ roguelike.model.game.structures.Room
 roguelike/model/game/arena/ArenaBuilder.java
  roguelike.model.game.arena.ArenaBuilder
 roguelike/controller/game/GameController.java
  roguelike.controller.game.GameController
-roguelike/viewer/game/elements/MonsterViewer.java
- roguelike.viewer.game.elements.MonsterViewer
+roguelike/model/game/arena/RandomArenaBuilder.java
+ roguelike.model.game.arena.RandomArenaBuilder
+roguelike/controller/game/ArenaController.java
+ roguelike.controller.game.ArenaController
 roguelike/controller/game/MonsterController.java
  roguelike.controller.game.MonsterController
-roguelike/model/game/arena/Arena.java
- roguelike.model.game.arena.Arena
+roguelike/states/GameState.java
+ roguelike.states.GameState
+roguelike/viewer/game/structures/RoomViewer.java
+ roguelike.viewer.game.structures.RoomViewer
+roguelike/viewer/game/arena/GameViewer.java
+ roguelike.viewer.game.arena.GameViewer
+roguelike/viewer/game/elements/HeroViewer.java
+ roguelike.viewer.game.elements.HeroViewer
