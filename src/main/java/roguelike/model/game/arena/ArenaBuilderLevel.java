@@ -57,6 +57,8 @@ public class ArenaBuilderLevel extends ArenaBuilder {
         room3.addCoin(new Coin(new Position(35, 19)));
         room3.addCoin(new Coin(new Position(42, 19)));
 
+        room1.addStrengthPotion(new StrengthPotion(new Position(9, 3), 7, 20));
+
         room4.setGoal(new Goal(new Position(53, 4)));
 
         arena.addRoom(room1);

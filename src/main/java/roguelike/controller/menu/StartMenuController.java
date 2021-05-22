@@ -38,7 +38,8 @@ public class StartMenuController extends Controller<Menu> {
                         "Press X to attack the monsters near you",
                         "Don't let the monsters touch you",
                         "Collect coins to regenerate your health",
-                        "And reach the goal G to complete the level"
+                        "And collect potions 'S' to increase your strength",
+                        "Reach the goal 'G' to complete the level"
                 ))));
                 //Exit
                 if (getModel().isSelected(2)) game.setState(null);
