@@ -10,19 +10,19 @@ public class ArenaBuilderLevel extends ArenaBuilder {
         Arena arena = new Arena(60, 20);
 
         Room room1 = new Room(3, 2, 18, 8);
-        Room room2 = new Room(19, 13, 13, 6);
-        Room room3 = new Room(39, 2, 19, 9);
+        Room room2 = new Room(6, 13, 13, 6);
+        Room room3 = new Room(39, 14, 19, 9);
 
         room1.addMonster(new Monster(new Position(5, 8)));
         room1.addMonster(new Monster(new Position(17, 5)));
-        room2.addMonster(new Monster(new Position(25, 15)));
-        room3.addMonster(new Monster(new Position(43, 4)));
-        room3.addMonster(new Monster(new Position(54,9)));
+        room2.addMonster(new Monster(new Position(12, 15)));
+        room3.addMonster(new Monster(new Position(43, 16)));
+        room3.addMonster(new Monster(new Position(54,21)));
 
-        room2.addCoin(new Coin(new Position(27, 17)));
-        room3.addCoin(new Coin(new Position(45, 9)));
+        room2.addCoin(new Coin(new Position(15, 17)));
+        room3.addCoin(new Coin(new Position(45, 21)));
 
-        room3.setGoal(new Goal(new Position(56, 3)));
+        room3.setGoal(new Goal(new Position(56, 15)));
 
         arena.addRoom(room1);
         arena.addRoom(room2);
