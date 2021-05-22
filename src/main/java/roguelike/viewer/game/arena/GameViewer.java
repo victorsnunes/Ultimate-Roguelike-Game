@@ -67,6 +67,8 @@ public class GameViewer extends Viewer<Arena> {
     }
 
     private void drawHero(GUI gui, Hero hero, ElementViewer<Hero> viewer) {
-        viewer.draw(hero, gui);
+        //Only draw hero if there's no monster in that position
+        if (getModel().getMonster(hero.getPosition()).getStrength() == 0)
+            viewer.draw(hero, gui);
     }
 }
