@@ -8,7 +8,7 @@ public interface GUI {
     ACTION getNextAction() throws IOException;
 
     void drawHero(Position position, String color);
-    void drawMonster(Position position);
+    void drawMonster(Position position, String color);
     void drawVerticalWall(Position position);
     void drawHorizontalWall(Position position);
     void drawChunk(Position position);

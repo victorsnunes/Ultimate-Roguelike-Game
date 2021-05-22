@@ -29,6 +29,14 @@ public class MonsterController extends GameController {
             }
             this.lastMovement = time;
         }
+
+        for (Room room : getModel().getRooms()) {
+            if (room.getIsActive()) {
+                for (Monster monster : room.getMonsters())
+                     if (time - monster.getTookDamageTime() > 150)
+                         monster.setTookDamage(false);
+            }
+        }
     }
 
     private void moveMonster(Monster monster, Position position) {

@@ -48,7 +48,7 @@ public class HeroController extends GameController {
         }
     }
 
-    private void attack() {
+    private void attack(long time) {
 
         Position attackPos1 = new Position(getModel().getHero().getX() + 1, getModel().getHero().getY());
         Position attackPos2 = new Position(getModel().getHero().getX() - 1, getModel().getHero().getY());
@@ -64,16 +64,16 @@ public class HeroController extends GameController {
         int heroStrength = getModel().getHero().getStrength();
 
         if (m1.getStrength() != 0) {
-            getModel().attackMonster(m1.getPosition(), heroStrength);
+            getModel().attackMonster(m1.getPosition(), heroStrength, time);
         }
         if (m2.getStrength() != 0) {
-            getModel().attackMonster(m2.getPosition(), heroStrength);
+            getModel().attackMonster(m2.getPosition(), heroStrength, time);
         }
         if (m3.getStrength() != 0) {
-            getModel().attackMonster(m3.getPosition(), heroStrength);
+            getModel().attackMonster(m3.getPosition(), heroStrength, time);
         }
         if (m4.getStrength() != 0) {
-            getModel().attackMonster(m4.getPosition(), heroStrength);
+            getModel().attackMonster(m4.getPosition(), heroStrength, time);
         }
     }
 
@@ -83,6 +83,6 @@ public class HeroController extends GameController {
         if (action == GUI.ACTION.RIGHT) moveRight();
         if (action == GUI.ACTION.DOWN) moveDown();
         if (action == GUI.ACTION.LEFT) moveLeft();
-        if (action == GUI.ACTION.ATTACK) attack();
+        if (action == GUI.ACTION.ATTACK) attack(time);
     }
 }

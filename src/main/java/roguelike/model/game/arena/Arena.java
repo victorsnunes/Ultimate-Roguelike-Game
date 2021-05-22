@@ -98,10 +98,10 @@ public class Arena {
         return false;
     }
 
-    public void attackMonster(Position monsterPosition, int heroStrength) {
+    public void attackMonster(Position monsterPosition, int heroStrength, long time) {
         for (Room room : rooms) {
             if (room.inRoom(monsterPosition)) {
-                room.attackMonster(monsterPosition, heroStrength);
+                room.attackMonster(monsterPosition, heroStrength, time);
             }
         }
     }

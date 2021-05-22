@@ -132,10 +132,12 @@ public class Room {
         return false;
     }
 
-    public void attackMonster(Position monsterPosition, int heroStrength) {
+    public void attackMonster(Position monsterPosition, int heroStrength, long time) {
         for (Monster monster : monsters) {
             if (monster.getPosition().equals(monsterPosition)) {
                 monster.decreaseHealth(heroStrength);
+                monster.setTookDamage(true);
+                monster.setTookDamageTime(time);
                 if (monster.getHealth() <= 0)
                     monsters.remove(monster);
                 break;
