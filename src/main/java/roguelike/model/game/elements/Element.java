@@ -2,7 +2,7 @@ package roguelike.model.game.elements;
 
 import roguelike.model.Position;
 
-public class Element {
+public abstract class Element {
 
     protected Position position;
 

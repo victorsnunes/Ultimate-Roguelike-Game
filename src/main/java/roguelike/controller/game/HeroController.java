@@ -7,10 +7,15 @@ import roguelike.model.game.arena.Arena;
 import roguelike.model.game.elements.Coin;
 import roguelike.model.game.elements.Monster;
 import roguelike.model.game.elements.StrengthPotion;
+import roguelike.model.game.structures.Room;
 
 public class HeroController extends GameController {
+
+    private long lastTimeUpdate;
+
     public HeroController(Arena arena) {
         super(arena);
+        this.lastTimeUpdate = 0;
     }
 
     public void moveLeft() { moveHero(getModel().getHero().getPosition().getLeft()); }
@@ -79,6 +84,17 @@ public class HeroController extends GameController {
 
     @Override
     public void step(Game game, GUI.ACTION action, long time) {
+
+        //Update hero strength status
+        if (time - lastTimeUpdate > 1000) {
+            getModel().getHero().decreaseStrengthBonusTime();
+            this.lastTimeUpdate = time;
+        }
+
+        if (getModel().getHero().getStrengthBonusTime() <= 0) {
+            getModel().getHero().setStrength(getModel().getHero().getInitialStrength());
+        }
+
         if (action == GUI.ACTION.UP) moveUp();
         if (action == GUI.ACTION.RIGHT) moveRight();
         if (action == GUI.ACTION.DOWN) moveDown();

@@ -17,22 +17,15 @@ import java.util.Arrays;
 public class ArenaController extends GameController {
     private final HeroController heroController;
     private final MonsterController monsterController;
-    private long lastTimeUpdate;
 
     public ArenaController(Arena arena) {
         super(arena);
 
         this.heroController = new HeroController(arena);
         this.monsterController = new MonsterController(arena);
-        this.lastTimeUpdate = 0;
     }
 
     public void step(Game game, GUI.ACTION action, long time) throws IOException {
-        if (time - lastTimeUpdate > 1000) {
-            getModel().decreaseTime();
-            getModel().getHero().decreaseStrengthBonusTime();
-            this.lastTimeUpdate = time;
-        }
 
         if (getModel().getTime() <= 0) {
             game.setState(new WindowState(new Window("Time's Up", Arrays.asList(
