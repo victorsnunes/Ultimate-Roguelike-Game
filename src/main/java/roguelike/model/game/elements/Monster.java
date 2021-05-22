@@ -25,7 +25,9 @@ public class Monster extends Element {
     public boolean getTookDamage() { return tookDamage; }
     public long getTookDamageTime() { return tookDamageTime; }
 
+    public void setHealth(int health) { this.health = health; }
     public void setStrength(int strength) { this.strength = strength; }
+
     public void setTookDamage(boolean tookDamage) { this.tookDamage = tookDamage; }
     public void setTookDamageTime(long tookDamageTime) { this.tookDamageTime = tookDamageTime; }
 }

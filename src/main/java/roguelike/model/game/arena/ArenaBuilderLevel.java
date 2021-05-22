@@ -48,7 +48,7 @@ public class ArenaBuilderLevel extends ArenaBuilder {
         room1.addMonster(new Monster(new Position(15, 5)));
         room2.addMonster(new Monster(new Position(10, 16)));
         room2.addMonster(new Monster(new Position(14, 14)));
-        room3.addMonster(new Monster(new Position(40, 22)));
+        room3.addMonster(new Monster(new Position(40, 22), 10, 6));
         room4.addMonster(new Monster(new Position(50,10)));
         room4.addMonster(new Monster(new Position(51,7)));
         room4.addMonster(new Monster(new Position(44,5)));
@@ -88,7 +88,7 @@ public class ArenaBuilderLevel extends ArenaBuilder {
         room1.addMonster(new Monster(new Position(14, 23)));
         room2.addMonster(new Monster(new Position(14, 11)));
         room2.addMonster(new Monster(new Position(5, 10)));
-        room2.addMonster(new Monster(new Position(5, 4)));
+        room2.addMonster(new Monster(new Position(5, 4), 10, 6));
         room3.addMonster(new Monster(new Position(33, 6)));
         room3.addMonster(new Monster(new Position(28, 9)));
         room4.addMonster(new Monster(new Position(30, 19)));
@@ -96,8 +96,8 @@ public class ArenaBuilderLevel extends ArenaBuilder {
         room4.addMonster(new Monster(new Position(35, 24)));
         room6.addMonster(new Monster(new Position(55, 11)));
         room6.addMonster(new Monster(new Position(49, 10)));
-        room6.addMonster(new Monster(new Position(55, 7)));
-        room6.addMonster(new Monster(new Position(49, 4)));
+        room6.addMonster(new Monster(new Position(55, 7), 15, 7));
+        room6.addMonster(new Monster(new Position(49, 4), 15, 7));
         room6.addMonster(new Monster(new Position(53, 4)));
 
         room1.addCoin(new Coin(new Position(13, 26)));
