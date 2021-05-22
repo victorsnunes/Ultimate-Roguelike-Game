@@ -17,7 +17,7 @@ class RandomArenaBuilderTest {
 
     @BeforeEach
     void createArena(){
-        this.arena = new RandomArenaBuilder(18, 18).createArena();
+        this.arena = new RandomArenaBuilder(18, 0, 18, 0).createArena();
     }
 
     @Test

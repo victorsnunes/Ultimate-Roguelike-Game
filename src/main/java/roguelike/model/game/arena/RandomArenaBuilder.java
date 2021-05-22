@@ -13,13 +13,17 @@ public class RandomArenaBuilder extends ArenaBuilder {
     private final int width = 60;
     private final int height = 30;
     private final int numberOfMonsters;
+    private final int numberOfStrongMonsters;
     private final int numberOfCoins;
+    private final int numberOfStrengthPotions;
 
-    public RandomArenaBuilder(int numberOfMonsters, int numberOfCoins) {
+    public RandomArenaBuilder(int numberOfMonsters, int numberOfStrongMonsters, int numberOfCoins, int numberOfStrengthPotions) {
         this.random = new Random();
 
+        this.numberOfStrongMonsters = numberOfStrongMonsters;
         this.numberOfMonsters = numberOfMonsters;
         this.numberOfCoins = numberOfCoins;
+        this.numberOfStrengthPotions = numberOfStrengthPotions;
     }
 
     public Arena createArena() {
@@ -29,12 +33,12 @@ public class RandomArenaBuilder extends ArenaBuilder {
         createPaths(arena);
         createMonsters(arena);
         createCoins(arena);
+        createStrongPotions(arena);
         createHero(arena);
         createGoal(arena);
 
         return arena;
     }
-
 
     public int getWidth() {
         return width;
@@ -68,7 +72,6 @@ public class RandomArenaBuilder extends ArenaBuilder {
     }
     
     private void createCoins(Arena arena) {
-
         for (int i = 0; i < numberOfCoins; i++) {
             int randomRoomIndex = random.nextInt(arena.getRooms().size());
             Room room = arena.getRooms().get(randomRoomIndex);
@@ -77,6 +80,18 @@ public class RandomArenaBuilder extends ArenaBuilder {
             int posY = random.nextInt(room.getHeight() - 1) + room.getY() + 1;
 
             room.addCoin(new Coin(new Position(posX, posY)));
+        }
+    }
+
+    private void createStrongPotions(Arena arena) {
+        for (int i = 0; i < numberOfStrengthPotions; i++) {
+            int randomRoomIndex = random.nextInt(arena.getRooms().size());
+            Room room = arena.getRooms().get(randomRoomIndex);
+
+            int posX = random.nextInt(room.getWidht() - 1) + room.getX() + 1;
+            int posY = random.nextInt(room.getHeight() - 1) + room.getY() + 1;
+
+            room.addStrengthPotion(new StrengthPotion(new Position(posX, posY), 7, 20));
         }
     }
 
@@ -90,6 +105,17 @@ public class RandomArenaBuilder extends ArenaBuilder {
             int posY = random.nextInt(room.getHeight() - 1) + room.getY() + 1;
 
             room.addMonster(new Monster(new Position(posX, posY)));
+        }
+
+        for (int i = 0; i < numberOfStrongMonsters; i++) {
+            //No strong monsters in the first room
+            int randomRoomIndex = random.nextInt(arena.getRooms().size() - 1) + 1;
+            Room room = arena.getRooms().get(randomRoomIndex);
+
+            int posX = random.nextInt(room.getWidht() - 1) + room.getX() + 1;
+            int posY = random.nextInt(room.getHeight() - 1) + room.getY() + 1;
+
+            room.addMonster(new Monster(new Position(posX, posY), 10, 6));
         }
     }
 
