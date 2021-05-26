@@ -16,11 +16,14 @@ repositories {
 
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testImplementation 'net.jqwik:jqwik:1.5.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
     implementation group: 'com.googlecode.lanterna', name: 'lanterna', version: '3.1.1'
     testCompile group: 'org.mockito', name: 'mockito-core', version: '2.25.0'
 }
 
 test {
-    useJUnitPlatform()
+    useJUnitPlatform {
+        includeEngines ('junit-jupiter', 'jqwik')
+    }
 }

@@ -3,13 +3,13 @@ package roguelike.model.game.arena;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import roguelike.model.game.elements.*;
+import roguelike.model.game.elements.Chunk;
+import roguelike.model.game.elements.Coin;
+import roguelike.model.game.elements.Wall;
 import roguelike.model.game.structures.Path;
 import roguelike.model.game.structures.Room;
 
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class RandomArenaBuilderTest {
 
@@ -24,7 +24,7 @@ class RandomArenaBuilderTest {
     void createPaths() {
         //The path can only go over one wall once or twice
         for(Room room: arena.getRooms()){
-            int pathsOnRoom = intersectios(room.getWalls(), arena.getPaths());
+            int pathsOnRoom = intersections(room.getWalls(), arena.getPaths());
             System.out.println(pathsOnRoom);
             Assertions.assertTrue(pathsOnRoom > 0 && pathsOnRoom <= 2);
         }
@@ -72,7 +72,7 @@ class RandomArenaBuilderTest {
         }
     }
 
-    private int intersectios(List<Wall> walls, List<Path> paths){
+    private int intersections(List<Wall> walls, List<Path> paths){
         int counter = 0;
         for(Wall wall: walls){
             for(Path path: paths) {
