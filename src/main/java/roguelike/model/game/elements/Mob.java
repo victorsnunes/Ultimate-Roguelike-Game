@@ -25,11 +25,12 @@ public abstract class Mob extends Element {
 
     public void setStrength(int strength) { this.strength = strength; }
 
-    public void increaseHealth(int bonus) { health += bonus; }
-    public void increaseStrength(int bonus) { strength += bonus; }
-    public void increaseStrengthBonusTime(int time) { strengthBonusTime += time; }
+    public void increaseHealth(int bonus) { if (bonus > 0) health += bonus; }
+    public void increaseStrength(int bonus) { if (bonus > 0) strength += bonus; }
+    public void increaseStrengthBonusTime(int time) { if (time > 0) strengthBonusTime += time; }
 
     public void decreaseHealth(int hit) {
+        if (hit < 0) return;
         if (health - hit >= 0)
             health -= hit;
         else
@@ -38,5 +39,7 @@ public abstract class Mob extends Element {
     public void decreaseStrengthBonusTime() {
         if (strengthBonusTime > 0)
             strengthBonusTime--;
+        else
+            strengthBonusTime = 0;
     }
 }
