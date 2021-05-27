@@ -1,4 +1,6 @@
-roguelike/controller/menu/PauseMenuControllerTest.java
- roguelike.controller.menu.PauseMenuControllerTest
 roguelike/model/game/arena/RandomArenaBuilderTest.java
  roguelike.model.game.arena.RandomArenaBuilderTest
+roguelike/controller/menu/PauseMenuControllerTest.java
+ roguelike.controller.menu.PauseMenuControllerTest
+roguelike/controller/game/HeroControllerTest.java
+ roguelike.controller.game.HeroControllerTest

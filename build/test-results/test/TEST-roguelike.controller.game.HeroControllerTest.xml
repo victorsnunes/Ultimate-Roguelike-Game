@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="roguelike.controller.game.HeroControllerTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2021-05-27T09:07:17" hostname="LAPTOP-CG165B38" time="0.045">
+  <properties/>
+  <testcase name="moveUpTest()" classname="roguelike.controller.game.HeroControllerTest" time="0.036"/>
+  <testcase name="moveRightTest()" classname="roguelike.controller.game.HeroControllerTest" time="0.002"/>
+  <testcase name="moveDownTest()" classname="roguelike.controller.game.HeroControllerTest" time="0.002"/>
+  <testcase name="moveLeftTest()" classname="roguelike.controller.game.HeroControllerTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
