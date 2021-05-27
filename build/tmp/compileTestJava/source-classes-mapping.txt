@@ -4,3 +4,5 @@ roguelike/controller/menu/PauseMenuControllerTest.java
  roguelike.controller.menu.PauseMenuControllerTest
 roguelike/controller/game/HeroControllerTest.java
  roguelike.controller.game.HeroControllerTest
+roguelike/model/PositionTest.java
+ roguelike.model.PositionTest
