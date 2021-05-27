@@ -68,7 +68,7 @@ public class Arena {
                 return room.getMonster(position);
             }
         }
-        return new Monster(new Position(0, 0), 0, 0);
+        return null;
     }
 
     public Coin retrieveCoin(Position position) {
@@ -77,7 +77,7 @@ public class Arena {
                 return room.retrieveCoin(position);
             }
         }
-        return new Coin(new Position(0, 0), 0);
+        return null;
     }
 
     public StrengthPotion retrieveStrengthPotion(Position position) {
@@ -86,7 +86,7 @@ public class Arena {
                 return room.retrieveStrengthPotion(position);
             }
         }
-        return new StrengthPotion(new Position(0, 0), 0, 0);
+        return null;
     }
 
     public boolean isGoal(Position position) {

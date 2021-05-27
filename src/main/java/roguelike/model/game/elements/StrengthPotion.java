@@ -12,6 +12,12 @@ public class StrengthPotion extends Element {
         this.timeBonus = timeBonus;
     }
 
+    public StrengthPotion(Position position) {
+        super(position);
+        this.strengthBonus = 7;
+        this.timeBonus = 20;
+    }
+
     public StrengthPotion(int x, int y, int strengthBonus, int timeBonus) {
         super(x, y);
         this.strengthBonus = strengthBonus;

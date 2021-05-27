@@ -35,12 +35,12 @@ public abstract class ArenaBuilder {
             Room mostBottom = room2;
 
 
-            if (room1.getX() + room1.getWidht() < room2.getX()) {
+            if (room1.getX() + room1.getWidth() < room2.getX()) {
                 hDirection = true;
                 mostLeft = room1;
                 mostRight = room2;
             }
-            if (room2.getX() + room2.getWidht() < room1.getX()) {
+            if (room2.getX() + room2.getWidth() < room1.getX()) {
                 hDirection = true;
                 mostLeft = room2;
                 mostRight = room1;
@@ -66,8 +66,8 @@ public abstract class ArenaBuilder {
 
             int division;
             if (hDirection) {
-                division = random.nextInt(mostRight.getX() - (mostLeft.getX() + mostLeft.getWidht()) - 1) + mostLeft.getX() + mostLeft.getWidht() + 1;
-                int leftPointX = mostLeft.getX() + mostLeft.getWidht();
+                division = random.nextInt(mostRight.getX() - (mostLeft.getX() + mostLeft.getWidth()) - 1) + mostLeft.getX() + mostLeft.getWidth() + 1;
+                int leftPointX = mostLeft.getX() + mostLeft.getWidth();
                 int leftPointY = random.nextInt(mostLeft.getHeight() - 2) + mostLeft.getY() + 1;
 
                 int rightPointX = mostRight.getX();
@@ -92,10 +92,10 @@ public abstract class ArenaBuilder {
 
             } else {
                 division = random.nextInt(mostBottom.getY() - (mostTop.getY() + mostTop.getHeight()) - 1) + mostTop.getY() + mostTop.getHeight() + 1;
-                int topPointX = random.nextInt(mostTop.getWidht() - 2) + mostTop.getX() + 1;
+                int topPointX = random.nextInt(mostTop.getWidth() - 2) + mostTop.getX() + 1;
                 int topPointY = mostTop.getY() + mostTop.getHeight();
 
-                int bottomPointx = random.nextInt(mostBottom.getWidht() - 2) + mostBottom.getX() + 1;
+                int bottomPointx = random.nextInt(mostBottom.getWidth() - 2) + mostBottom.getX() + 1;
                 int bottomPointY = mostBottom.getY();
 
 

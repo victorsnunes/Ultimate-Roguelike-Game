@@ -10,7 +10,7 @@ public class Room {
 
     private int x;
     private int y;
-    private int widht;
+    private int width;
     private int height;
 
     private boolean isVisible = false;
@@ -28,7 +28,7 @@ public class Room {
     public Room(int x, int y, int width, int height) {
         this.x = x;
         this.y = y;
-        this.widht = width;
+        this.width = width;
         this.height = height;
 
         for (int i = x; i <= x + width; i++) {
@@ -41,7 +41,7 @@ public class Room {
             walls.add(new VerticalWall(x + width, j));
         }
 
-        for (int i = x + 1; i < x + widht; i++) {
+        for (int i = x + 1; i < x + width; i++) {
             for (int j = y + 1; j < y + height; j++){
                 dots.add(new Dot(i, j));
             }
@@ -53,7 +53,7 @@ public class Room {
     public int getX() { return x; }
     public int getY() { return y; }
 
-    public int getWidht() { return widht; }
+    public int getWidth() { return width; }
     public int getHeight() { return height; }
 
     public void setIsActive(boolean active) { isActive = active; }
@@ -73,15 +73,17 @@ public class Room {
         this.hasGoal = true;
     }
 
+    //Positions inside the room, including borders
     public boolean inRoom(Position position) {
-        boolean InX = (position.getX() >= x) && (position.getX() <= (x + widht));
+        boolean InX = (position.getX() >= x) && (position.getX() <= (x + width));
         boolean InY = (position.getY() >= y) && (position.getY() <= (y + height));
 
         return InX && InY;
     }
 
+    //Positions inside the room, not including borders
     public boolean inInnerRoom(Position position) {
-        boolean InX = (position.getX() > x) && (position.getX() < (x + widht));
+        boolean InX = (position.getX() > x) && (position.getX() < (x + width));
         boolean InY = (position.getY() > y) && (position.getY() < (y + height));
 
         return InX && InY;
@@ -101,7 +103,7 @@ public class Room {
             if (monster.getPosition().equals(position))
                 return monster;
         }
-        return new Monster(new Position(0, 0), 0, 0);
+        return null;
     }
 
     public Coin retrieveCoin(Position position) {
@@ -111,7 +113,7 @@ public class Room {
                 return coin;
             }
         }
-        return new Coin(new Position(0, 0), 0);
+        return null;
     }
 
     public StrengthPotion retrieveStrengthPotion(Position position) {
@@ -121,7 +123,7 @@ public class Room {
                 return sp;
             }
         }
-        return new StrengthPotion(new Position(0, 0), 0, 0);
+        return null;
     }
 
     public boolean isGoal(Position position) {
@@ -145,7 +147,7 @@ public class Room {
         }
     }
 
-    public void addMonster(Monster monster) { monsters.add(monster); }
-    public void addCoin(Coin coin) { coins.add(coin); }
-    public void addStrengthPotion (StrengthPotion sp) { strengthPotions.add(sp); }
+    public void addMonster(Monster monster) { if(inRoom(monster.getPosition())) monsters.add(monster); }
+    public void addCoin(Coin coin) { if(inRoom(coin.getPosition())) coins.add(coin); }
+    public void addStrengthPotion (StrengthPotion sp) { if(inRoom(sp.getPosition())) strengthPotions.add(sp); }
 }

@@ -2,10 +2,9 @@ package roguelike.model.game.arena;
 
 import roguelike.model.Position;
 import roguelike.model.game.elements.*;
-import roguelike.model.game.structures.Path;
 import roguelike.model.game.structures.Room;
 
-import java.util.*;
+import java.util.Random;
 
 public class RandomArenaBuilder extends ArenaBuilder {
     private final Random random;
@@ -76,7 +75,7 @@ public class RandomArenaBuilder extends ArenaBuilder {
             int randomRoomIndex = random.nextInt(arena.getRooms().size());
             Room room = arena.getRooms().get(randomRoomIndex);
 
-            int posX = random.nextInt(room.getWidht() - 1) + room.getX() + 1;
+            int posX = random.nextInt(room.getWidth() - 1) + room.getX() + 1;
             int posY = random.nextInt(room.getHeight() - 1) + room.getY() + 1;
 
             room.addCoin(new Coin(new Position(posX, posY)));
@@ -88,7 +87,7 @@ public class RandomArenaBuilder extends ArenaBuilder {
             int randomRoomIndex = random.nextInt(arena.getRooms().size());
             Room room = arena.getRooms().get(randomRoomIndex);
 
-            int posX = random.nextInt(room.getWidht() - 1) + room.getX() + 1;
+            int posX = random.nextInt(room.getWidth() - 1) + room.getX() + 1;
             int posY = random.nextInt(room.getHeight() - 1) + room.getY() + 1;
 
             room.addStrengthPotion(new StrengthPotion(new Position(posX, posY), 7, 20));
@@ -101,7 +100,7 @@ public class RandomArenaBuilder extends ArenaBuilder {
             int randomRoomIndex = random.nextInt(arena.getRooms().size());
             Room room = arena.getRooms().get(randomRoomIndex);
 
-            int posX = random.nextInt(room.getWidht() - 1) + room.getX() + 1;
+            int posX = random.nextInt(room.getWidth() - 1) + room.getX() + 1;
             int posY = random.nextInt(room.getHeight() - 1) + room.getY() + 1;
 
             room.addMonster(new Monster(new Position(posX, posY)));
@@ -112,7 +111,7 @@ public class RandomArenaBuilder extends ArenaBuilder {
             int randomRoomIndex = random.nextInt(arena.getRooms().size() - 1) + 1;
             Room room = arena.getRooms().get(randomRoomIndex);
 
-            int posX = random.nextInt(room.getWidht() - 1) + room.getX() + 1;
+            int posX = random.nextInt(room.getWidth() - 1) + room.getX() + 1;
             int posY = random.nextInt(room.getHeight() - 1) + room.getY() + 1;
 
             room.addMonster(new Monster(new Position(posX, posY), 10, 6));
@@ -124,7 +123,7 @@ public class RandomArenaBuilder extends ArenaBuilder {
         Position position = new Position(0, 0);
         Room room = arena.getRooms().get(0); //Initial room
         do {
-            int randomX = random.nextInt(room.getWidht() - 1) + room.getX() + 1;
+            int randomX = random.nextInt(room.getWidth() - 1) + room.getX() + 1;
             int randomY = random.nextInt(room.getHeight() - 1) + room.getY() + 1;
 
             position.setX(randomX);
@@ -138,7 +137,7 @@ public class RandomArenaBuilder extends ArenaBuilder {
 
         Room room = arena.getRooms().get(arena.getRooms().size() - 1); //Last room
 
-        int randomX = random.nextInt(room.getWidht() - 1) + room.getX() + 1;
+        int randomX = random.nextInt(room.getWidth() - 1) + room.getX() + 1;
         int randomY = random.nextInt(room.getHeight() - 1) + room.getY() + 1;
 
         room.setGoal(new Goal(new Position(randomX, randomY)));

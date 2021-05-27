@@ -32,21 +32,21 @@ public class HeroController extends GameController {
         if (getModel().inInnerRoom(position) || getModel().inPath(position)) {
             getModel().getHero().setPosition(position);
 
-            //Checks for possible attacks from monsters (monster.getStrength() = 0 if there's no monster in that position)
+            //Checks for possible attacks from monsters (monster = null if there's no monster in that position)
             Monster monster = getModel().getMonster(position);
-            if (monster.getStrength() != 0) {
+            if (monster != null) {
                 getModel().getHero().decreaseHealth(monster.getStrength());
             }
 
-            //Checks for possible coins to retrieve (coin.getBonus() = 0 if there's no coin in that position)
+            //Checks for possible coins to retrieve (coin = null if there's no coin in that position)
             Coin coin = getModel().retrieveCoin(position);
-            if (coin.getBonus() != 0) {
+            if (coin != null) {
                 getModel().getHero().increaseHealth(coin.getBonus());
             }
 
-            //Checks for possible strength potions to retrieve (sp.getStrengthBonus() = 0 if there's no strength potion in that position)
+            //Checks for possible strength potions to retrieve (sp = null if there's no strength potion in that position)
             StrengthPotion sp = getModel().retrieveStrengthPotion(position);
-            if (sp.getStrengthBonus() != 0) {
+            if (sp != null) {
                 getModel().getHero().increaseStrength(sp.getStrengthBonus());
                 getModel().getHero().increaseStrengthBonusTime(sp.getTimeBonus());
             }
@@ -68,16 +68,16 @@ public class HeroController extends GameController {
 
         int heroStrength = getModel().getHero().getStrength();
 
-        if (m1.getStrength() != 0) {
+        if (m1 != null) {
             getModel().attackMonster(m1.getPosition(), heroStrength, time);
         }
-        if (m2.getStrength() != 0) {
+        if (m2 != null) {
             getModel().attackMonster(m2.getPosition(), heroStrength, time);
         }
-        if (m3.getStrength() != 0) {
+        if (m3 != null) {
             getModel().attackMonster(m3.getPosition(), heroStrength, time);
         }
-        if (m4.getStrength() != 0) {
+        if (m4 != null) {
             getModel().attackMonster(m4.getPosition(), heroStrength, time);
         }
     }

@@ -62,7 +62,7 @@ class RandomArenaBuilderTest {
         for(Room room: arena.getRooms()){
             for(Coin coin:room.getCoins()){
                 Assertions.assertTrue(
-                      coin.getX() < room.getX() + room.getWidht() &&
+                      coin.getX() < room.getX() + room.getWidth() &&
                               coin.getY() < room.getY() + room.getHeight() &&
                               coin.getX() > room.getX() &&
                               coin.getY() > room.getY()

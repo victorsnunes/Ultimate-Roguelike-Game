@@ -46,16 +46,16 @@ public class MonsterController extends GameController {
                         moveMonster(monster, monster.getPosition().follow(getModel().getHero().getPosition()));
 
                         //Monsters also can get coins and strength potion
-                        //Checks for possible strength potions to retrieve (sp.getStrengthBonus() = 0 if there's no strength potion in that position)
+                        //Checks for possible strength potions to retrieve (sp = null if there's no strength potion in that position)
                         StrengthPotion sp = getModel().retrieveStrengthPotion(monster.getPosition());
-                        if (sp.getStrengthBonus() != 0) {
+                        if (sp != null) {
                             monster.increaseStrength(sp.getStrengthBonus());
                             monster.increaseStrengthBonusTime(sp.getTimeBonus());
                         }
 
-                        //Checks for possible coins to retrieve (coin.getBonus() = 0 if there's no coin in that position)
+                        //Checks for possible coins to retrieve (coin = null if there's no coin in that position)
                         Coin coin = getModel().retrieveCoin(monster.getPosition());
-                        if (coin.getBonus() != 0) {
+                        if (coin != null) {
                             monster.increaseHealth(coin.getBonus());
                         }
 
