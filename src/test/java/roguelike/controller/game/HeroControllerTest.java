@@ -3,9 +3,13 @@ package roguelike.controller.game;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 import roguelike.model.Position;
 import roguelike.model.game.arena.Arena;
+import roguelike.model.game.elements.Coin;
 import roguelike.model.game.elements.Hero;
+import roguelike.model.game.elements.Monster;
+import roguelike.model.game.elements.StrengthPotion;
 import roguelike.model.game.structures.Room;
 
 class HeroControllerTest {
@@ -99,5 +103,41 @@ class HeroControllerTest {
         //Checking if hero stays in the same position, and that position is in front of the bottom wall of the room
         Assertions.assertEquals(previousPosition, heroController.getModel().getHero().getPosition());
         Assertions.assertEquals(new Position (15, 14), heroController.getModel().getHero().getPosition());
+    }
+
+    @Test
+    public void runIntoAMonsterTest() {
+        Monster monster = Mockito.mock(Monster.class);
+        Mockito.when(monster.getStrength()).thenReturn(4);
+        Mockito.when(monster.getPosition()).thenReturn(new Position(16, 10));
+
+        heroController.getModel().getRooms().get(0).addMonster(monster);
+
+        heroController.moveRight();
+        Assertions.assertEquals(1, heroController.getModel().getHero().getHealth());
+    }
+
+    @Test
+    public void retrieveCoinTest() {
+        Coin coin = Mockito.mock(Coin.class);
+        Mockito.when(coin.getBonus()).thenReturn(1);
+        Mockito.when(coin.getPosition()).thenReturn(new Position(14, 10));
+
+        heroController.getModel().getRooms().get(0).addCoin(coin);
+
+        heroController.moveLeft();
+        Assertions.assertEquals(6, heroController.getModel().getHero().getHealth());
+    }
+
+    @Test
+    public void retrieveStrengthPotionTest() {
+        StrengthPotion sp = Mockito.mock(StrengthPotion.class);
+        Mockito.when(sp.getStrengthBonus()).thenReturn(5);
+        Mockito.when(sp.getPosition()).thenReturn(new Position(15, 11));
+
+        heroController.getModel().getRooms().get(0).addStrengthPotion(sp);
+
+        heroController.moveDown();
+        Assertions.assertEquals(8, heroController.getModel().getHero().getStrength());
     }
 }
