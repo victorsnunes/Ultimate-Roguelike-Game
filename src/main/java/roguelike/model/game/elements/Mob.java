@@ -24,6 +24,9 @@ public abstract class Mob extends Element {
     public int getStrengthBonusTime() { return strengthBonusTime; }
 
     public void setStrength(int strength) { this.strength = strength; }
+    public void setStrengthBonusTime(int strengthBonusTime) {
+        this.strengthBonusTime = strengthBonusTime;
+    }
 
     public void increaseHealth(int bonus) { if (bonus > 0) health += bonus; }
     public void increaseStrength(int bonus) { if (bonus > 0) strength += bonus; }

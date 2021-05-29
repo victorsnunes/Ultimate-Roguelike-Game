@@ -1,21 +1,22 @@
-roguelike/model/game/elements/MobTest.java
- roguelike.model.game.elements.MobTest
- roguelike.model.game.elements.MobTest$GenericMob
-roguelike/model/game/elements/HeroTest.java
- roguelike.model.game.elements.HeroTest
-roguelike/model/menu/MenuTest.java
- roguelike.model.menu.MenuTest
-roguelike/model/PositionTest.java
- roguelike.model.PositionTest
-roguelike/model/game/structures/RoomTest.java
- roguelike.model.game.structures.RoomTest
-roguelike/model/menu/WindowTest.java
- roguelike.model.menu.WindowTest
-roguelike/model/game/arena/RandomArenaBuilderTest.java
- roguelike.model.game.arena.RandomArenaBuilderTest
-roguelike/model/game/structures/PathTest.java
- roguelike.model.game.structures.PathTest
-roguelike/controller/menu/PauseMenuControllerTest.java
- roguelike.controller.menu.PauseMenuControllerTest
-roguelike/controller/game/HeroControllerTest.java
- roguelike.controller.game.HeroControllerTest
+roguelikeTests/model/PositionTest.java
+ roguelikeTests.model.PositionTest
+roguelikeTests/model/game/arena/RandomArenaBuilderTest.java
+ roguelikeTests.model.game.arena.RandomArenaBuilderTest
+roguelikeTests/model/menu/MenuTest.java
+ roguelikeTests.model.menu.MenuTest
+roguelikeTests/model/game/structures/RoomTest.java
+ roguelikeTests.model.game.structures.RoomTest
+roguelikeTests/model/menu/WindowTest.java
+ roguelikeTests.model.menu.WindowTest
+roguelikeTests/model/game/structures/PathTest.java
+ roguelikeTests.model.game.structures.PathTest
+roguelikeTests/controller/menu/PauseMenuControllerTest.java
+ roguelikeTests.controller.menu.PauseMenuControllerTest
+roguelikeTests/model/game/elements/MobTest.java
+ roguelikeTests.model.game.elements.MobTest
+roguelikeTests/controller/game/HeroControllerTest.java
+ roguelikeTests.controller.game.HeroControllerTest
+roguelikeTests/model/game/elements/HeroTest.java
+ roguelikeTests.model.game.elements.HeroTest
+roguelikeTests/controller/game/MonsterControllerTest.java
+ roguelikeTests.controller.game.MonsterControllerTest

@@ -3,12 +3,9 @@ package roguelike.controller.game;
 import roguelike.Game;
 import roguelike.gui.GUI;
 import roguelike.model.game.arena.Arena;
-import roguelike.model.game.elements.Monster;
-import roguelike.model.game.structures.Room;
 import roguelike.model.menu.Menu;
 import roguelike.model.menu.Window;
 import roguelike.states.PauseMenuState;
-import roguelike.states.StartMenuState;
 import roguelike.states.WindowState;
 
 import java.io.IOException;
@@ -17,15 +14,22 @@ import java.util.Arrays;
 public class ArenaController extends GameController {
     private final HeroController heroController;
     private final MonsterController monsterController;
+    private long lastTimeUpdate;
 
     public ArenaController(Arena arena) {
         super(arena);
 
         this.heroController = new HeroController(arena);
         this.monsterController = new MonsterController(arena);
+        this.lastTimeUpdate = 0;
     }
 
     public void step(Game game, GUI.ACTION action, long time) throws IOException {
+
+        if (time - lastTimeUpdate > 1000) {
+            getModel().decreaseTime();
+            this.lastTimeUpdate = time;
+        }
 
         if (getModel().getTime() <= 0) {
             game.setState(new WindowState(new Window("Time's Up", Arrays.asList(

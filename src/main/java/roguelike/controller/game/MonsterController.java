@@ -27,7 +27,6 @@ public class MonsterController extends GameController {
 
         //Update monsters strength status
         if (time - lastTimeUpdate > 1000) {
-            getModel().decreaseTime();
             for (Room room : getModel().getRooms()) {
                 for (Monster monster : room.getMonsters()) {
                     monster.decreaseStrengthBonusTime();
