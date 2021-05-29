@@ -14,9 +14,9 @@ roguelikeTests/controller/menu/PauseMenuControllerTest.java
  roguelikeTests.controller.menu.PauseMenuControllerTest
 roguelikeTests/model/game/elements/MobTest.java
  roguelikeTests.model.game.elements.MobTest
-roguelikeTests/controller/game/HeroControllerTest.java
- roguelikeTests.controller.game.HeroControllerTest
 roguelikeTests/model/game/elements/HeroTest.java
  roguelikeTests.model.game.elements.HeroTest
 roguelikeTests/controller/game/MonsterControllerTest.java
  roguelikeTests.controller.game.MonsterControllerTest
+roguelikeTests/controller/game/HeroControllerTest.java
+ roguelikeTests.controller.game.HeroControllerTest

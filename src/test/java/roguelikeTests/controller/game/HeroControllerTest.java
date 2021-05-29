@@ -11,17 +11,45 @@ import roguelike.model.game.elements.Coin;
 import roguelike.model.game.elements.Hero;
 import roguelike.model.game.elements.Monster;
 import roguelike.model.game.elements.StrengthPotion;
-import roguelike.model.game.structures.Room;
 
 class HeroControllerTest {
 
     private HeroController heroController;
+    private Arena arena;
 
     @BeforeEach
-    public void createArena(){
-        Arena arena = new Arena(60,30);
-        arena.addRoom(new Room(5, 5, 20, 10));
-        arena.setHero(new Hero(new Position(15, 10)));
+    public void createArena() {
+        //Arena arena = new Arena(60,30);
+        //arena.addRoom(new Room(5, 5, 20, 10));
+
+        arena = Mockito.mock(Arena.class);
+
+        Hero hero = new Hero(new Position(15, 10));
+
+        //Going left
+        Mockito.when(arena.inInnerRoom(new Position(14, 10))).thenReturn(true);
+        Mockito.when(arena.inInnerRoom(new Position(13, 10))).thenReturn(true);
+        Mockito.when(arena.inInnerRoom(new Position(12, 10))).thenReturn(true);
+        Mockito.when(arena.inInnerRoom(new Position(11, 10))).thenReturn(true);
+        Mockito.when(arena.inInnerRoom(new Position(10, 10))).thenReturn(false);
+
+        //Going up
+        Mockito.when(arena.inInnerRoom(new Position(15, 9))).thenReturn(true);
+        Mockito.when(arena.inInnerRoom(new Position(15, 8))).thenReturn(true);
+        Mockito.when(arena.inInnerRoom(new Position(15, 7))).thenReturn(false);
+
+        //Going down
+        Mockito.when(arena.inInnerRoom(new Position(15, 11))).thenReturn(true);
+        Mockito.when(arena.inInnerRoom(new Position(15, 12))).thenReturn(false);
+
+        //Going right
+        Mockito.when(arena.inInnerRoom(new Position(16, 10))).thenReturn(true);
+        Mockito.when(arena.inInnerRoom(new Position(17, 10))).thenReturn(true);
+        Mockito.when(arena.inInnerRoom(new Position(18, 10))).thenReturn(true);
+        Mockito.when(arena.inInnerRoom(new Position(19, 10))).thenReturn(true);
+        Mockito.when(arena.inInnerRoom(new Position(20, 10))).thenReturn(false);
+
+        Mockito.when(arena.getHero()).thenReturn(hero);
 
         heroController = new HeroController(arena);
     }
@@ -30,8 +58,7 @@ class HeroControllerTest {
     @Test
     public void moveLeftTest() {
 
-        Position positionExpected = new Position(heroController.getModel().getHero().getPosition().getX() - 1,
-                                                 heroController.getModel().getHero().getPosition().getY());
+        Position positionExpected = new Position(14, 10);
 
         heroController.moveLeft();
         Assertions.assertEquals(positionExpected, heroController.getModel().getHero().getPosition());
@@ -45,13 +72,12 @@ class HeroControllerTest {
 
         //Checking if hero stays in the same position, and that position is in front of the left wall of the room
         Assertions.assertEquals(previousPosition, heroController.getModel().getHero().getPosition());
-        Assertions.assertEquals(new Position (6, 10), heroController.getModel().getHero().getPosition());
+        Assertions.assertEquals(new Position (11, 10), heroController.getModel().getHero().getPosition());
     }
     @Test
     public void moveRightTest() {
 
-        Position positionExpected = new Position(heroController.getModel().getHero().getPosition().getX() + 1,
-                                                    heroController.getModel().getHero().getPosition().getY());
+        Position positionExpected = new Position(16, 10);
 
         heroController.moveRight();
         Assertions.assertEquals(positionExpected, heroController.getModel().getHero().getPosition());
@@ -65,12 +91,11 @@ class HeroControllerTest {
 
         //Checking if hero stays in the same position, and that position is in front of the right wall of the room
         Assertions.assertEquals(previousPosition, heroController.getModel().getHero().getPosition());
-        Assertions.assertEquals(new Position (24, 10), heroController.getModel().getHero().getPosition());
+        Assertions.assertEquals(new Position (19, 10), heroController.getModel().getHero().getPosition());
     }
     @Test
     public void moveUpTest() {
-        Position positionExpected = new Position(heroController.getModel().getHero().getPosition().getX(),
-                                                    heroController.getModel().getHero().getPosition().getY() - 1);
+        Position positionExpected = new Position(15, 9);
 
         heroController.moveUp();
         Assertions.assertEquals(positionExpected, heroController.getModel().getHero().getPosition());
@@ -84,12 +109,11 @@ class HeroControllerTest {
 
         //Checking if hero stays in the same position, and that position is in front of the top wall of the room
         Assertions.assertEquals(previousPosition, heroController.getModel().getHero().getPosition());
-        Assertions.assertEquals(new Position (15, 6), heroController.getModel().getHero().getPosition());
+        Assertions.assertEquals(new Position (15, 8), heroController.getModel().getHero().getPosition());
     }
     @Test
     public void moveDownTest() {
-        Position positionExpected = new Position(heroController.getModel().getHero().getPosition().getX(),
-                                              heroController.getModel().getHero().getPosition().getY() + 1);
+        Position positionExpected = new Position(15, 11);
 
         heroController.moveDown();
         Assertions.assertEquals(positionExpected, heroController.getModel().getHero().getPosition());
@@ -103,16 +127,15 @@ class HeroControllerTest {
 
         //Checking if hero stays in the same position, and that position is in front of the bottom wall of the room
         Assertions.assertEquals(previousPosition, heroController.getModel().getHero().getPosition());
-        Assertions.assertEquals(new Position (15, 14), heroController.getModel().getHero().getPosition());
+        Assertions.assertEquals(new Position (15, 11), heroController.getModel().getHero().getPosition());
     }
 
     @Test
     public void runIntoAMonsterTest() {
         Monster monster = Mockito.mock(Monster.class);
         Mockito.when(monster.getStrength()).thenReturn(4);
-        Mockito.when(monster.getPosition()).thenReturn(new Position(16, 10));
 
-        heroController.getModel().getRooms().get(0).addMonster(monster);
+        Mockito.when(arena.getMonster(new Position(16, 10))).thenReturn(monster);
 
         heroController.moveRight();
         Assertions.assertEquals(1, heroController.getModel().getHero().getHealth());
@@ -122,9 +145,8 @@ class HeroControllerTest {
     public void retrieveCoinTest() {
         Coin coin = Mockito.mock(Coin.class);
         Mockito.when(coin.getBonus()).thenReturn(1);
-        Mockito.when(coin.getPosition()).thenReturn(new Position(14, 10));
 
-        heroController.getModel().getRooms().get(0).addCoin(coin);
+        Mockito.when(arena.retrieveCoin(new Position(14, 10))).thenReturn(coin);
 
         heroController.moveLeft();
         Assertions.assertEquals(6, heroController.getModel().getHero().getHealth());
@@ -134,9 +156,8 @@ class HeroControllerTest {
     public void retrieveStrengthPotionTest() {
         StrengthPotion sp = Mockito.mock(StrengthPotion.class);
         Mockito.when(sp.getStrengthBonus()).thenReturn(5);
-        Mockito.when(sp.getPosition()).thenReturn(new Position(15, 11));
 
-        heroController.getModel().getRooms().get(0).addStrengthPotion(sp);
+        Mockito.when(arena.retrieveStrengthPotion(new Position(15, 11))).thenReturn(sp);
 
         heroController.moveDown();
         Assertions.assertEquals(8, heroController.getModel().getHero().getStrength());
