@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="roguelikeTests.model.game.arena.RandomArenaBuilderTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2021-05-30T17:09:31" hostname="ubuntu-notebook" time="0.006">
+  <properties/>
+  <testcase name="allMonstersInsideARoom()" classname="roguelikeTests.model.game.arena.RandomArenaBuilderTest" time="0.002"/>
+  <testcase name="allStrengthPotionsInsideARoom()" classname="roguelikeTests.model.game.arena.RandomArenaBuilderTest" time="0.001"/>
+  <testcase name="pathTest()" classname="roguelikeTests.model.game.arena.RandomArenaBuilderTest" time="0.002"/>
+  <testcase name="allCoinsInsideARoom()" classname="roguelikeTests.model.game.arena.RandomArenaBuilderTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="roguelikeTests.model.game.elements.MobTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2021-05-30T17:09:31" hostname="ubuntu-notebook" time="0.006">
+  <properties/>
+  <testcase name="decreaseStrengthBonusTimeTest()" classname="roguelikeTests.model.game.elements.MobTest" time="0.001"/>
+  <testcase name="increaseStrengthTest()" classname="roguelikeTests.model.game.elements.MobTest" time="0.001"/>
+  <testcase name="increaseHealthTest()" classname="roguelikeTests.model.game.elements.MobTest" time="0.001"/>
+  <testcase name="increaseStrengthBonusTimeTest()" classname="roguelikeTests.model.game.elements.MobTest" time="0.001"/>
+  <testcase name="initialStrengthTest()" classname="roguelikeTests.model.game.elements.MobTest" time="0.001"/>
+  <testcase name="decreaseHealthTest()" classname="roguelikeTests.model.game.elements.MobTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

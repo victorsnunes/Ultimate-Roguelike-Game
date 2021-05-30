@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="roguelikeTests.model.game.structures.RoomTest" tests="12" skipped="0" failures="0" errors="0" timestamp="2021-05-30T17:09:31" hostname="ubuntu-notebook" time="0.029">
+  <properties/>
+  <testcase name="inInnerRoomTest()" classname="roguelikeTests.model.game.structures.RoomTest" time="0.001"/>
+  <testcase name="retrieveStrengthPotionTest()" classname="roguelikeTests.model.game.structures.RoomTest" time="0.0"/>
+  <testcase name="checkAddCoin()" classname="roguelikeTests.model.game.structures.RoomTest" time="0.0"/>
+  <testcase name="updateVisibilityTest()" classname="roguelikeTests.model.game.structures.RoomTest" time="0.0"/>
+  <testcase name="checkWalls()" classname="roguelikeTests.model.game.structures.RoomTest" time="0.001"/>
+  <testcase name="inRoomTest()" classname="roguelikeTests.model.game.structures.RoomTest" time="0.001"/>
+  <testcase name="checkAddMonster()" classname="roguelikeTests.model.game.structures.RoomTest" time="0.001"/>
+  <testcase name="checkDots()" classname="roguelikeTests.model.game.structures.RoomTest" time="0.001"/>
+  <testcase name="checkAddStrengthPotion()" classname="roguelikeTests.model.game.structures.RoomTest" time="0.001"/>
+  <testcase name="getMonsterTest()" classname="roguelikeTests.model.game.structures.RoomTest" time="0.0"/>
+  <testcase name="attackMonsterTest()" classname="roguelikeTests.model.game.structures.RoomTest" time="0.001"/>
+  <testcase name="retrieveCoinTest()" classname="roguelikeTests.model.game.structures.RoomTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

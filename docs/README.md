@@ -1,4 +1,4 @@
-# LPOO_T06G65 - Ultimate Roguelike Game
+# Ultimate Roguelike Game
 
 This is a game inspired in the original rogue game. It uses the Lanterna library for the graphical interface.
 The objective is to control the hero and reach the goal in the map, killing monsters on the way, collecting coins, potions, etc.
@@ -44,17 +44,27 @@ Implemented in the Game class itself, the other two previous design patterns are
 The factory method pattern is used for example in the State class (the subclasses have the responsability to which Viewer and Controller to use), the Viewer class (the subclasses have the responsability to implement the drawElements method) and the Controller class (the subclasses have the responsability to implement the step function, to make the actions needed in the game).
 
 
-#### Implementation
-
-[Here is the current implementation](https://github.com/FEUP-LPOO-2021/lpoo-2021-g65/blob/780842bade1c547aadfa3133323daada60157523/src/main/java/roguelike.OldGame.java#L51-L74)
-
 ## Known Code Smells and Refactoring Suggestions
+
+- Similiar code used inside HeroController and the MonsterController about the retrieving of coins and potions.
+
+- Room class, in the model section, is a large class. It had to be like this, because it is a fundamental structure of the game, and it should store a lot of informations about itself.
+
+- The ocurrence of message chains in some controllers methods. It had to be like this, because of the single-responsibility principle, therefore needing to "make a long chain" to call the right class for doing that.
+
+- Usage of 'instance of' in WallViewer. It had to be that way due to the structure of the Viewer<Wall> interface.
+
+- The classes are well organized with its own responsibilities, but big changes in some fundamental classes (like the models), which a lot of classes depends on, may lead to changes in other classes too.
+
+- RoomViewer has a specific implementation of its drawElements, and it's not so practical for extensions.
 
 ## Testing
 
-The code has been well tested, containing 50 tests in total, with a 70% code coverage. The tests cover the main functionalities of the code, and with a good independency from other classes, always using mocks and stubs whenever possible.
+The code has been well tested, containing 63 tests in total. The tests cover the main functionalities of the code, and with a good independency from other classes, always using mocks and stubs whenever possible.
 
 ## Self-evaluation
 
 Victor Saldanha Nunes - 50%
 Pedro Rezende Carvalho - 50%
+
+LPOO_T06G65

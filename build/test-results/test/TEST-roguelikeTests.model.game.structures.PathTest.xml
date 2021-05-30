@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="roguelikeTests.model.game.structures.PathTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2021-05-30T17:09:31" hostname="ubuntu-notebook" time="0.003">
+  <properties/>
+  <testcase name="getFirstChunkTest()" classname="roguelikeTests.model.game.structures.PathTest" time="0.001"/>
+  <testcase name="updateVisibilityTest()" classname="roguelikeTests.model.game.structures.PathTest" time="0.001"/>
+  <testcase name="getLastChunkTest()" classname="roguelikeTests.model.game.structures.PathTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
