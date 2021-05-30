@@ -64,35 +64,25 @@ class MonsterControllerTest {
     }
 
     @Test
-    public void monsterRetrieveCoin() {
-        try {
-            Hero hero = Mockito.mock(Hero.class);
-            Mockito.when(hero.getPosition()).thenReturn(new Position(15, 10));
-            Mockito.when(arena.getHero()).thenReturn(hero);
+    public void monsterRetrieveCoin() throws IOException {
+        Hero hero = Mockito.mock(Hero.class);
+        Mockito.when(hero.getPosition()).thenReturn(new Position(15, 10));
+        Mockito.when(arena.getHero()).thenReturn(hero);
 
-            monsterController.step(game, GUI.ACTION.NONE, 600);
+        monsterController.step(game, GUI.ACTION.NONE, 600);
 
-            Assertions.assertEquals(8, monster.getHealth());
-
-        } catch(IOException e) {
-            System.out.println("IOException caught");
-        }
+        Assertions.assertEquals(8, monster.getHealth());
     }
 
     @Test
-    public void monsterRetrieveStrengthPotion() {
-        try {
-            Hero hero = Mockito.mock(Hero.class);
-            Mockito.when(hero.getPosition()).thenReturn(new Position(10, 7));
-            Mockito.when(arena.getHero()).thenReturn(hero);
+    public void monsterRetrieveStrengthPotion() throws IOException {
+        Hero hero = Mockito.mock(Hero.class);
+        Mockito.when(hero.getPosition()).thenReturn(new Position(10, 7));
+        Mockito.when(arena.getHero()).thenReturn(hero);
 
-            monsterController.step(game, GUI.ACTION.NONE, 600);
+        monsterController.step(game, GUI.ACTION.NONE, 600);
 
-            Assertions.assertEquals(14, monster.getStrength());
-            Assertions.assertEquals(20, monster.getStrengthBonusTime());
-
-        } catch(IOException e) {
-            System.out.println("IOException caught");
-        }
+        Assertions.assertEquals(14, monster.getStrength());
+        Assertions.assertEquals(20, monster.getStrengthBonusTime());
     }
 }

@@ -128,7 +128,7 @@ public class RandomArenaBuilder extends ArenaBuilder {
 
             position.setX(randomX);
             position.setY(randomY);
-        } while (arena.getMonster(position).getStrength() != 0); //Checking if hero doesn't spawn in the same position of a monster
+        } while (arena.getMonster(position) != null); //Checking if hero doesn't spawn in the same position of a monster
 
         arena.setHero(new Hero(position));
     }
