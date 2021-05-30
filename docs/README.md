@@ -6,22 +6,31 @@ The objective is to control the hero and reach the goal in the map, killing mons
 ## Implemented Features
 
 - Visibilty features: New rooms, and parts of the paths are only revealed when the player approachs it, as well as the content inside the active room.
-
+  ![visibility](./samples/Visibilty.gif)
+  
 - Three standard levels made.
+  ![levels](./samples/levels.gif)
 
 - Random map generation.
+  ![random Maps](./samples/randomMaps.gif)
 
 - A random path generator using as a guide the original rogue idea
+  ![random Path](./samples/randomPath.gif)
 
 - Coins that regenarate health for the mob that collects it, which can a hero but also a monster.
+  ![Coins](./samples/coinRetriving.gif)
 
 - Potions that increases the strength for the mob that collects it, which can a hero but also a monster. The mob also changes color during the effect of the potion.
 
 - Time limit to complete each level.
+  ![Time limit](./samples/time.gif)
 
 - Option to pause during the game (pressing ESC).
+  ![Pause](./samples/pauseMenu.gif)
 
 - Combat system for the hero (pressing X to hit the monsters near by). There's also a color animation of the monsters that have been hit.
+  ![Combat system](./samples/combat.gif)
+
 
 ## Design Patterns used
 
